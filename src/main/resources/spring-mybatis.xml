@@ -10,7 +10,7 @@
                         http://www.springframework.org/schema/mvc
                         http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd">
     <!-- 自动扫描 -->
-    <context:component-scan base-package="com.mdd" />
+    <context:component-scan base-package="com.mdd.mt.mapper" />
 
     <!-- 引入配置文件 -->
     <bean id="propertyConfigurer"
@@ -45,7 +45,7 @@
 
     <!-- DAO接口所在包名，Spring会自动查找其下的类 -->
     <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-        <property name="basePackage" value="com.javen.dao" />
+        <property name="basePackage" value="com.mdd.mt.mapper" />
         <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"></property>
     </bean>
 
