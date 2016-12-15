@@ -15,7 +15,7 @@ public class UserService {
     private  UserMapper userMapper;
 
     public void saveUser(User user){
-        userMapper.save(user);
+        userMapper.saveUser(user);
     }
 
 }

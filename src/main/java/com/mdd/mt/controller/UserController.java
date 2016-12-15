@@ -10,13 +10,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
  * Created by Administrator on 2016/12/15.
  */
 @Controller
-public class Test {
+public class UserController {
 
     @Autowired
     private UserService userService;
 
-    @RequestMapping("toIndex")
+    @RequestMapping("/toIndex")
     public String toIndex(){
+        System.out.println("hello");
         User user = new User();
         user.setUserName("xwl");
         user.setPassword("123");
