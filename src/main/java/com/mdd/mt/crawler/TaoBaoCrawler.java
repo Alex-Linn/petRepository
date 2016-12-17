@@ -45,7 +45,7 @@ public class TaoBaoCrawler implements PageProcessor {
                 //电影名
                 String title = indexHtml.getDocument().select("body > div.detail-wrap.J_detailWrap > div.detail-cont > div > h3").text();
                 if(!StringUtil.isBlank(title)){
-                    //解析电影详细信息
+                    //解析电影详细信息hu
 
                 }
             }
