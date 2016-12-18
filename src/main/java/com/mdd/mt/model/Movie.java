@@ -10,8 +10,11 @@ public class Movie {
     private String performer;//演员
     private String movieType;//影片类型
     private String country;//国家
-    private  String language;//语言
+    private String language;//语言
     private String movieTime;//时长
     private String moiveStory;//剧情
-//    private String
+    private String rescheduledTime;//上映时间
+    private double score ;//评分
+
+
 }
