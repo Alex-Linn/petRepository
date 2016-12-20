@@ -89,11 +89,6 @@ public class TaoBaoCrawler implements PageProcessor {
                     //获取编号为163027城市的全部区域区域的影院信息
                     //获取区域影院url参数
                     String param = document.select("body > div.schedule-wrap.J_scheduleWrap.schedule-loaded > div.filter-wrap > div > ul > li:nth-child(1) > div > a.current").attr("data-param");
-                    //拼接获取所有区域的所有影院的url
-                    String cinemaUrl = "http://dianying.taobao.com/showDetailSchedule.htm?"+param;
-                    //影院详细页
-                    page.addTargetRequest(cinemaUrl);
-
                 }
             }
             //即将上映电影
