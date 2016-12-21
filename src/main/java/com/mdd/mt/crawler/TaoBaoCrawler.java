@@ -1,5 +1,6 @@
 package com.mdd.mt.crawler;
 
+import com.mdd.mt.model.Cinema;
 import com.mdd.mt.model.Movie;
 import com.mdd.mt.model.StateCode;
 import org.apache.commons.codec.binary.StringUtils;
@@ -86,10 +87,23 @@ public class TaoBaoCrawler implements PageProcessor {
                     moive.setPosterUrl(posterUrl);
                     //已经上映
                     moive.setIsShow(1);
+
                     //获取编号为163027城市的全部区域区域的影院信息
-                    //获取区域影院url参数
-                    String param = document.select("body > div.schedule-wrap.J_scheduleWrap.schedule-loaded > div.filter-wrap > div > ul > li:nth-child(1) > div > a.current").attr("data-param");
+                    String moivesDiv = indexHtml.xpath("/html/body/div[5]/div[1]/div/ul/li[2]/div").get();
+
+                    Elements moivesUrl = document.select("body > div.schedule-wrap.J_scheduleWrap.schedule-loaded > div.filter-wrap > div > ul > li:nth-child(2) > div").first().getElementsByTag("a");
+//                    Elements moivesUrl = moivesDiv.get(0).select("a");
+                    for (Element ele :moivesUrl){
+                        Cinema Cinema = new Cinema();
+                        //获取请求获取每个影院的场次的url参数
+                        String dataParam = ele.attr("data-param");
+                        page.addTargetRequest("http://dianying.taobao.com/showDetailSchedule.htm?"+dataParam);
+                    }
+                }else{
+                     String cinemaName = indexHtml.getDocument().select("div.center-wrap.cinemabar-wrap > h4").text();
+                    System.out.println(cinemaName);
                 }
+
             }
             //即将上映电影
         } else {
