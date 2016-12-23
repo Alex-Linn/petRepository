@@ -3,7 +3,6 @@ package com.mdd.mt.crawler;
 import com.mdd.mt.model.Cinema;
 import com.mdd.mt.model.Movie;
 import com.mdd.mt.model.StateCode;
-import org.apache.commons.codec.binary.StringUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.jsoup.Jsoup;
@@ -13,10 +12,8 @@ import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 import us.codecraft.webmagic.Page;
 import us.codecraft.webmagic.Site;
-import us.codecraft.webmagic.Spider;
 import us.codecraft.webmagic.processor.PageProcessor;
 import us.codecraft.webmagic.selector.Html;
-import us.codecraft.webmagic.selector.Selectable;
 
 import java.io.IOException;
 
@@ -43,6 +40,7 @@ public class TaoBaoCrawler implements PageProcessor {
                     String movieUrl = divElement.select("a.movie-card-buy").attr("href");
                     //电影详细页面
                     page.addTargetRequest(movieUrl);
+
                 }
             } else {
                 //电影名
@@ -86,13 +84,14 @@ public class TaoBaoCrawler implements PageProcessor {
                     String posterUrl = document.select("body > div.detail-wrap.J_detailWrap > div.detail-cont > div > div.cont-pic > img").attr("href");
                     moive.setPosterUrl(posterUrl);
                     //已经上映
+                    System.out.println(indexHtml.getDocument().body());
                     moive.setIsShow(1);
-
                     //获取编号为163027城市的全部区域区域的影院信息
-                    String moivesDiv = indexHtml.xpath("/html/body/div[5]/div[1]/div/ul/li[2]/div").get();
-
-                    Elements moivesUrl = document.select("body > div.schedule-wrap.J_scheduleWrap.schedule-loaded > div.filter-wrap > div > ul > li:nth-child(2) > div").first().getElementsByTag("a");
-//                    Elements moivesUrl = moivesDiv.get(0).select("a");
+//                    body > div.schedule-wrap.J_scheduleWrap.schedule-loaded > div.filter-wrap > div > ul > li:nth-child(1) > div > a:nth-child(1)
+//                    http://dianying.taobao.com/showDetailSchedule.htm?showId=154578&n_s=new
+//                    http://dianying.taobao.com/showDetailSchedule.htm?showId=154578&ts=1482490573898&n_s=new
+//                    System.out.println(indexHtml.getDocument().body());
+                    Elements moivesUrl = Jsoup.parse(indexHtml.get()).select("body > div.schedule-wrap.J_scheduleWrap.schedule-loaded > div.filter-wrap > div > ul > li:nth-child(2) > div");
                     for (Element ele :moivesUrl){
                         Cinema Cinema = new Cinema();
                         //获取请求获取每个影院的场次的url参数
@@ -118,12 +117,14 @@ public class TaoBaoCrawler implements PageProcessor {
 
     public static void main(String[] args) throws IOException {
 
-        Spider.create(new TaoBaoCrawler())
-                //从深圳开始抓
-                .addUrl("http://dianying.taobao.com/showList.htm?spm=a1z21.6646273.city.5.EAQ1oR&n_s=new&city=440300")
-                //开启5个线程抓取
-                .thread(2)
-                //启动爬虫
-                .run();
+//        Spider.create(new TaoBaoCrawler())
+//                //从深圳开始抓
+//                .addUrl("http://dianying.taobao.com/showList.htm?spm=a1z21.6646273.city.5.EAQ1oR&n_s=new&city=440300")
+//                //开启5个线程抓取
+//                .thread(2)
+//                //启动爬虫
+//                .run();
+        Element body = Jsoup.connect("http://dianying.taobao.com/showDetailSchedule.htm?showId=154578&n_s=new").get().body();
+        System.out.println(body);
     }
 }
