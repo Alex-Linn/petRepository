@@ -1,8 +1,10 @@
 package com.mdd.mt.crawler;
 
 import com.mdd.mt.model.Cinema;
+import com.mdd.mt.model.MoiveSchedule;
 import com.mdd.mt.model.Movie;
 import com.mdd.mt.model.StateCode;
+import com.mdd.mt.utils.CommonUtils;
 import org.apache.commons.codec.binary.StringUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -19,6 +21,12 @@ import us.codecraft.webmagic.selector.Html;
 import us.codecraft.webmagic.selector.Selectable;
 
 import java.io.IOException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * Created by Administrator on 2016/12/17.
@@ -29,9 +37,12 @@ public class TaoBaoCrawler implements PageProcessor {
 
     //设置抓取网站的相关配置，包括编码、抓取间隔、重试次数等
     private Site site = Site.me().setRetryTimes(3).setSleepTime(100);
+    //为了控制拿每个影院场次链接时不让再次拿
+    boolean flag = true;
 
     //页面抽取逻辑
     public void process(Page page) {
+
         //访问成功
         if (page != null && page.getStatusCode() == StateCode.OK.getCode()) {
             Html indexHtml = page.getHtml();
@@ -87,21 +98,107 @@ public class TaoBaoCrawler implements PageProcessor {
                     moive.setPosterUrl(posterUrl);
                     //已经上映
                     moive.setIsShow(1);
+                    System.out.println(moive);
+                    //添加所有
+                    page.addTargetRequest("http://dianying.taobao.com/showDetailSchedule.htm?showId=154578&n_s=new");
+                } else {
 
-                    //获取编号为163027城市的全部区域区域的影院信息
-                    String moivesDiv = indexHtml.xpath("/html/body/div[5]/div[1]/div/ul/li[2]/div").get();
-
-                    Elements moivesUrl = document.select("body > div.schedule-wrap.J_scheduleWrap.schedule-loaded > div.filter-wrap > div > ul > li:nth-child(2) > div").first().getElementsByTag("a");
-//                    Elements moivesUrl = moivesDiv.get(0).select("a");
-                    for (Element ele :moivesUrl){
-                        Cinema Cinema = new Cinema();
-                        //获取请求获取每个影院的场次的url参数
-                        String dataParam = ele.attr("data-param");
-                        page.addTargetRequest("http://dianying.taobao.com/showDetailSchedule.htm?"+dataParam);
+                    Elements cinemaDiv = indexHtml.getDocument().select("body > div.filter-wrap > div > ul > li:nth-child(2) > div");
+                    if (cinemaDiv != null && flag == true) {
+                        Elements cinemasUrl = cinemaDiv.get(0).select("a");
+                        for (Element ele : cinemasUrl) {
+                            String dataParam = ele.attr("data-param");
+                            //每家电影每个时间段的电影场次
+                            //今天的场次
+                            String todayDate = CommonUtils.getDetailScheduleDate(0);
+                            if (!StringUtil.isBlank(dataParam) && dataParam.contains("date")) {
+                                dataParam.replaceAll("date=(.*)&regionName=", todayDate);
+                            }
+                            page.addTargetRequest("http://dianying.taobao.com/showDetailSchedule.htm?" + dataParam);
+                            //明天的场次
+                            String tomorrowDate = CommonUtils.getDetailScheduleDate(1);
+                            if (!StringUtil.isBlank(dataParam) && dataParam.contains("date")) {
+                                dataParam.replaceAll("date=(.*)&regionName=", tomorrowDate);
+                            }
+                            page.addTargetRequest("http://dianying.taobao.com/showDetailSchedule.htm?" + dataParam);
+                        }
+                        flag = false;
+                    } else {
+                        Cinema cinema = new Cinema();
+                        //影院名称
+                        Document cinemaDocument = indexHtml.getDocument();
+                        String cinemaName = cinemaDocument.select("body > div.center-wrap.cinemabar-wrap > h4").text();
+                        cinema.setCinemaName(cinemaName);
+                        String text = cinemaDocument.select("body > div.center-wrap.cinemabar-wrap").text();
+//                        纵横国际影城（石厦店） 地址：福田区石厦北二街89号石厦新港商城3楼318 [地图] 电话：0755-28181068 查看影院详情 >
+                        String regx = "地址：(.*)\\[地图\\].*电话：(\\d+-\\d+)";
+                        Pattern compile = Pattern.compile(regx);
+                        Matcher matcher = compile.matcher(text);
+                        while (matcher.find()) {
+                            //地址
+                            String address = matcher.group(1);
+                            cinema.setAddress(address);
+                            //区域
+                            String area = address.substring(0, address.indexOf("区") + 1);
+                            cinema.setArea(area);
+                            //电话
+                            String tel = matcher.group(2);
+                            cinema.setTel(tel);
+                            //地图位置URl
+                            String mapUrl = cinemaDocument.select("body > div.center-wrap.cinemabar-wrap > a.more").attr("href");
+                            cinema.setMapInfo(mapUrl);
+                            System.out.println(cinema);
+                        }
+                        Elements scheduleTable = cinemaDocument.select("table");
+                        //防止没有场次的页面
+                        if (scheduleTable.size() != 0) {
+                            Elements scheduleTr = scheduleTable.get(0).select("tr");
+                            for (Element eleTr : scheduleTr) {
+                                MoiveSchedule moiveSchedule = new MoiveSchedule();
+                                //电影播放时间
+                                String timeStr = eleTr.select("td.hall-time").text();
+                                if (!StringUtil.isBlank(timeStr)) {
+                                    String startHour = timeStr.substring(0, timeStr.indexOf("预计"));
+                                    String endHour = timeStr.substring(timeStr.lastIndexOf("预计"));
+                                    //结束时间
+                                    moiveSchedule.setEndTime(endHour);
+                                    //通过url参数拿到时间去拼凑数据库的时间 &date=2016-12-24&regionName=&ts=1482592840757&n_s=new
+                                    String dateRegx = "date=(.*)&regionName";
+                                    Pattern dateCompile = Pattern.compile(dateRegx);
+                                    Matcher dateMatcher = dateCompile.matcher(page.getRequest().getUrl().toString());
+                                    if (dateMatcher.find()) {
+                                        String date = dateMatcher.group(1);
+                                        date = date + ":" + startHour;
+                                        Date startTime = CommonUtils.String4Date(date);
+                                        //电影开始时间
+                                        moiveSchedule.setStartTime(startTime);
+                                    }
+                                    //语言
+                                    String language = eleTr.select("td.hall-type").text();
+                                    moiveSchedule.setLanguage(language);
+                                    //影厅
+                                    String videoHall = eleTr.select("td.hall-name").text();
+                                    moiveSchedule.setVideoHall(videoHall);
+                                    //票的稀缺度
+                                    String seatCondition = eleTr.select("td.hall-flow").text();
+                                    moiveSchedule.setSeatCondition(seatCondition);
+                                    String price = eleTr.select("td.hall-price > em.now").text();
+                                    try {
+                                        moiveSchedule.setPrice(Double.valueOf(price));
+                                    } catch (Exception e) {
+                                        System.out.println("票价转换异常");
+                                    }
+                                    String buyUrl = eleTr.select("td.hall-seat >a").attr("href");
+                                    if (!StringUtil.isBlank(buyUrl)) {
+                                        moiveSchedule.setBuyUrl(buyUrl);
+                                    } else {
+                                        moiveSchedule.setBuyUrl(eleTr.select("td.hall-seat").text());
+                                    }
+                                    System.out.println(moiveSchedule);
+                                }
+                            }
+                        }
                     }
-                }else{
-                     String cinemaName = indexHtml.getDocument().select("div.center-wrap.cinemabar-wrap > h4").text();
-                    System.out.println(cinemaName);
                 }
 
             }
