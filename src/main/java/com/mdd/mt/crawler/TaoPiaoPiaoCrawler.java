@@ -4,7 +4,6 @@ import com.mdd.mt.model.Cinema;
 import com.mdd.mt.model.MoiveSchedule;
 import com.mdd.mt.model.Movie;
 import com.mdd.mt.utils.CommonUtils;
-import org.jsoup.Connection;
 import org.jsoup.Jsoup;
 import org.jsoup.helper.StringUtil;
 import org.jsoup.nodes.Document;
@@ -13,10 +12,7 @@ import org.jsoup.select.Elements;
 
 import java.io.IOException;
 import java.util.Date;
-import java.util.HashSet;
 import java.util.List;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 /**
  * Created by Administrator on 2016/12/25.
