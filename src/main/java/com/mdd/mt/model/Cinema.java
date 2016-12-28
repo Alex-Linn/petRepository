@@ -12,7 +12,7 @@ public class Cinema {
     private String cinemaName;//影院名字
     private String tel;//电话
     private String mapInfo;//地图信息
-
+    private String detailScheduleUrl;//影院场次url
 
     @Override
     public String toString() {
@@ -24,6 +24,7 @@ public class Cinema {
                 ", cinemaName='" + cinemaName + '\'' +
                 ", tel='" + tel + '\'' +
                 ", mapInfo='" + mapInfo + '\'' +
+                ", detailScheduleUrl='" + detailScheduleUrl + '\'' +
                 '}';
     }
 
@@ -81,5 +82,13 @@ public class Cinema {
 
     public void setMapInfo(String mapInfo) {
         this.mapInfo = mapInfo;
+    }
+
+    public String getDetailScheduleUrl() {
+        return detailScheduleUrl;
+    }
+
+    public void setDetailScheduleUrl(String detailScheduleUrl) {
+        this.detailScheduleUrl = detailScheduleUrl;
     }
 }

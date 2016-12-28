@@ -18,13 +18,27 @@ public class Movie {
     private String rescheduledTime;//上映时间
     private double score;//评分
     private int isShow;//是否上映，1上映 0即将上映
+    private String movieDetailUrl;//电影详细页url
 
-    public String getPosterUrl() {
-        return posterUrl;
-    }
-
-    public void setPosterUrl(String posterUrl) {
-        this.posterUrl = posterUrl;
+    @Override
+    public String toString() {
+        return "Movie{" +
+                "id=" + id +
+                ", movieName='" + movieName + '\'' +
+                ", movieEnglishName='" + movieEnglishName + '\'' +
+                ", director='" + director + '\'' +
+                ", performer='" + performer + '\'' +
+                ", movieType='" + movieType + '\'' +
+                ", country='" + country + '\'' +
+                ", language='" + language + '\'' +
+                ", movieTime='" + movieTime + '\'' +
+                ", moiveStory='" + moiveStory + '\'' +
+                ", posterUrl='" + posterUrl + '\'' +
+                ", rescheduledTime='" + rescheduledTime + '\'' +
+                ", score=" + score +
+                ", isShow=" + isShow +
+                ", movieDetailUrl='" + movieDetailUrl + '\'' +
+                '}';
     }
 
     public int getId() {
@@ -107,6 +121,14 @@ public class Movie {
         this.moiveStory = moiveStory;
     }
 
+    public String getPosterUrl() {
+        return posterUrl;
+    }
+
+    public void setPosterUrl(String posterUrl) {
+        this.posterUrl = posterUrl;
+    }
+
     public String getRescheduledTime() {
         return rescheduledTime;
     }
@@ -131,23 +153,11 @@ public class Movie {
         this.isShow = isShow;
     }
 
-    @Override
-    public String toString() {
-        return "Movie{" +
-                "id=" + id +
-                ", movieName='" + movieName + '\'' +
-                ", movieEnglishName='" + movieEnglishName + '\'' +
-                ", director='" + director + '\'' +
-                ", performer='" + performer + '\'' +
-                ", movieType='" + movieType + '\'' +
-                ", country='" + country + '\'' +
-                ", language='" + language + '\'' +
-                ", movieTime='" + movieTime + '\'' +
-                ", moiveStory='" + moiveStory + '\'' +
-                ", posterUrl='" + posterUrl + '\'' +
-                ", rescheduledTime='" + rescheduledTime + '\'' +
-                ", score=" + score +
-                ", isShow=" + isShow +
-                '}';
+    public String getMovieDetailUrl() {
+        return movieDetailUrl;
+    }
+
+    public void setMovieDetailUrl(String movieDetailUrl) {
+        this.movieDetailUrl = movieDetailUrl;
     }
 }

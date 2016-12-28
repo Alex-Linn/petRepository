@@ -76,6 +76,47 @@ public class CommonUtils {
         } catch (ParseException e) {
             e.printStackTrace();
         }
+        String s = "\n" +
+                "\t\t\t\t\n" +
+                "\t\t\t\t\n" +
+                "\t\t\t\t\t\n" +
+                "\t\t\t\t\t\n" +
+                "\t\t\t\t\t\n" +
+                "\t\t\t\t\t<tr class=\"\">\n" +
+                "\t\t\t\t\t\t\n" +
+                "\t\t\t\t<td style=\"white-space: nowrap;\">\n" +
+                "\t\t\t\t\t6222 6206 2000 5617 047\t\t\t\t\n" +
+                "\t\t\t\t</td>\n" +
+                "\t\t\t\t\n" +
+                "\t\t\t\t\t\n" +
+                "\t\t\t\t\t\t<td>王勇义</td>\n" +
+                "\t\t\t\t\t\t<td>\n" +
+                "\t\t\t\t\t\t\t\n" +
+                "\t\t\t\t\t\t\t\t\n" +
+                "\t\t\t\t\t\t\t\t--\n" +
+                "\t\t\t\t\t\t\t\n" +
+                "\t\t\t\t\t\t</td>\n" +
+                "\t\t\t\t\t\t<td>借记卡</td>\n" +
+                "\t\t\t\t\t\t<td>人民币</td>\n" +
+                "\t\t\t\t\t\t<td style=\"white-space: nowrap;\">0.00</td>\n" +
+                "\t\t\t\t\t\t<td style=\"white-space: nowrap;\">0.00</td>\n" +
+                "\t\t\t\t\t\t<td>\n" +
+                "\t\t\t\t\t\t\t<a style=\"font-size:13px;\" href=\"#\" onclick=\"showDetail('8c3cba8d601d28187815d1358a009ddf')\">明细</a>\t\n" +
+                "\t\t\t\t\t\t|\n" +
+                "\t\t\t\t\t\t\t<a style=\"font-size:13px;\" href=\"#\" onclick=\"newwindow('8c3cba8d601d28187815d1358a009ddf','cny');\">本&#047;外币</a>\n" +
+                "\t\t\t\t\t\t|\n" +
+                "\t\t\t\t\t\t\t<a style=\"font-size:13px;\" href=\"#\" onclick=\"Util.changeMenu('P010001',{cardNo:'8c3cba8d601d28187815d1358a009ddf'});\">我要转账</a>\n" +
+                "\t\t\t\t\t\t|\n" +
+                "\t\t\t\t\t\t\t<a style=\"font-size:13px;\" href=\"#\" onclick=\"Util.changeMenu('P026002',{cardNo:'8c3cba8d601d28187815d1358a009ddf'});\">我要理财</a>\n" +
+                "\t\t\t\t\t\t</td>  \n" +
+                "\t\t\t\t\t\n" +
+                "\t\t\t\t\t\n" +
+                "\t\t\t\t\n" +
+                "\t\t\t\n" +
+                "\t\t\t\t\t</tr>\n" +
+                "\t\t\t\t\t\n" +
+                "\t\t\t\t\n" +
+                "\t";
         return date;
     }
 }
