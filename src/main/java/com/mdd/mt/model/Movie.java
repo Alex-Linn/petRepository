@@ -11,7 +11,7 @@ public class Movie {
     private String performer;//演员
     private String movieType;//影片类型
     private String country;//国家
-    private String language;//语言
+    private String movieLanguage;//语言
     private String movieTime;//时长
     private String moiveStory;//剧情
     private String posterUrl;//海报url
@@ -30,7 +30,7 @@ public class Movie {
                 ", performer='" + performer + '\'' +
                 ", movieType='" + movieType + '\'' +
                 ", country='" + country + '\'' +
-                ", language='" + language + '\'' +
+                ", language='" + movieLanguage + '\'' +
                 ", movieTime='" + movieTime + '\'' +
                 ", moiveStory='" + moiveStory + '\'' +
                 ", posterUrl='" + posterUrl + '\'' +
@@ -97,12 +97,12 @@ public class Movie {
         this.country = country;
     }
 
-    public String getLanguage() {
-        return language;
+    public String getMovieLanguage() {
+        return movieLanguage;
     }
 
-    public void setLanguage(String language) {
-        this.language = language;
+    public void setMovieLanguage(String movieLanguage) {
+        this.movieLanguage = movieLanguage;
     }
 
     public String getMovieTime() {

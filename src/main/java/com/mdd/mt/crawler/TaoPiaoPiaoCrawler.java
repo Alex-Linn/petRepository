@@ -30,41 +30,42 @@ public class TaoPiaoPiaoCrawler {
                 Document movieDetailDocument = Jsoup.connect(movieUrl).get();
                 if (movieDetailDocument != null) {
                     Movie moive = new Movie();
+                    Elements movieDivDocment = movieDetailDocument.select("body > div.detail-wrap.J_detailWrap > div.detail-cont > div");
                     //电影名
-                    String movieName = movieDetailDocument.select("body > div.detail-wrap.J_detailWrap > div.detail-cont > div > h3").text();
+                    String movieName = movieDivDocment.select("h3").text();
                     moive.setMovieName(movieName);
                     //英文名
-                    String movieEnglishName = movieDetailDocument.select("body > div.detail-wrap.J_detailWrap > div.detail-cont > div > h3 > i").text();
+                    String movieEnglishName = movieDivDocment.select("h3 > i").text();
                     moive.setMovieEnglishName(movieEnglishName);
                     //评分
-                    String score = movieDetailDocument.select("body > div.detail-wrap.J_detailWrap > div.detail-cont > div > h3 > em").text();
+                    String score = movieDivDocment.select("h3 > em").text();
                     moive.setScore(Double.valueOf(score));
                     //上映时间
-                    String rescheduledTime = movieDetailDocument.select("body > div.detail-wrap.J_detailWrap > div.detail-cont > div > div.cont-time").text();
+                    String rescheduledTime = movieDivDocment.select("div.cont-time").text();
                     moive.setRescheduledTime(rescheduledTime);
                     //导演
-                    String director = movieDetailDocument.select("body > div.detail-wrap.J_detailWrap > div.detail-cont > div > ul > li:nth-child(2)").text();
+                    String director = movieDivDocment.select("ul > li:nth-child(2)").text();
                     moive.setDirector(director);
                     //演员
-                    String performer = movieDetailDocument.select("body > div.detail-wrap.J_detailWrap > div.detail-cont > div > ul > li:nth-child(3)").text();
+                    String performer = movieDivDocment.select("ul > li:nth-child(3)").text();
                     moive.setPerformer(performer);
                     //影片类型
-                    String movieType = movieDetailDocument.select("body > div.detail-wrap.J_detailWrap > div.detail-cont > div > ul > li:nth-child(4)").text();
+                    String movieType = movieDivDocment.select("ul > li:nth-child(4)").text();
                     moive.setMovieType(movieType);
                     //国家
-                    String country = movieDetailDocument.select("body > div.detail-wrap.J_detailWrap > div.detail-cont > div > ul > li:nth-child(5)").text();
+                    String country = movieDivDocment.select("ul > li:nth-child(5)").text();
                     moive.setCountry(country);
                     //语言
-                    String moiveLanguage = movieDetailDocument.select("body > div.detail-wrap.J_detailWrap > div.detail-cont > div > ul > li:nth-child(6)").text();
-                    moive.setLanguage(moiveLanguage);
+                    String moiveLanguage = movieDivDocment.select("ul > li:nth-child(6)").text();
+                    moive.setMovieLanguage(moiveLanguage);
                     //时长
-                    String movieTime = movieDetailDocument.select("body > div.detail-wrap.J_detailWrap > div.detail-cont > div > ul > li:nth-child(7)").text();
+                    String movieTime = movieDivDocment.select("ul > li:nth-child(7)").text();
                     moive.setMovieTime(movieTime);
                     //影片简介
-                    String moiveStory = movieDetailDocument.select("body > div.detail-wrap.J_detailWrap > div.detail-cont > div > ul > li.J_shrink.shrink").text();
+                    String moiveStory = movieDivDocment.select("ul > li.J_shrink.shrink").text();
                     moive.setMoiveStory(moiveStory);
                     //影片海报url
-                    String posterUrl = movieDetailDocument.select("body > div.detail-wrap.J_detailWrap > div.detail-cont > div > div.cont-pic > img").attr("href");
+                    String posterUrl = movieDivDocment.select("div.cont-pic > img").attr("href");
                     moive.setPosterUrl(posterUrl);
                     //已经上映
                     moive.setIsShow(1);
