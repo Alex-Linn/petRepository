@@ -76,6 +76,9 @@ public class TaoPiaoPiaoCrawler {
                     //拼接获取电影影院的url
                     String showId = CommonUtils.simpleMatch(movieUrl, "showId=(\\d+)&");
                     String cinemaUrl = "http://dianying.taobao.com/showDetailSchedule.htm?n_s=new&showId=" + showId;
+
+
+
                     Document cinemaDocument = Jsoup.connect(cinemaUrl).timeout(1000 * 60 * 30).get();
                     Elements cinemaDiv = cinemaDocument.select("body > div.filter-wrap > div > ul > li:nth-child(2) > div");
                     Elements cinemasHref = cinemaDiv.get(0).select("a");
@@ -165,6 +168,76 @@ public class TaoPiaoPiaoCrawler {
             }
         }
 
+    }
+
+
+    /**
+     * 抓取电影
+     * @param indexUrl
+     * @return
+     * @throws IOException
+     */
+    private List<Movie>analyzeMovie(String indexUrl) throws IOException {
+        Document indexDocument = Jsoup.connect(indexUrl).get();
+        if (indexDocument != null) {
+            Element element = indexDocument.select("div.tab-movie-list").get(0);
+            Elements divElements = element.select("div.tab-movie-list > div");
+            for (Element divElement : divElements) {
+                /**获取每部电影的详情**/
+                String movieUrl = divElement.select("a.movie-card-buy").attr("href");
+                Document movieDetailDocument = Jsoup.connect(movieUrl).get();
+                if (movieDetailDocument != null) {
+                    Movie moive = new Movie();
+                    Elements movieDivDocment = movieDetailDocument.select("body > div.detail-wrap.J_detailWrap > div.detail-cont > div");
+                    //电影名
+                    String movieName = movieDivDocment.select("h3").text();
+                    moive.setMovieName(movieName);
+                    //英文名
+                    String movieEnglishName = movieDivDocment.select("h3 > i").text();
+                    moive.setMovieEnglishName(movieEnglishName);
+                    //评分
+                    String score = movieDivDocment.select("h3 > em").text();
+                    moive.setScore(Double.valueOf(score));
+                    //上映时间
+                    String rescheduledTime = movieDivDocment.select("div.cont-time").text();
+                    moive.setRescheduledTime(rescheduledTime);
+                    //导演
+                    String director = movieDivDocment.select("ul > li:nth-child(2)").text();
+                    moive.setDirector(director);
+                    //演员
+                    String performer = movieDivDocment.select("ul > li:nth-child(3)").text();
+                    moive.setPerformer(performer);
+                    //影片类型
+                    String movieType = movieDivDocment.select("ul > li:nth-child(4)").text();
+                    moive.setMovieType(movieType);
+                    //国家
+                    String country = movieDivDocment.select("ul > li:nth-child(5)").text();
+                    moive.setCountry(country);
+                    //语言
+                    String moiveLanguage = movieDivDocment.select("ul > li:nth-child(6)").text();
+                    moive.setMovieLanguage(moiveLanguage);
+                    //时长
+                    String movieTime = movieDivDocment.select("ul > li:nth-child(7)").text();
+                    moive.setMovieTime(movieTime);
+                    //影片简介
+                    String moiveStory = movieDivDocment.select("ul > li.J_shrink.shrink").text();
+                    moive.setMoiveStory(moiveStory);
+                    //影片海报url
+                    String posterUrl = movieDivDocment.select("div.cont-pic > img").attr("href");
+                    moive.setPosterUrl(posterUrl);
+                    //已经上映
+                    moive.setIsShow(1);
+                    System.out.println(moive);
+
+//                  http://dianying.taobao.com/showDetailSchedule.htm?showId=154578&ts=1482648277453&n_s=new 百度人
+                    /**每场电影，播放的影院和场次**/
+                    //拼接获取电影影院的url
+                    String showId = CommonUtils.simpleMatch(movieUrl, "showId=(\\d+)&");
+                    String cinemaUrl = "http://dianying.taobao.com/showDetailSchedule.htm?n_s=new&showId=" + showId;
+                }
+            }
+        }
+                    return null;
     }
 
     public static void main(String[] args) {
