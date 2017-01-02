@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mdd.mt.mapper.MovieMapper">
+
+    <!--保存电影-->
+    <insert id="saveMovie" parameterType="java.util.List">
+        INSERT into t_movie 
+        (movieName,movieEnglishName,director,performer,movieType,country,movieLanguage,movieTime,moiveStory,posterUrl)
+        VALUES 
+        <foreach collection ="list" item="movie" index= "index" separator =",">
+            (${movie.movieName},${movie.movieEnglishName},${movie.director},${movie.performer},
+            ${movie.movieType},${movie.country},${movie.movieLanguage},${movie.movieTime},
+            ${movie.moiveStory},${movie.posterUrl})
+        </foreach>
+    </insert>
+
+    <!--根据电影名字查询-->
+    <select id="queryMovieByName" parameterType="string" resultType="com.mdd.mt.model.Movie">
+        SELECT * from t_movie where movieName = ${movieName}
+    </select>
+</mapper>
