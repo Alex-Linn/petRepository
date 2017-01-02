@@ -3,21 +3,29 @@ package com.mdd.mt.crawler;
 import com.mdd.mt.model.Cinema;
 import com.mdd.mt.model.MoiveSchedule;
 import com.mdd.mt.model.Movie;
+import com.mdd.mt.service.MovieServiceImpl;
 import com.mdd.mt.utils.CommonUtils;
 import org.jsoup.Jsoup;
 import org.jsoup.helper.StringUtil;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 /**
  * Created by Administrator on 2016/12/25.
  */
+@Service
 public class TaoPiaoPiaoCrawler {
+    @Autowired
+    private MovieServiceImpl MovieServiceImpl;
+
     public void crawler(String indexUrl) throws IOException {
 
         Document indexDocument = Jsoup.connect(indexUrl).get();
@@ -178,6 +186,7 @@ public class TaoPiaoPiaoCrawler {
      * @throws IOException
      */
     private List<Movie>analyzeMovie(String indexUrl) throws IOException {
+        ArrayList<Movie> movieList = new ArrayList<Movie>();
         Document indexDocument = Jsoup.connect(indexUrl).get();
         if (indexDocument != null) {
             Element element = indexDocument.select("div.tab-movie-list").get(0);
@@ -234,10 +243,13 @@ public class TaoPiaoPiaoCrawler {
                     //拼接获取电影影院的url
                     String showId = CommonUtils.simpleMatch(movieUrl, "showId=(\\d+)&");
                     String cinemaUrl = "http://dianying.taobao.com/showDetailSchedule.htm?n_s=new&showId=" + showId;
+                    moive.setMovieDetailUrl(cinemaUrl);
+                    movieList.add(moive);
                 }
             }
+            MovieServiceImpl.saveMoive(movieList);
         }
-                    return null;
+        return movieList;
     }
 
     public static void main(String[] args) {

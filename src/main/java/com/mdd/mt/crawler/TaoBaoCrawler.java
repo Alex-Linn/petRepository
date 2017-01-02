@@ -86,7 +86,7 @@ public class TaoBaoCrawler implements PageProcessor {
                     moive.setCountry(country);
                     //语言
                     String language = document.select("body > div.detail-wrap.J_detailWrap > div.detail-cont > div > ul > li:nth-child(6)").text();
-                    moive.setLanguage(language);
+                    moive.setMovieLanguage(language);
                     //时长
                     String movieTime = document.select("body > div.detail-wrap.J_detailWrap > div.detail-cont > div > ul > li:nth-child(7)").text();
                     moive.setMovieTime(movieTime);
