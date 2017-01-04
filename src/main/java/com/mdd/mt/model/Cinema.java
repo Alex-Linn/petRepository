@@ -1,38 +1,27 @@
 package com.mdd.mt.model;
 
-/**
- * Created by Administrator on 2016/12/19.
- * 影院实体类
- */
 public class Cinema {
-    private int id;
-    private String city;//城市
-    private String area;//区
-    private String address;//地址
-    private String cinemaName;//影院名字
-    private String tel;//电话
-    private String mapInfo;//地图信息
-    private String detailScheduleUrl;//影院场次url
+    private Integer id;
 
-    @Override
-    public String toString() {
-        return "Cinema{" +
-                "id=" + id +
-                ", city='" + city + '\'' +
-                ", area='" + area + '\'' +
-                ", address='" + address + '\'' +
-                ", cinemaName='" + cinemaName + '\'' +
-                ", tel='" + tel + '\'' +
-                ", mapInfo='" + mapInfo + '\'' +
-                ", detailScheduleUrl='" + detailScheduleUrl + '\'' +
-                '}';
-    }
+    private String city;
 
-    public int getId() {
+    private String area;
+
+    private String address;
+
+    private String cinemaName;
+
+    private String tel;
+
+    private String mapInfo;
+
+    private String detailScheduleUrl;
+
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -41,7 +30,7 @@ public class Cinema {
     }
 
     public void setCity(String city) {
-        this.city = city;
+        this.city = city == null ? null : city.trim();
     }
 
     public String getArea() {
@@ -49,7 +38,7 @@ public class Cinema {
     }
 
     public void setArea(String area) {
-        this.area = area;
+        this.area = area == null ? null : area.trim();
     }
 
     public String getAddress() {
@@ -57,7 +46,7 @@ public class Cinema {
     }
 
     public void setAddress(String address) {
-        this.address = address;
+        this.address = address == null ? null : address.trim();
     }
 
     public String getCinemaName() {
@@ -65,7 +54,7 @@ public class Cinema {
     }
 
     public void setCinemaName(String cinemaName) {
-        this.cinemaName = cinemaName;
+        this.cinemaName = cinemaName == null ? null : cinemaName.trim();
     }
 
     public String getTel() {
@@ -73,7 +62,7 @@ public class Cinema {
     }
 
     public void setTel(String tel) {
-        this.tel = tel;
+        this.tel = tel == null ? null : tel.trim();
     }
 
     public String getMapInfo() {
@@ -81,7 +70,7 @@ public class Cinema {
     }
 
     public void setMapInfo(String mapInfo) {
-        this.mapInfo = mapInfo;
+        this.mapInfo = mapInfo == null ? null : mapInfo.trim();
     }
 
     public String getDetailScheduleUrl() {
@@ -89,6 +78,6 @@ public class Cinema {
     }
 
     public void setDetailScheduleUrl(String detailScheduleUrl) {
-        this.detailScheduleUrl = detailScheduleUrl;
+        this.detailScheduleUrl = detailScheduleUrl == null ? null : detailScheduleUrl.trim();
     }
 }
