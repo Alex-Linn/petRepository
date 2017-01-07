@@ -22,6 +22,11 @@ public class UserController {
         user.setUserName("xwl");
         user.setPassword("123");
         userService.saveUser(user);
+        System.out.println(user);
         return "toIndex";
+    }
+    @RequestMapping("/toDemo")
+    public String toDemo(){
+        return "demo";
     }
 }
