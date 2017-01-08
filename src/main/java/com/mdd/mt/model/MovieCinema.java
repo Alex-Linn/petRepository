@@ -2,13 +2,14 @@ package com.mdd.mt.model;
 
 import java.util.Date;
 
+/**
+ * Created by Administrator on 2017/1/1.
+ * 电影与电影院中间表
+ */
 public class MovieCinema {
-    private Integer id;
-
-    private Integer moiveId;
-
-    private Integer cinemaId;
-
+    private int id;
+    private int moiveId;
+    private int cinemaId;
     private Date createTime;
 
     public Integer getId() {

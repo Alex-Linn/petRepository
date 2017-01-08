@@ -2,44 +2,54 @@ package com.mdd.mt.model;
 
 import java.util.Date;
 
+/**
+ * Created by Administrator on 2016/12/17.
+ */
 public class Movie {
-    private Integer id;
-
-    private String movieName;
-
+    private int id;
+    private String movieName;//影片名
     private String movieEnglishName;
-
-    private String director;
-
-    private String performer;
-
-    private String movieType;
-
-    private String country;
-
-    private String movieLanguage;
-
-    private String movieTime;
-
-    private String posterUrl;
-
-    private String rescheduledTime;
-
-    private Double score;
-
-    private Integer isShow;
-
-    private String movieDetailUrl;
-
+    private String director;//导演
+    private String performer;//演员
+    private String movieType;//影片类型
+    private String country;//国家
+    private String movieLanguage;//语言
+    private String movieTime;//时长
+    private String moiveStory;//剧情
+    private String posterUrl;//海报url
+    private String rescheduledTime;//上映时间
+    private double score;//评分
+    private int isShow;//是否上映，1上映 0即将上映
+    private String movieDetailUrl;//电影详细页url
     private Date createTime;
 
-    private String moiveStory;
+    @Override
+    public String toString() {
+        return "Movie{" +
+                "id=" + id +
+                ", movieName='" + movieName + '\'' +
+                ", movieEnglishName='" + movieEnglishName + '\'' +
+                ", director='" + director + '\'' +
+                ", performer='" + performer + '\'' +
+                ", movieType='" + movieType + '\'' +
+                ", country='" + country + '\'' +
+                ", movieLanguage='" + movieLanguage + '\'' +
+                ", movieTime='" + movieTime + '\'' +
+                ", moiveStory='" + moiveStory + '\'' +
+                ", posterUrl='" + posterUrl + '\'' +
+                ", rescheduledTime='" + rescheduledTime + '\'' +
+                ", score=" + score +
+                ", isShow=" + isShow +
+                ", movieDetailUrl='" + movieDetailUrl + '\'' +
+                ", createTime=" + createTime +
+                '}';
+    }
 
-    public Integer getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -48,7 +58,7 @@ public class Movie {
     }
 
     public void setMovieName(String movieName) {
-        this.movieName = movieName == null ? null : movieName.trim();
+        this.movieName = movieName;
     }
 
     public String getMovieEnglishName() {
@@ -56,7 +66,7 @@ public class Movie {
     }
 
     public void setMovieEnglishName(String movieEnglishName) {
-        this.movieEnglishName = movieEnglishName == null ? null : movieEnglishName.trim();
+        this.movieEnglishName = movieEnglishName;
     }
 
     public String getDirector() {
@@ -64,7 +74,7 @@ public class Movie {
     }
 
     public void setDirector(String director) {
-        this.director = director == null ? null : director.trim();
+        this.director = director;
     }
 
     public String getPerformer() {
@@ -72,7 +82,7 @@ public class Movie {
     }
 
     public void setPerformer(String performer) {
-        this.performer = performer == null ? null : performer.trim();
+        this.performer = performer;
     }
 
     public String getMovieType() {
@@ -80,7 +90,7 @@ public class Movie {
     }
 
     public void setMovieType(String movieType) {
-        this.movieType = movieType == null ? null : movieType.trim();
+        this.movieType = movieType;
     }
 
     public String getCountry() {
@@ -88,7 +98,7 @@ public class Movie {
     }
 
     public void setCountry(String country) {
-        this.country = country == null ? null : country.trim();
+        this.country = country;
     }
 
     public String getMovieLanguage() {
@@ -96,7 +106,7 @@ public class Movie {
     }
 
     public void setMovieLanguage(String movieLanguage) {
-        this.movieLanguage = movieLanguage == null ? null : movieLanguage.trim();
+        this.movieLanguage = movieLanguage;
     }
 
     public String getMovieTime() {
@@ -104,7 +114,15 @@ public class Movie {
     }
 
     public void setMovieTime(String movieTime) {
-        this.movieTime = movieTime == null ? null : movieTime.trim();
+        this.movieTime = movieTime;
+    }
+
+    public String getMoiveStory() {
+        return moiveStory;
+    }
+
+    public void setMoiveStory(String moiveStory) {
+        this.moiveStory = moiveStory;
     }
 
     public String getPosterUrl() {
@@ -112,7 +130,7 @@ public class Movie {
     }
 
     public void setPosterUrl(String posterUrl) {
-        this.posterUrl = posterUrl == null ? null : posterUrl.trim();
+        this.posterUrl = posterUrl;
     }
 
     public String getRescheduledTime() {
@@ -120,22 +138,22 @@ public class Movie {
     }
 
     public void setRescheduledTime(String rescheduledTime) {
-        this.rescheduledTime = rescheduledTime == null ? null : rescheduledTime.trim();
+        this.rescheduledTime = rescheduledTime;
     }
 
-    public Double getScore() {
+    public double getScore() {
         return score;
     }
 
-    public void setScore(Double score) {
+    public void setScore(double score) {
         this.score = score;
     }
 
-    public Integer getIsShow() {
+    public int getIsShow() {
         return isShow;
     }
 
-    public void setIsShow(Integer isShow) {
+    public void setIsShow(int isShow) {
         this.isShow = isShow;
     }
 
@@ -144,7 +162,7 @@ public class Movie {
     }
 
     public void setMovieDetailUrl(String movieDetailUrl) {
-        this.movieDetailUrl = movieDetailUrl == null ? null : movieDetailUrl.trim();
+        this.movieDetailUrl = movieDetailUrl;
     }
 
     public Date getCreateTime() {
@@ -153,13 +171,5 @@ public class Movie {
 
     public void setCreateTime(Date createTime) {
         this.createTime = createTime;
-    }
-
-    public String getMoiveStory() {
-        return moiveStory;
-    }
-
-    public void setMoiveStory(String moiveStory) {
-        this.moiveStory = moiveStory == null ? null : moiveStory.trim();
     }
 }

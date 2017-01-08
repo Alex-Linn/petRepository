@@ -20,21 +20,13 @@ public class MovieServiceImpl {
 
     /**
      * 保存电影信息
+     *
      * @param moiveList
      */
-    public void saveMoive(List<Movie> moiveList){
-        //如果数据库有值，则不存储
-        if(moiveList!=null){
-        for (Movie movie:moiveList) {
-            Movie m = movieMapper.queryMovieByName(movie.getMovieName());
-            if (m!=null){
-                moiveList.remove(m);
-            }
+    public void saveMovie(List<Movie> moiveList) {
+        if (moiveList != null) {
+            movieMapper.saveMovieList(moiveList);
         }
-        movieMapper.saveMoive(moiveList);
-    }else {
-        logger.info("movie列表为空！");
     }
-}
 
 }

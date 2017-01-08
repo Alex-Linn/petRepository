@@ -2,6 +2,8 @@ package com.mdd.mt.mapper;
 
 import com.mdd.mt.model.Movie;
 
+import java.util.List;
+
 public interface MovieMapper {
     int deleteByPrimaryKey(Integer id);
 
@@ -16,4 +18,6 @@ public interface MovieMapper {
     int updateByPrimaryKeyWithBLOBs(Movie record);
 
     int updateByPrimaryKey(Movie record);
+
+    void saveMovieList(List<Movie> movieList);
 }
