@@ -1,51 +1,45 @@
 package com.mdd.mt.model;
 
-/**
- * Created by Administrator on 2016/12/17.
- */
+import java.util.Date;
+
 public class Movie {
-    private int id;
-    private String movieName;//影片名
+    private Integer id;
+
+    private String movieName;
+
     private String movieEnglishName;
-    private String director;//导演
-    private String performer;//演员
-    private String movieType;//影片类型
-    private String country;//国家
-    private String movieLanguage;//语言
-    private String movieTime;//时长
-    private String moiveStory;//剧情
-    private String posterUrl;//海报url
-    private String rescheduledTime;//上映时间
-    private double score;//评分
-    private int isShow;//是否上映，1上映 0即将上映
-    private String movieDetailUrl;//电影详细页url
 
-    @Override
-    public String toString() {
-        return "Movie{" +
-                "id=" + id +
-                ", movieName='" + movieName + '\'' +
-                ", movieEnglishName='" + movieEnglishName + '\'' +
-                ", director='" + director + '\'' +
-                ", performer='" + performer + '\'' +
-                ", movieType='" + movieType + '\'' +
-                ", country='" + country + '\'' +
-                ", language='" + movieLanguage + '\'' +
-                ", movieTime='" + movieTime + '\'' +
-                ", moiveStory='" + moiveStory + '\'' +
-                ", posterUrl='" + posterUrl + '\'' +
-                ", rescheduledTime='" + rescheduledTime + '\'' +
-                ", score=" + score +
-                ", isShow=" + isShow +
-                ", movieDetailUrl='" + movieDetailUrl + '\'' +
-                '}';
-    }
+    private String director;
 
-    public int getId() {
+    private String performer;
+
+    private String movieType;
+
+    private String country;
+
+    private String movieLanguage;
+
+    private String movieTime;
+
+    private String posterUrl;
+
+    private String rescheduledTime;
+
+    private Double score;
+
+    private Integer isShow;
+
+    private String movieDetailUrl;
+
+    private Date createTime;
+
+    private String moiveStory;
+
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -54,7 +48,7 @@ public class Movie {
     }
 
     public void setMovieName(String movieName) {
-        this.movieName = movieName;
+        this.movieName = movieName == null ? null : movieName.trim();
     }
 
     public String getMovieEnglishName() {
@@ -62,7 +56,7 @@ public class Movie {
     }
 
     public void setMovieEnglishName(String movieEnglishName) {
-        this.movieEnglishName = movieEnglishName;
+        this.movieEnglishName = movieEnglishName == null ? null : movieEnglishName.trim();
     }
 
     public String getDirector() {
@@ -70,7 +64,7 @@ public class Movie {
     }
 
     public void setDirector(String director) {
-        this.director = director;
+        this.director = director == null ? null : director.trim();
     }
 
     public String getPerformer() {
@@ -78,7 +72,7 @@ public class Movie {
     }
 
     public void setPerformer(String performer) {
-        this.performer = performer;
+        this.performer = performer == null ? null : performer.trim();
     }
 
     public String getMovieType() {
@@ -86,7 +80,7 @@ public class Movie {
     }
 
     public void setMovieType(String movieType) {
-        this.movieType = movieType;
+        this.movieType = movieType == null ? null : movieType.trim();
     }
 
     public String getCountry() {
@@ -94,7 +88,7 @@ public class Movie {
     }
 
     public void setCountry(String country) {
-        this.country = country;
+        this.country = country == null ? null : country.trim();
     }
 
     public String getMovieLanguage() {
@@ -102,7 +96,7 @@ public class Movie {
     }
 
     public void setMovieLanguage(String movieLanguage) {
-        this.movieLanguage = movieLanguage;
+        this.movieLanguage = movieLanguage == null ? null : movieLanguage.trim();
     }
 
     public String getMovieTime() {
@@ -110,15 +104,7 @@ public class Movie {
     }
 
     public void setMovieTime(String movieTime) {
-        this.movieTime = movieTime;
-    }
-
-    public String getMoiveStory() {
-        return moiveStory;
-    }
-
-    public void setMoiveStory(String moiveStory) {
-        this.moiveStory = moiveStory;
+        this.movieTime = movieTime == null ? null : movieTime.trim();
     }
 
     public String getPosterUrl() {
@@ -126,7 +112,7 @@ public class Movie {
     }
 
     public void setPosterUrl(String posterUrl) {
-        this.posterUrl = posterUrl;
+        this.posterUrl = posterUrl == null ? null : posterUrl.trim();
     }
 
     public String getRescheduledTime() {
@@ -134,22 +120,22 @@ public class Movie {
     }
 
     public void setRescheduledTime(String rescheduledTime) {
-        this.rescheduledTime = rescheduledTime;
+        this.rescheduledTime = rescheduledTime == null ? null : rescheduledTime.trim();
     }
 
-    public double getScore() {
+    public Double getScore() {
         return score;
     }
 
-    public void setScore(double score) {
+    public void setScore(Double score) {
         this.score = score;
     }
 
-    public int getIsShow() {
+    public Integer getIsShow() {
         return isShow;
     }
 
-    public void setIsShow(int isShow) {
+    public void setIsShow(Integer isShow) {
         this.isShow = isShow;
     }
 
@@ -158,6 +144,22 @@ public class Movie {
     }
 
     public void setMovieDetailUrl(String movieDetailUrl) {
-        this.movieDetailUrl = movieDetailUrl;
+        this.movieDetailUrl = movieDetailUrl == null ? null : movieDetailUrl.trim();
+    }
+
+    public Date getCreateTime() {
+        return createTime;
+    }
+
+    public void setCreateTime(Date createTime) {
+        this.createTime = createTime;
+    }
+
+    public String getMoiveStory() {
+        return moiveStory;
+    }
+
+    public void setMoiveStory(String moiveStory) {
+        this.moiveStory = moiveStory == null ? null : moiveStory.trim();
     }
 }
