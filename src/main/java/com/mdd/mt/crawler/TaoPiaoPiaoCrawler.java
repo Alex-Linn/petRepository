@@ -30,7 +30,7 @@ public class TaoPiaoPiaoCrawler {
         //解析電影
         List<Movie> movieList = analyzeMovie(indexUrl);
         //解析影院和场次
-        analyzeCinemaAndSchedule(movieList);
+        analyzeCinema(movieList);
     }
 
 
@@ -88,7 +88,7 @@ public class TaoPiaoPiaoCrawler {
                     String moiveStory = movieDivDocment.select("ul > li.J_shrink.shrink").text();
                     moive.setMoiveStory(moiveStory);
                     //影片海报url
-                    String posterUrl = movieDivDocment.select("div.cont-pic > img").attr("href");
+                    String posterUrl = movieDivDocment.select("div.cont-pic > img").attr("src");
                     moive.setPosterUrl(posterUrl);
                     //已经上映
                     moive.setIsShow(1);
@@ -109,11 +109,13 @@ public class TaoPiaoPiaoCrawler {
     }
 
     /**
-     * 解析影院和場次
+     * 解析影院
      *
      * @param movieList
      */
-    private void analyzeCinemaAndSchedule(List<Movie> movieList) throws IOException {
+    private List<Document> analyzeCinema(List<Movie> movieList) throws IOException {
+        List<Document> documentsList = new ArrayList<Document>();
+        List<Cinema>cinemaList = new ArrayList<Cinema>();
         if (movieList != null) {
             for (Movie movie : movieList) {
                 String movieDetailUrl = movie.getMovieDetailUrl();
@@ -153,58 +155,74 @@ public class TaoPiaoPiaoCrawler {
                     String mapUrl = cinemaDocument.select("body > div.center-wrap.cinemabar-wrap > a.more").attr("href");
                     cinema.setMapInfo(mapUrl);
                     System.out.println(cinema);
+                    cinemaList.add(cinema);
+                    documentsList.add(cinemaDocument);
+
+                }
+            }
+
+        }
+        return documentsList;
+    }
+
+    /**
+     * 解析场次
+     *
+     * @param documentsList
+     */
+    private void analyzeSchedule(List<Document> documentsList) {
+        if (documentsList != null) {
+            for (Document cinemaDocument : documentsList) {
 
 
-                    //解析影院场次
-                    Elements scheduleTable = cinemaDocument.select("table");
-                    //防止没有电影场次的情况
-                    if (scheduleTable.size() != 0) {
-                        Elements scheduleTr = scheduleTable.get(0).select("tr");
-                        for (Element eleTr : scheduleTr) {
-                            MovieSchedule moiveSchedule = new MovieSchedule();
-                            //电影播放时间
-                            String timeStr = eleTr.select("td.hall-time").text();
-                            if (!StringUtil.isBlank(timeStr)) {
-                                String startHour = timeStr.substring(0, timeStr.indexOf("预计"));
-                                String endHour = timeStr.substring(timeStr.lastIndexOf("预计"));
-                                //结束时间
-                                moiveSchedule.setEndTime(endHour);
-                                //通过url参数拿到时间去拼凑数据库的时间 &date=2016-12-24&regionName=&ts=1482592840757&n_s=new
-                                String dateRegx = "date=(.*)&regionName";
-                                String date = CommonUtils.simpleMatch(detailScheduleUrl, dateRegx);
-                                date = date + ":" + startHour;
-                                Date startTime = CommonUtils.String4Date(date);
-                                //电影开始时间
-                                moiveSchedule.setStartTime(startTime);
-                                //语言
-                                String language = eleTr.select("td.hall-type").text();
-                                moiveSchedule.setLanguage(language);
-                                //影厅
-                                String videoHall = eleTr.select("td.hall-name").text();
-                                moiveSchedule.setVideoHall(videoHall);
-                                //票的稀缺度
-                                String seatCondition = eleTr.select("td.hall-flow").text();
-                                moiveSchedule.setSeatCondition(seatCondition);
-                                String price = eleTr.select("td.hall-price > em.now").text();
-                                try {
-                                    moiveSchedule.setPrice(Double.valueOf(price));
-                                } catch (Exception e) {
-                                    System.out.println("票价转换异常");
-                                }
-                                String buyUrl = eleTr.select("td.hall-seat >a").attr("href");
-                                if (!StringUtil.isBlank(buyUrl)) {
-                                    moiveSchedule.setBuyUrl(buyUrl);
-                                } else {
-                                    moiveSchedule.setBuyUrl(eleTr.select("td.hall-seat").text());
-                                }
-                                System.out.println(moiveSchedule);
+                //解析影院场次
+                Elements scheduleTable = cinemaDocument.select("table");
+                //防止没有电影场次的情况
+                if (scheduleTable.size() != 0) {
+                    Elements scheduleTr = scheduleTable.get(0).select("tr");
+                    for (Element eleTr : scheduleTr) {
+                        MovieSchedule moiveSchedule = new MovieSchedule();
+                        //电影播放时间
+                        String timeStr = eleTr.select("td.hall-time").text();
+                        if (!StringUtil.isBlank(timeStr)) {
+                            String startHour = timeStr.substring(0, timeStr.indexOf("预计"));
+                            String endHour = timeStr.substring(timeStr.lastIndexOf("预计"));
+                            //结束时间
+                            moiveSchedule.setEndTime(endHour);
+                            //通过url参数拿到时间去拼凑数据库的时间 &date=2016-12-24&regionName=&ts=1482592840757&n_s=new
+//                            String dateRegx = "date=(.*)&regionName";
+//                            String date = CommonUtils.simpleMatch(detailScheduleUrl, dateRegx);
+//                            date = date + ":" + startHour;
+//                            Date startTime = CommonUtils.String4Date(date);
+//                            //电影开始时间
+//                            moiveSchedule.setStartTime(startTime);
+                            //语言
+                            String language = eleTr.select("td.hall-type").text();
+                            moiveSchedule.setLanguage(language);
+                            //影厅
+                            String videoHall = eleTr.select("td.hall-name").text();
+                            moiveSchedule.setVideoHall(videoHall);
+                            //票的稀缺度
+                            String seatCondition = eleTr.select("td.hall-flow").text();
+                            moiveSchedule.setSeatCondition(seatCondition);
+                            String price = eleTr.select("td.hall-price > em.now").text();
+                            try {
+                                moiveSchedule.setPrice(Double.valueOf(price));
+                            } catch (Exception e) {
+                                System.out.println("票价转换异常");
                             }
+                            String buyUrl = eleTr.select("td.hall-seat >a").attr("href");
+                            if (!StringUtil.isBlank(buyUrl)) {
+                                moiveSchedule.setBuyUrl(buyUrl);
+                            } else {
+                                moiveSchedule.setBuyUrl(eleTr.select("td.hall-seat").text());
+                            }
+                            System.out.println(moiveSchedule);
                         }
                     }
                 }
             }
         }
-
     }
 
     public static void main(String[] args) {
