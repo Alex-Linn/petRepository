@@ -1,5 +1,7 @@
 package com.mdd.mt.model;
 
+import java.util.Date;
+
 public class Cinema {
     private Integer id;
 
@@ -16,6 +18,8 @@ public class Cinema {
     private String mapInfo;
 
     private String detailScheduleUrl;
+
+    private Date createTime;
 
     public Integer getId() {
         return id;
@@ -79,5 +83,13 @@ public class Cinema {
 
     public void setDetailScheduleUrl(String detailScheduleUrl) {
         this.detailScheduleUrl = detailScheduleUrl == null ? null : detailScheduleUrl.trim();
+    }
+
+    public Date getCreateTime() {
+        return createTime;
+    }
+
+    public void setCreateTime(Date createTime) {
+        this.createTime = createTime;
     }
 }

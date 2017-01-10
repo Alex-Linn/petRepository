@@ -1,25 +1,23 @@
 package com.mdd.mt.mapper;
 
 import com.mdd.mt.model.Movie;
-import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
-/**
-     * Created by Administrator on 2017/1/1.
-     */
-    public interface MovieMapper {
-        /**
-         * 保存电影
-         * @param moiveList
-         */
-        void saveMoive(List<Movie> moiveList);
+public interface MovieMapper {
+    int deleteByPrimaryKey(Integer id);
 
-        /**
-         * 根据电影名字查询
-         * @param moiveName
-         * @return
-         */
-        Movie queryMovieByName(@Param("moiveName") String moiveName);
+    int insert(Movie record);
 
+    int insertSelective(Movie record);
+
+    Movie selectByPrimaryKey(Integer id);
+
+    int updateByPrimaryKeySelective(Movie record);
+
+    int updateByPrimaryKeyWithBLOBs(Movie record);
+
+    int updateByPrimaryKey(Movie record);
+
+    void saveMovieList(List<Movie> movieList);
 }

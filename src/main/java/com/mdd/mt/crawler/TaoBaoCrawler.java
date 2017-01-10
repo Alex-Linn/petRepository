@@ -1,8 +1,8 @@
 package com.mdd.mt.crawler;
 
 import com.mdd.mt.model.Cinema;
-import com.mdd.mt.model.MoiveSchedule;
 import com.mdd.mt.model.Movie;
+import com.mdd.mt.model.MovieSchedule;
 import com.mdd.mt.model.StateCode;
 import com.mdd.mt.utils.CommonUtils;
 import org.apache.commons.codec.binary.StringUtils;
@@ -154,7 +154,7 @@ public class TaoBaoCrawler implements PageProcessor {
                         if (scheduleTable.size() != 0) {
                             Elements scheduleTr = scheduleTable.get(0).select("tr");
                             for (Element eleTr : scheduleTr) {
-                                MoiveSchedule moiveSchedule = new MoiveSchedule();
+                                MovieSchedule moiveSchedule = new MovieSchedule();
                                 //电影播放时间
                                 String timeStr = eleTr.select("td.hall-time").text();
                                 if (!StringUtil.isBlank(timeStr)) {

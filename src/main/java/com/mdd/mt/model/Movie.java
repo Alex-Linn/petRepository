@@ -1,5 +1,7 @@
 package com.mdd.mt.model;
 
+import java.util.Date;
+
 /**
  * Created by Administrator on 2016/12/17.
  */
@@ -19,6 +21,7 @@ public class Movie {
     private double score;//评分
     private int isShow;//是否上映，1上映 0即将上映
     private String movieDetailUrl;//电影详细页url
+    private Date createTime;
 
     @Override
     public String toString() {
@@ -30,7 +33,7 @@ public class Movie {
                 ", performer='" + performer + '\'' +
                 ", movieType='" + movieType + '\'' +
                 ", country='" + country + '\'' +
-                ", language='" + movieLanguage + '\'' +
+                ", movieLanguage='" + movieLanguage + '\'' +
                 ", movieTime='" + movieTime + '\'' +
                 ", moiveStory='" + moiveStory + '\'' +
                 ", posterUrl='" + posterUrl + '\'' +
@@ -38,6 +41,7 @@ public class Movie {
                 ", score=" + score +
                 ", isShow=" + isShow +
                 ", movieDetailUrl='" + movieDetailUrl + '\'' +
+                ", createTime=" + createTime +
                 '}';
     }
 
@@ -159,5 +163,13 @@ public class Movie {
 
     public void setMovieDetailUrl(String movieDetailUrl) {
         this.movieDetailUrl = movieDetailUrl;
+    }
+
+    public Date getCreateTime() {
+        return createTime;
+    }
+
+    public void setCreateTime(Date createTime) {
+        this.createTime = createTime;
     }
 }
