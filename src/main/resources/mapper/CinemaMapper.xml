@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.mdd.mt.mapper.CinemaMapper" >
+
   <resultMap id="BaseResultMap" type="com.mdd.mt.model.Cinema" >
     <id column="id" property="id" jdbcType="INTEGER" />
     <result column="city" property="city" jdbcType="VARCHAR" />
@@ -12,19 +13,26 @@
     <result column="detail_schedule_url" property="detailScheduleUrl" jdbcType="VARCHAR" />
     <result column="create_time" property="createTime" jdbcType="DATE" />
   </resultMap>
+
   <sql id="Base_Column_List" >
     id, city, area, address, cinema_name, tel, map_info, detail_schedule_url, create_time
   </sql>
+
+  <!--根据id查询-->
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
     <include refid="Base_Column_List" />
     from t_cinema
     where id = #{id,jdbcType=INTEGER}
   </select>
+
+  <!--删除影院信息-->
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from t_cinema
     where id = #{id,jdbcType=INTEGER}
   </delete>
+
+  <!--插入影院信息-->
   <insert id="insert" parameterType="com.mdd.mt.model.Cinema" >
     insert into t_cinema (id, city, area, 
       address, cinema_name, tel, 
@@ -35,107 +43,6 @@
       #{mapInfo,jdbcType=VARCHAR}, #{detailScheduleUrl,jdbcType=VARCHAR}, #{createTime,jdbcType=DATE}
       )
   </insert>
-  <insert id="insertSelective" parameterType="com.mdd.mt.model.Cinema" >
-    insert into t_cinema
-    <trim prefix="(" suffix=")" suffixOverrides="," >
-      <if test="id != null" >
-        id,
-      </if>
-      <if test="city != null" >
-        city,
-      </if>
-      <if test="area != null" >
-        area,
-      </if>
-      <if test="address != null" >
-        address,
-      </if>
-      <if test="cinemaName != null" >
-        cinema_name,
-      </if>
-      <if test="tel != null" >
-        tel,
-      </if>
-      <if test="mapInfo != null" >
-        map_info,
-      </if>
-      <if test="detailScheduleUrl != null" >
-        detail_schedule_url,
-      </if>
-      <if test="createTime != null" >
-        create_time,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides="," >
-      <if test="id != null" >
-        #{id,jdbcType=INTEGER},
-      </if>
-      <if test="city != null" >
-        #{city,jdbcType=VARCHAR},
-      </if>
-      <if test="area != null" >
-        #{area,jdbcType=VARCHAR},
-      </if>
-      <if test="address != null" >
-        #{address,jdbcType=VARCHAR},
-      </if>
-      <if test="cinemaName != null" >
-        #{cinemaName,jdbcType=VARCHAR},
-      </if>
-      <if test="tel != null" >
-        #{tel,jdbcType=VARCHAR},
-      </if>
-      <if test="mapInfo != null" >
-        #{mapInfo,jdbcType=VARCHAR},
-      </if>
-      <if test="detailScheduleUrl != null" >
-        #{detailScheduleUrl,jdbcType=VARCHAR},
-      </if>
-      <if test="createTime != null" >
-        #{createTime,jdbcType=DATE},
-      </if>
-    </trim>
-  </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.mdd.mt.model.Cinema" >
-    update t_cinema
-    <set >
-      <if test="city != null" >
-        city = #{city,jdbcType=VARCHAR},
-      </if>
-      <if test="area != null" >
-        area = #{area,jdbcType=VARCHAR},
-      </if>
-      <if test="address != null" >
-        address = #{address,jdbcType=VARCHAR},
-      </if>
-      <if test="cinemaName != null" >
-        cinema_name = #{cinemaName,jdbcType=VARCHAR},
-      </if>
-      <if test="tel != null" >
-        tel = #{tel,jdbcType=VARCHAR},
-      </if>
-      <if test="mapInfo != null" >
-        map_info = #{mapInfo,jdbcType=VARCHAR},
-      </if>
-      <if test="detailScheduleUrl != null" >
-        detail_schedule_url = #{detailScheduleUrl,jdbcType=VARCHAR},
-      </if>
-      <if test="createTime != null" >
-        create_time = #{createTime,jdbcType=DATE},
-      </if>
-    </set>
-    where id = #{id,jdbcType=INTEGER}
-  </update>
-  <update id="updateByPrimaryKey" parameterType="com.mdd.mt.model.Cinema" >
-    update t_cinema
-    set city = #{city,jdbcType=VARCHAR},
-      area = #{area,jdbcType=VARCHAR},
-      address = #{address,jdbcType=VARCHAR},
-      cinema_name = #{cinemaName,jdbcType=VARCHAR},
-      tel = #{tel,jdbcType=VARCHAR},
-      map_info = #{mapInfo,jdbcType=VARCHAR},
-      detail_schedule_url = #{detailScheduleUrl,jdbcType=VARCHAR},
-      create_time = #{createTime,jdbcType=DATE}
-    where id = #{id,jdbcType=INTEGER}
-  </update>
+
+
 </mapper>

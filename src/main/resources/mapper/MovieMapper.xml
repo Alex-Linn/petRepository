@@ -24,12 +24,15 @@
     </resultMap>
 
     <sql id="Base_Column_List">
-    id, movie_name, movie_english_name, director, performer, movie_type, country, movie_language, 
-    movie_time, poster_url, rescheduled_time, score, is_show, movie_detail_url, create_time
-  </sql>
+        id, movie_name, movie_english_name, director, performer, movie_type, country, movie_language,
+        movie_time, poster_url, rescheduled_time, score, is_show, movie_detail_url, create_time
+    </sql>
+
     <sql id="Blob_Column_List">
-    moive_story
-  </sql>
+        moive_story
+    </sql>
+
+    <!--根据id查询-->
     <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer">
         select
         <include refid="Base_Column_List"/>
@@ -38,25 +41,12 @@
         from t_movie
         where id = #{id,jdbcType=INTEGER}
     </select>
-    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
-    delete from t_movie
-    where id = #{id,jdbcType=INTEGER}
-  </delete>
 
-    <insert id="insert" parameterType="com.mdd.mt.model.Movie">
-    insert into t_movie (id, movie_name, movie_english_name, 
-      director, performer, movie_type, 
-      country, movie_language, movie_time, 
-      poster_url, rescheduled_time, score, 
-      is_show, movie_detail_url, create_time, 
-      moive_story)
-    values (#{id,jdbcType=INTEGER}, #{movieName,jdbcType=VARCHAR}, #{movieEnglishName,jdbcType=VARCHAR}, 
-      #{director,jdbcType=VARCHAR}, #{performer,jdbcType=VARCHAR}, #{movieType,jdbcType=VARCHAR}, 
-      #{country,jdbcType=VARCHAR}, #{movieLanguage,jdbcType=VARCHAR}, #{movieTime,jdbcType=VARCHAR}, 
-      #{posterUrl,jdbcType=VARCHAR}, #{rescheduledTime,jdbcType=VARCHAR}, #{score,jdbcType=DOUBLE}, 
-      #{isShow,jdbcType=INTEGER}, #{movieDetailUrl,jdbcType=VARCHAR}, #{createTime,jdbcType=DATE}, 
-      #{moiveStory,jdbcType=LONGVARCHAR})
-  </insert>
+    <!--根据id删除-->
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+        delete from t_movie
+        where id = #{id,jdbcType=INTEGER}
+    </delete>
 
     <!--批量插入-->
     <insert id="saveMovieList" parameterType="java.util.List">
@@ -72,199 +62,4 @@
         </foreach>
     </insert>
 
-    <insert id="insertSelective" parameterType="com.mdd.mt.model.Movie">
-        insert into t_movie
-        <trim prefix="(" suffix=")" suffixOverrides=",">
-            <if test="id != null">
-                id,
-            </if>
-            <if test="movieName != null">
-                movie_name,
-            </if>
-            <if test="movieEnglishName != null">
-                movie_english_name,
-            </if>
-            <if test="director != null">
-                director,
-            </if>
-            <if test="performer != null">
-                performer,
-            </if>
-            <if test="movieType != null">
-                movie_type,
-            </if>
-            <if test="country != null">
-                country,
-            </if>
-            <if test="movieLanguage != null">
-                movie_language,
-            </if>
-            <if test="movieTime != null">
-                movie_time,
-            </if>
-            <if test="posterUrl != null">
-                poster_url,
-            </if>
-            <if test="rescheduledTime != null">
-                rescheduled_time,
-            </if>
-            <if test="score != null">
-                score,
-            </if>
-            <if test="isShow != null">
-                is_show,
-            </if>
-            <if test="movieDetailUrl != null">
-                movie_detail_url,
-            </if>
-            <if test="createTime != null">
-                create_time,
-            </if>
-            <if test="moiveStory != null">
-                moive_story,
-            </if>
-        </trim>
-        <trim prefix="values (" suffix=")" suffixOverrides=",">
-            <if test="id != null">
-                #{id,jdbcType=INTEGER},
-            </if>
-            <if test="movieName != null">
-                #{movieName,jdbcType=VARCHAR},
-            </if>
-            <if test="movieEnglishName != null">
-                #{movieEnglishName,jdbcType=VARCHAR},
-            </if>
-            <if test="director != null">
-                #{director,jdbcType=VARCHAR},
-            </if>
-            <if test="performer != null">
-                #{performer,jdbcType=VARCHAR},
-            </if>
-            <if test="movieType != null">
-                #{movieType,jdbcType=VARCHAR},
-            </if>
-            <if test="country != null">
-                #{country,jdbcType=VARCHAR},
-            </if>
-            <if test="movieLanguage != null">
-                #{movieLanguage,jdbcType=VARCHAR},
-            </if>
-            <if test="movieTime != null">
-                #{movieTime,jdbcType=VARCHAR},
-            </if>
-            <if test="posterUrl != null">
-                #{posterUrl,jdbcType=VARCHAR},
-            </if>
-            <if test="rescheduledTime != null">
-                #{rescheduledTime,jdbcType=VARCHAR},
-            </if>
-            <if test="score != null">
-                #{score,jdbcType=DOUBLE},
-            </if>
-            <if test="isShow != null">
-                #{isShow,jdbcType=INTEGER},
-            </if>
-            <if test="movieDetailUrl != null">
-                #{movieDetailUrl,jdbcType=VARCHAR},
-            </if>
-            <if test="createTime != null">
-                #{createTime,jdbcType=DATE},
-            </if>
-            <if test="moiveStory != null">
-                #{moiveStory,jdbcType=LONGVARCHAR},
-            </if>
-        </trim>
-    </insert>
-
-
-    <update id="updateByPrimaryKeySelective" parameterType="com.mdd.mt.model.Movie">
-        update t_movie
-        <set>
-            <if test="movieName != null">
-                movie_name = #{movieName,jdbcType=VARCHAR},
-            </if>
-            <if test="movieEnglishName != null">
-                movie_english_name = #{movieEnglishName,jdbcType=VARCHAR},
-            </if>
-            <if test="director != null">
-                director = #{director,jdbcType=VARCHAR},
-            </if>
-            <if test="performer != null">
-                performer = #{performer,jdbcType=VARCHAR},
-            </if>
-            <if test="movieType != null">
-                movie_type = #{movieType,jdbcType=VARCHAR},
-            </if>
-            <if test="country != null">
-                country = #{country,jdbcType=VARCHAR},
-            </if>
-            <if test="movieLanguage != null">
-                movie_language = #{movieLanguage,jdbcType=VARCHAR},
-            </if>
-            <if test="movieTime != null">
-                movie_time = #{movieTime,jdbcType=VARCHAR},
-            </if>
-            <if test="posterUrl != null">
-                poster_url = #{posterUrl,jdbcType=VARCHAR},
-            </if>
-            <if test="rescheduledTime != null">
-                rescheduled_time = #{rescheduledTime,jdbcType=VARCHAR},
-            </if>
-            <if test="score != null">
-                score = #{score,jdbcType=DOUBLE},
-            </if>
-            <if test="isShow != null">
-                is_show = #{isShow,jdbcType=INTEGER},
-            </if>
-            <if test="movieDetailUrl != null">
-                movie_detail_url = #{movieDetailUrl,jdbcType=VARCHAR},
-            </if>
-            <if test="createTime != null">
-                create_time = #{createTime,jdbcType=DATE},
-            </if>
-            <if test="moiveStory != null">
-                moive_story = #{moiveStory,jdbcType=LONGVARCHAR},
-            </if>
-        </set>
-        where id = #{id,jdbcType=INTEGER}
-    </update>
-
-    <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.mdd.mt.model.Movie">
-    update t_movie
-    set movie_name = #{movieName,jdbcType=VARCHAR},
-      movie_english_name = #{movieEnglishName,jdbcType=VARCHAR},
-      director = #{director,jdbcType=VARCHAR},
-      performer = #{performer,jdbcType=VARCHAR},
-      movie_type = #{movieType,jdbcType=VARCHAR},
-      country = #{country,jdbcType=VARCHAR},
-      movie_language = #{movieLanguage,jdbcType=VARCHAR},
-      movie_time = #{movieTime,jdbcType=VARCHAR},
-      poster_url = #{posterUrl,jdbcType=VARCHAR},
-      rescheduled_time = #{rescheduledTime,jdbcType=VARCHAR},
-      score = #{score,jdbcType=DOUBLE},
-      is_show = #{isShow,jdbcType=INTEGER},
-      movie_detail_url = #{movieDetailUrl,jdbcType=VARCHAR},
-      create_time = #{createTime,jdbcType=DATE},
-      moive_story = #{moiveStory,jdbcType=LONGVARCHAR}
-    where id = #{id,jdbcType=INTEGER}
-  </update>
-
-    <update id="updateByPrimaryKey" parameterType="com.mdd.mt.model.Movie">
-    update t_movie
-    set movie_name = #{movieName,jdbcType=VARCHAR},
-      movie_english_name = #{movieEnglishName,jdbcType=VARCHAR},
-      director = #{director,jdbcType=VARCHAR},
-      performer = #{performer,jdbcType=VARCHAR},
-      movie_type = #{movieType,jdbcType=VARCHAR},
-      country = #{country,jdbcType=VARCHAR},
-      movie_language = #{movieLanguage,jdbcType=VARCHAR},
-      movie_time = #{movieTime,jdbcType=VARCHAR},
-      poster_url = #{posterUrl,jdbcType=VARCHAR},
-      rescheduled_time = #{rescheduledTime,jdbcType=VARCHAR},
-      score = #{score,jdbcType=DOUBLE},
-      is_show = #{isShow,jdbcType=INTEGER},
-      movie_detail_url = #{movieDetailUrl,jdbcType=VARCHAR},
-      create_time = #{createTime,jdbcType=DATE}
-    where id = #{id,jdbcType=INTEGER}
-  </update>
 </mapper>
