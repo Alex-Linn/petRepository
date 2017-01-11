@@ -2,7 +2,10 @@ package com.mdd.mt.crawler;
 
 import com.mdd.mt.model.Cinema;
 import com.mdd.mt.model.Movie;
+import com.mdd.mt.model.MovieCinema;
 import com.mdd.mt.model.MovieSchedule;
+import com.mdd.mt.service.CinemaServiceImpl;
+import com.mdd.mt.service.MovieCinemaServiceImpl;
 import com.mdd.mt.service.MovieServiceImpl;
 import com.mdd.mt.utils.CommonUtils;
 import org.jsoup.Jsoup;
@@ -15,7 +18,6 @@ import org.springframework.stereotype.Service;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 /**
@@ -25,6 +27,12 @@ import java.util.List;
 public class TaoPiaoPiaoCrawler {
     @Autowired
     private MovieServiceImpl movieServiceImpl;
+
+    @Autowired
+    private CinemaServiceImpl cinemaServiceImpl;
+
+    @Autowired
+    private MovieCinemaServiceImpl movieCinemaServiceImpl;
 
     public void crawler(String indexUrl) throws IOException {
         //解析電影
@@ -115,9 +123,11 @@ public class TaoPiaoPiaoCrawler {
      */
     private List<Document> analyzeCinema(List<Movie> movieList) throws IOException {
         List<Document> documentsList = new ArrayList<Document>();
-        List<Cinema>cinemaList = new ArrayList<Cinema>();
+        //电影和影院关系表
+        List<MovieCinema>movieCinemaList = new ArrayList<MovieCinema>();
         if (movieList != null) {
             for (Movie movie : movieList) {
+                int movieId = movie.getId();
                 String movieDetailUrl = movie.getMovieDetailUrl();
                 Document cinemaDocument = Jsoup.connect(movieDetailUrl).timeout(1000 * 60 * 30).get();
                 Elements cinemaDiv = cinemaDocument.select("body > div.filter-wrap > div > ul > li:nth-child(2) > div");
@@ -155,12 +165,20 @@ public class TaoPiaoPiaoCrawler {
                     String mapUrl = cinemaDocument.select("body > div.center-wrap.cinemabar-wrap > a.more").attr("href");
                     cinema.setMapInfo(mapUrl);
                     System.out.println(cinema);
-                    cinemaList.add(cinema);
+                    //保存影院信息
+                    cinemaServiceImpl.saveCinema(cinema);
+                    //创建电影和影院的关系对象
+                    MovieCinema movieCinema = new MovieCinema();
+                    //建立关系
+                    movieCinema.setCinemaId(cinema.getId());
+                    movieCinema.setMoiveId(movieId);
+                    //保存关系
+                    movieCinemaList.add(movieCinema);
                     documentsList.add(cinemaDocument);
-
                 }
             }
-
+//          批量保存关系
+            movieCinemaServiceImpl.saveMovieCinemaList(movieCinemaList);
         }
         return documentsList;
     }

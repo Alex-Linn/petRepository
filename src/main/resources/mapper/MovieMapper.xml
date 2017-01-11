@@ -54,7 +54,7 @@
         (movie_name,movie_english_name,director,performer,movie_type,country,movie_language,movie_time,moive_story,poster_url,
         rescheduled_time,score,is_show,movie_detail_url,create_time)
         VALUES
-        <foreach collection="list" item="movie" index="index" separator=",">
+        <foreach collection="movieList" item="movie" index="index" separator=",">
             (#{movie.movieName},#{movie.movieEnglishName},#{movie.director},#{movie.performer},
             #{movie.movieType},#{movie.country},#{movie.movieLanguage},#{movie.movieTime},
             #{movie.moiveStory},#{movie.posterUrl},#{movie.rescheduledTime},#{movie.score},

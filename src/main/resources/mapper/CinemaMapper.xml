@@ -44,5 +44,21 @@
       )
   </insert>
 
+  <!--批量插入-->
+  <insert id="saveCinemaList" parameterType="java.util.List">
+    insert into t_cinema (id, city, area,
+      address, cinema_name, tel,
+      map_info, detail_schedule_url, create_time
+    )
+    VALUES
+    <foreach collection="cinemaList" item="movie" index="index" separator=",">
+    (
+      #{id,jdbcType=INTEGER}, #{city,jdbcType=VARCHAR}, #{area,jdbcType=VARCHAR},
+      #{address,jdbcType=VARCHAR}, #{cinemaName,jdbcType=VARCHAR}, #{tel,jdbcType=VARCHAR},
+      #{mapInfo,jdbcType=VARCHAR}, #{detailScheduleUrl,jdbcType=VARCHAR}, now()
+    )
+    </foreach>
+  </insert>
+
 
 </mapper>

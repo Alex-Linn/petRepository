@@ -31,5 +31,15 @@
             #{createTime,jdbcType=DATE})
     </insert>
 
+    <!--批量插入-->
+    <insert id="saveMovieCinemaList" parameterType="java.util.List">
+        insert into t_movie_cinema (id, moive_id, cinema_id,
+        create_time)
+        VALUES
+        <foreach collection="movieCinemaList" item="movie" index="index" separator=",">
+            (#{id,jdbcType=INTEGER}, #{moiveId,jdbcType=INTEGER}, #{cinemaId,jdbcType=INTEGER},
+            now())
+        </foreach>
+    </insert>
 
 </mapper>

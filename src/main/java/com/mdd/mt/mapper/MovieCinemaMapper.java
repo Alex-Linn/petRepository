@@ -2,6 +2,8 @@ package com.mdd.mt.mapper;
 
 import com.mdd.mt.model.MovieCinema;
 
+import java.util.List;
+
 public interface MovieCinemaMapper {
     int deleteByPrimaryKey(Integer id);
 
@@ -11,7 +13,10 @@ public interface MovieCinemaMapper {
 
     MovieCinema selectByPrimaryKey(Integer id);
 
-    int updateByPrimaryKeySelective(MovieCinema record);
+    /**
+     * 批量插入
+     * @param movieCinemaList
+     */
+    void saveMovieCinemaList(List<MovieCinema>movieCinemaList);
 
-    int updateByPrimaryKey(MovieCinema record);
 }
