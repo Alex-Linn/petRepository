@@ -18,12 +18,8 @@ import us.codecraft.webmagic.Site;
 import us.codecraft.webmagic.Spider;
 import us.codecraft.webmagic.processor.PageProcessor;
 import us.codecraft.webmagic.selector.Html;
-import us.codecraft.webmagic.selector.Selectable;
 
 import java.io.IOException;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -92,7 +88,7 @@ public class TaoBaoCrawler implements PageProcessor {
                     moive.setMovieTime(movieTime);
                     //影片简介
                     String moiveStory = document.select("body > div.detail-wrap.J_detailWrap > div.detail-cont > div > ul > li.J_shrink.shrink").text();
-                    moive.setMoiveStory(moiveStory);
+                    moive.setMovieStory(moiveStory);
                     //影片海报url
                     String posterUrl = document.select("body > div.detail-wrap.J_detailWrap > div.detail-cont > div > div.cont-pic > img").attr("href");
                     moive.setPosterUrl(posterUrl);
@@ -175,7 +171,7 @@ public class TaoBaoCrawler implements PageProcessor {
                                     }
                                     //语言
                                     String language = eleTr.select("td.hall-type").text();
-                                    moiveSchedule.setLanguage(language);
+                                    moiveSchedule.setMovieLanguage(language);
                                     //影厅
                                     String videoHall = eleTr.select("td.hall-name").text();
                                     moiveSchedule.setVideoHall(videoHall);

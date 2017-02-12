@@ -3,7 +3,7 @@
 <mapper namespace="com.mdd.mt.mapper.MovieCinemaMapper">
     <resultMap id="BaseResultMap" type="com.mdd.mt.model.MovieCinema">
         <id column="id" property="id" jdbcType="INTEGER"/>
-        <result column="moive_id" property="moiveId" jdbcType="INTEGER"/>
+        <result column="movie_id" property="movieId" jdbcType="INTEGER"/>
         <result column="cinema_id" property="cinemaId" jdbcType="INTEGER"/>
         <result column="create_time" property="createTime" jdbcType="DATE"/>
     </resultMap>
@@ -25,19 +25,19 @@
      </delete>
 
     <insert id="insert" parameterType="com.mdd.mt.model.MovieCinema">
-        insert into t_movie_cinema (id, moive_id, cinema_id,
+        insert into t_movie_cinema (id, movie_id, cinema_id,
             create_time)
-        values (#{id,jdbcType=INTEGER}, #{moiveId,jdbcType=INTEGER}, #{cinemaId,jdbcType=INTEGER},
+        values (#{id,jdbcType=INTEGER}, #{movieId,jdbcType=INTEGER}, #{cinemaId,jdbcType=INTEGER},
             #{createTime,jdbcType=DATE})
     </insert>
 
     <!--批量插入-->
     <insert id="saveMovieCinemaList" parameterType="java.util.List">
-        insert into t_movie_cinema (id, moive_id, cinema_id,
+        insert into t_movie_cinema (id, movie_id, cinema_id,
         create_time)
         VALUES
-        <foreach collection="movieCinemaList" item="movie" index="index" separator=",">
-            (#{id,jdbcType=INTEGER}, #{moiveId,jdbcType=INTEGER}, #{cinemaId,jdbcType=INTEGER},
+        <foreach collection="list" item="movieCinema" index="index" separator=",">
+            (#{movieCinema.id,jdbcType=INTEGER}, #{movieCinema.movieId,jdbcType=INTEGER}, #{movieCinema.cinemaId,jdbcType=INTEGER},
             now())
         </foreach>
     </insert>

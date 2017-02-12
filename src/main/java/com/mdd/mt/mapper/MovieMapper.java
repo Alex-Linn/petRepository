@@ -7,7 +7,7 @@ import java.util.List;
 public interface MovieMapper {
     int deleteByPrimaryKey(Integer id);
 
-    int insert(Movie record);
+    int insertMovie(Movie movie);
 
     int insertSelective(Movie record);
 
@@ -19,5 +19,9 @@ public interface MovieMapper {
 
     int updateByPrimaryKey(Movie record);
 
+    /**
+     * 批量保存电影
+     * @param movieList
+     */
     void saveMovieList(List<Movie> movieList);
 }

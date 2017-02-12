@@ -21,11 +21,17 @@ public class MovieServiceImpl {
     /**
      * 保存电影信息
      *
-     * @param moiveList
+     * @param movieList
      */
-    public void saveMovie(List<Movie> moiveList) {
-        if (moiveList != null) {
-            movieMapper.saveMovieList(moiveList);
+    public void saveMovie(List<Movie> movieList) {
+        if (movieList != null) {
+            movieMapper.saveMovieList(movieList);
+        }
+    }
+
+    public void insertMovie(Movie movie){
+        if (movie!=null){
+            movieMapper.insertMovie(movie);
         }
     }
 

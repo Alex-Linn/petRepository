@@ -2,6 +2,8 @@ package com.mdd.mt.mapper;
 
 import com.mdd.mt.model.MovieSchedule;
 
+import java.util.List;
+
 public interface MovieScheduleMapper {
     int deleteByPrimaryKey(Integer id);
 
@@ -14,4 +16,11 @@ public interface MovieScheduleMapper {
     int updateByPrimaryKeySelective(MovieSchedule record);
 
     int updateByPrimaryKey(MovieSchedule record);
+
+    /**
+     * 批量保存
+     * @param movieScheduleList
+     * @return
+     */
+    int saveMovieScheduleList(List<MovieSchedule>movieScheduleList);
 }

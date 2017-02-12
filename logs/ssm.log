@@ -9050,3 +9050,45 @@ java.lang.NumberFormatException: empty String
 [INFO] [2016-12-25 16:50:46][us.codecraft.webmagic.downloader.HttpClientDownloader]downloading page http://dianying.taobao.com/showDetailSchedule.htm?showId=154578&cinemaId=27070&date=2016-12-25&regionName=&ts=1482655944227&n_s=new
 [INFO] [2016-12-25 16:50:47][us.codecraft.webmagic.downloader.HttpClientDownloader]downloading page http://dianying.taobao.com/showDetailSchedule.htm?showId=154578&cinemaId=31331&date=2016-12-25&regionName=&ts=1482655944227&n_s=new
 [INFO] [2016-12-25 16:50:47][us.codecraft.webmagic.downloader.HttpClientDownloader]downloading page http://dianying.taobao.com/showDetailSchedule.htm?showId=154578&cinemaId=29756&date=2016-12-25&regionName=&ts=1482655944227&n_s=new
+[INFO] [2017-02-12 14:36:17][us.codecraft.webmagic.Spider]Spider dianying.taobao.com started!
+[INFO] [2017-02-12 14:36:17][us.codecraft.webmagic.downloader.HttpClientDownloader]downloading page http://dianying.taobao.com/showList.htm?spm=a1z21.6646273.city.5.EAQ1oR&n_s=new&city=440300
+[INFO] [2017-02-12 14:36:19][us.codecraft.webmagic.downloader.HttpClientDownloader]downloading page http://dianying.taobao.com/showDetail.htm?showId=175882&n_s=new
+[INFO] [2017-02-12 14:36:19][us.codecraft.webmagic.downloader.HttpClientDownloader]downloading page http://dianying.taobao.com/showDetail.htm?showId=194443&n_s=new
+[INFO] [2017-02-12 14:36:19][us.codecraft.webmagic.downloader.HttpClientDownloader]downloading page http://dianying.taobao.com/showDetail.htm?showId=190177&n_s=new
+[INFO] [2017-02-12 14:36:19][us.codecraft.webmagic.downloader.HttpClientDownloader]downloading page http://dianying.taobao.com/showDetail.htm?showId=207186&n_s=new
+[INFO] [2017-02-12 14:36:19][us.codecraft.webmagic.downloader.HttpClientDownloader]downloading page http://dianying.taobao.com/showDetail.htm?showId=178341&n_s=new
+[INFO] [2017-02-12 14:36:19][us.codecraft.webmagic.downloader.HttpClientDownloader]downloading page http://dianying.taobao.com/showDetail.htm?showId=208355&n_s=new
+[INFO] [2017-02-12 14:36:19][us.codecraft.webmagic.downloader.HttpClientDownloader]downloading page http://dianying.taobao.com/showDetail.htm?showId=159609&n_s=new
+[INFO] [2017-02-12 14:36:19][us.codecraft.webmagic.downloader.HttpClientDownloader]downloading page http://dianying.taobao.com/showDetail.htm?showId=209866&n_s=new
+[INFO] [2017-02-12 14:36:19][us.codecraft.webmagic.downloader.HttpClientDownloader]downloading page http://dianying.taobao.com/showDetail.htm?showId=194267&n_s=new
+[INFO] [2017-02-12 14:36:20][us.codecraft.webmagic.downloader.HttpClientDownloader]downloading page http://dianying.taobao.com/showDetail.htm?showId=212314&n_s=new
+[INFO] [2017-02-12 14:36:20][us.codecraft.webmagic.downloader.HttpClientDownloader]downloading page http://dianying.taobao.com/showDetail.htm?showId=206438&n_s=new
+[INFO] [2017-02-12 14:36:20][us.codecraft.webmagic.downloader.HttpClientDownloader]downloading page http://dianying.taobao.com/showDetail.htm?showId=165022&n_s=new
+[INFO] [2017-02-12 14:36:20][us.codecraft.webmagic.downloader.HttpClientDownloader]downloading page http://dianying.taobao.com/showDetail.htm?showId=199888&n_s=new
+[INFO] [2017-02-12 14:36:20][us.codecraft.webmagic.downloader.HttpClientDownloader]downloading page http://dianying.taobao.com/showDetail.htm?showId=131353&n_s=new
+[INFO] [2017-02-12 14:36:20][us.codecraft.webmagic.downloader.HttpClientDownloader]downloading page http://dianying.taobao.com/showDetail.htm?showId=154163&n_s=new
+[INFO] [2017-02-12 14:36:20][us.codecraft.webmagic.downloader.HttpClientDownloader]downloading page http://dianying.taobao.com/showDetail.htm?showId=193384&n_s=new
+[INFO] [2017-02-12 14:36:20][us.codecraft.webmagic.downloader.HttpClientDownloader]downloading page http://dianying.taobao.com/showDetail.htm?showId=190898&n_s=new
+[INFO] [2017-02-12 14:36:20][us.codecraft.webmagic.downloader.HttpClientDownloader]downloading page http://dianying.taobao.com/showDetail.htm?showId=180134&n_s=new
+[INFO] [2017-02-12 14:36:20][us.codecraft.webmagic.downloader.HttpClientDownloader]downloading page http://dianying.taobao.com/showDetail.htm?showId=199582&n_s=new
+[INFO] [2017-02-12 14:36:20][us.codecraft.webmagic.downloader.HttpClientDownloader]downloading page http://dianying.taobao.com/showDetail.htm?showId=189054&n_s=new
+[INFO] [2017-02-12 14:36:21][us.codecraft.webmagic.downloader.HttpClientDownloader]downloading page http://dianying.taobao.com/showDetail.htm?showId=122800&n_s=new
+[INFO] [2017-02-12 14:36:21][us.codecraft.webmagic.downloader.HttpClientDownloader]downloading page http://dianying.taobao.com/showDetail.htm?showId=209220&n_s=new
+[INFO] [2017-02-12 14:36:21][us.codecraft.webmagic.downloader.HttpClientDownloader]downloading page http://dianying.taobao.com/showDetail.htm?showId=211101&n_s=new
+[INFO] [2017-02-12 14:36:21][us.codecraft.webmagic.downloader.HttpClientDownloader]downloading page http://dianying.taobao.com/showDetail.htm?showId=177436&n_s=new
+[INFO] [2017-02-12 14:36:21][us.codecraft.webmagic.downloader.HttpClientDownloader]downloading page http://dianying.taobao.com/showDetail.htm?showId=163027&n_s=new
+[INFO] [2017-02-12 14:36:21][us.codecraft.webmagic.downloader.HttpClientDownloader]downloading page http://dianying.taobao.com/showDetail.htm?showId=210859&n_s=new
+[INFO] [2017-02-12 14:36:21][us.codecraft.webmagic.downloader.HttpClientDownloader]downloading page http://dianying.taobao.com/showDetail.htm?showId=165012&n_s=new
+[INFO] [2017-02-12 14:36:21][us.codecraft.webmagic.downloader.HttpClientDownloader]downloading page http://dianying.taobao.com/showDetail.htm?showId=208070&n_s=new
+[INFO] [2017-02-12 14:36:21][us.codecraft.webmagic.downloader.HttpClientDownloader]downloading page http://dianying.taobao.com/showDetailSchedule.htm?showId=154578&n_s=new
+[ERROR] [2017-02-12 14:36:21][us.codecraft.webmagic.Spider]process request Request{url='http://dianying.taobao.com/showDetailSchedule.htm?showId=154578&n_s=new', method='null', extras={statusCode=200}, priority=0} error
+java.lang.IndexOutOfBoundsException: Index: 0, Size: 0
+	at java.util.ArrayList.rangeCheck(ArrayList.java:635)
+	at java.util.ArrayList.get(ArrayList.java:411)
+	at com.mdd.mt.crawler.TaoBaoCrawler.process(TaoBaoCrawler.java:108)
+	at us.codecraft.webmagic.Spider.processRequest(Spider.java:421)
+	at us.codecraft.webmagic.Spider$1.run(Spider.java:322)
+	at us.codecraft.webmagic.thread.CountableThreadPool$1.run(CountableThreadPool.java:74)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615)
+	at java.lang.Thread.run(Thread.java:745)

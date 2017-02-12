@@ -92,4 +92,19 @@ public class Cinema {
     public void setCreateTime(Date createTime) {
         this.createTime = createTime;
     }
+
+    @Override
+    public String toString() {
+        return "Cinema{" +
+                "id=" + id +
+                ", city='" + city + '\'' +
+                ", area='" + area + '\'' +
+                ", address='" + address + '\'' +
+                ", cinemaName='" + cinemaName + '\'' +
+                ", tel='" + tel + '\'' +
+                ", mapInfo='" + mapInfo + '\'' +
+                ", detailScheduleUrl='" + detailScheduleUrl + '\'' +
+                ", createTime=" + createTime +
+                '}';
+    }
 }

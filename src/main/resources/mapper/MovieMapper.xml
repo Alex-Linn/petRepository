@@ -11,6 +11,7 @@
         <result column="country" property="country" jdbcType="VARCHAR"/>
         <result column="movie_language" property="movieLanguage" jdbcType="VARCHAR"/>
         <result column="movie_time" property="movieTime" jdbcType="VARCHAR"/>
+        <result column="movie_story" property="movieStory" jdbcType="VARCHAR"/>
         <result column="poster_url" property="posterUrl" jdbcType="VARCHAR"/>
         <result column="rescheduled_time" property="rescheduledTime" jdbcType="VARCHAR"/>
         <result column="score" property="score" jdbcType="DOUBLE"/>
@@ -20,7 +21,7 @@
     </resultMap>
 
     <resultMap id="ResultMapWithBLOBs" type="com.mdd.mt.model.Movie" extends="BaseResultMap">
-        <result column="moive_story" property="moiveStory" jdbcType="LONGVARCHAR"/>
+        <result column="movie_story" property="movieStory" jdbcType="LONGVARCHAR"/>
     </resultMap>
 
     <sql id="Base_Column_List">
@@ -49,15 +50,28 @@
     </delete>
 
     <!--批量插入-->
-    <insert id="saveMovieList" parameterType="java.util.List">
+    <insert id="insertMovie" parameterType="com.mdd.mt.model.Movie" useGeneratedKeys="true" keyProperty="id">
         INSERT into t_movie
-        (movie_name,movie_english_name,director,performer,movie_type,country,movie_language,movie_time,moive_story,poster_url,
+            (movie_name,movie_english_name,director,performer,movie_type,country,movie_language,movie_time,movie_story,poster_url,
+            rescheduled_time,score,is_show,movie_detail_url,create_time)
+        VALUES
+            (#{movieName},#{movieEnglishName},#{director},#{performer},
+            #{movieType},#{country},#{movieLanguage},#{movieTime},
+            #{movieStory},#{posterUrl},#{rescheduledTime},#{score},
+            #{isShow},#{movieDetailUrl},NOW())
+
+    </insert>
+
+    <!--批量插入-->
+    <insert id="saveMovieList" parameterType="java.util.List" useGeneratedKeys="true" keyProperty="id">
+        INSERT into t_movie
+        (movie_name,movie_english_name,director,performer,movie_type,country,movie_language,movie_time,movie_story,poster_url,
         rescheduled_time,score,is_show,movie_detail_url,create_time)
         VALUES
-        <foreach collection="movieList" item="movie" index="index" separator=",">
+        <foreach collection="list" item="movie" index="index" separator=",">
             (#{movie.movieName},#{movie.movieEnglishName},#{movie.director},#{movie.performer},
             #{movie.movieType},#{movie.country},#{movie.movieLanguage},#{movie.movieTime},
-            #{movie.moiveStory},#{movie.posterUrl},#{movie.rescheduledTime},#{movie.score},
+            #{movie.movieStory},#{movie.posterUrl},#{movie.rescheduledTime},#{movie.score},
             #{movie.isShow},#{movie.movieDetailUrl},NOW())
         </foreach>
     </insert>

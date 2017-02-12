@@ -33,14 +33,14 @@
   </delete>
 
   <!--插入影院信息-->
-  <insert id="insert" parameterType="com.mdd.mt.model.Cinema" >
+  <insert id="insert" parameterType="com.mdd.mt.model.Cinema" useGeneratedKeys="true" keyProperty="id">
     insert into t_cinema (id, city, area, 
       address, cinema_name, tel, 
       map_info, detail_schedule_url, create_time
       )
     values (#{id,jdbcType=INTEGER}, #{city,jdbcType=VARCHAR}, #{area,jdbcType=VARCHAR}, 
       #{address,jdbcType=VARCHAR}, #{cinemaName,jdbcType=VARCHAR}, #{tel,jdbcType=VARCHAR}, 
-      #{mapInfo,jdbcType=VARCHAR}, #{detailScheduleUrl,jdbcType=VARCHAR}, #{createTime,jdbcType=DATE}
+      #{mapInfo,jdbcType=VARCHAR}, #{detailScheduleUrl,jdbcType=VARCHAR}, now()
       )
   </insert>
 

@@ -8,14 +8,14 @@ import java.util.Date;
 public class Movie {
     private int id;
     private String movieName;//影片名
-    private String movieEnglishName;
+    private String movieEnglishName;//英文名
     private String director;//导演
     private String performer;//演员
     private String movieType;//影片类型
     private String country;//国家
     private String movieLanguage;//语言
     private String movieTime;//时长
-    private String moiveStory;//剧情
+    private String movieStory;//剧情
     private String posterUrl;//海报url
     private String rescheduledTime;//上映时间
     private double score;//评分
@@ -35,7 +35,7 @@ public class Movie {
                 ", country='" + country + '\'' +
                 ", movieLanguage='" + movieLanguage + '\'' +
                 ", movieTime='" + movieTime + '\'' +
-                ", moiveStory='" + moiveStory + '\'' +
+                ", movieStory='" + movieStory + '\'' +
                 ", posterUrl='" + posterUrl + '\'' +
                 ", rescheduledTime='" + rescheduledTime + '\'' +
                 ", score=" + score +
@@ -117,12 +117,12 @@ public class Movie {
         this.movieTime = movieTime;
     }
 
-    public String getMoiveStory() {
-        return moiveStory;
+    public String getMovieStory() {
+        return movieStory;
     }
 
-    public void setMoiveStory(String moiveStory) {
-        this.moiveStory = moiveStory;
+    public void setMovieStory(String movieStory) {
+        this.movieStory = movieStory;
     }
 
     public String getPosterUrl() {

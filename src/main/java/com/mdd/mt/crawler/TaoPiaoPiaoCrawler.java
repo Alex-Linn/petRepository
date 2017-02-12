@@ -6,6 +6,7 @@ import com.mdd.mt.model.MovieCinema;
 import com.mdd.mt.model.MovieSchedule;
 import com.mdd.mt.service.CinemaServiceImpl;
 import com.mdd.mt.service.MovieCinemaServiceImpl;
+import com.mdd.mt.service.MovieScheduleServiceImpl;
 import com.mdd.mt.service.MovieServiceImpl;
 import com.mdd.mt.utils.CommonUtils;
 import org.jsoup.Jsoup;
@@ -17,28 +18,34 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 /**
  * Created by Administrator on 2016/12/25.
  */
+
 @Service
 public class TaoPiaoPiaoCrawler {
     @Autowired
-    private MovieServiceImpl movieServiceImpl;
+    private MovieServiceImpl movieService;
 
     @Autowired
-    private CinemaServiceImpl cinemaServiceImpl;
+    private CinemaServiceImpl cinemaService;
 
     @Autowired
-    private MovieCinemaServiceImpl movieCinemaServiceImpl;
+    private MovieCinemaServiceImpl movieCinemaService;
+
+    @Autowired
+    private MovieScheduleServiceImpl movieScheduleService;
+
 
     public void crawler(String indexUrl) throws IOException {
         //解析電影
         List<Movie> movieList = analyzeMovie(indexUrl);
-        //解析影院和场次
-        analyzeCinema(movieList);
+        //解析影院
+        Map<MovieCinema, Document> movieCinemaDocumentMap = analyzeCinema(movieList);
+        //解析场次
+        analyzeSchedule(movieCinemaDocumentMap);
     }
 
 
@@ -60,58 +67,65 @@ public class TaoPiaoPiaoCrawler {
                 String movieUrl = divElement.select("a.movie-card-buy").attr("href");
                 Document movieDetailDocument = Jsoup.connect(movieUrl).get();
                 if (movieDetailDocument != null) {
-                    Movie moive = new Movie();
-                    Elements movieDivDocment = movieDetailDocument.select("body > div.detail-wrap.J_detailWrap > div.detail-cont > div");
+                    Movie movie = new Movie();
+
+                    Elements movieDivDocument = movieDetailDocument.select("body > div.detail-wrap.J_detailWrap > div.detail-cont > div");
                     //电影名
-                    String movieName = movieDivDocment.select("h3").text();
-                    moive.setMovieName(movieName);
+                    String movieName = movieDivDocument.select("h3").text();
+                     movie.setMovieName(movieName);
                     //英文名
-                    String movieEnglishName = movieDivDocment.select("h3 > i").text();
-                    moive.setMovieEnglishName(movieEnglishName);
+                    String movieEnglishName = movieDivDocument.select("h3 > i").text();
+                     movie.setMovieEnglishName(movieEnglishName);
                     //评分
-                    String score = movieDivDocment.select("h3 > em").text();
-                    moive.setScore(Double.valueOf(score));
+                    String score = movieDivDocument.select("h3 > em").text();
+                     movie.setScore(Double.valueOf(score));
                     //上映时间
-                    String rescheduledTime = movieDivDocment.select("div.cont-time").text();
-                    moive.setRescheduledTime(rescheduledTime);
-                    //导演
-                    String director = movieDivDocment.select("ul > li:nth-child(2)").text();
-                    moive.setDirector(director);
-                    //演员
-                    String performer = movieDivDocment.select("ul > li:nth-child(3)").text();
-                    moive.setPerformer(performer);
-                    //影片类型
-                    String movieType = movieDivDocment.select("ul > li:nth-child(4)").text();
-                    moive.setMovieType(movieType);
-                    //国家
-                    String country = movieDivDocment.select("ul > li:nth-child(5)").text();
-                    moive.setCountry(country);
-                    //语言
-                    String moiveLanguage = movieDivDocment.select("ul > li:nth-child(6)").text();
-                    moive.setMovieLanguage(moiveLanguage);
-                    //时长
-                    String movieTime = movieDivDocment.select("ul > li:nth-child(7)").text();
-                    moive.setMovieTime(movieTime);
-                    //影片简介
-                    String moiveStory = movieDivDocment.select("ul > li.J_shrink.shrink").text();
-                    moive.setMoiveStory(moiveStory);
+                    String rescheduledTime = movieDivDocument.select("div.cont-time").text();
+                     movie.setRescheduledTime(rescheduledTime);
                     //影片海报url
-                    String posterUrl = movieDivDocment.select("div.cont-pic > img").attr("src");
-                    moive.setPosterUrl(posterUrl);
+                    String posterUrl = movieDivDocument.select("div.cont-pic > img").attr("src");
+                    movie.setPosterUrl(posterUrl);
+                    //影片简介
+                    String movieStory = movieDivDocument.select("ul > li.J_shrink.shrink").text();
+                    movie.setMovieStory(movieStory);
+
+                    //有时候的页面的<li></li>个数不确定，使用jsoup解析次序乱，所以这里用正则
+                    String html = movieDetailDocument.body().toString();
+                    //<li>导演：叶伟民</li>
+                    //导演
+                    String director = CommonUtils.simpleMatch(html,"<li>导演：(.*)</li>");
+                    movie.setDirector(director);
+                    //演员
+                    String performer = CommonUtils.simpleMatch(html,"<li>主演：(.*)</li>");
+                     movie.setPerformer(performer);
+                    //影片类型
+                    String movieType = CommonUtils.simpleMatch(html,"<li>类型：(.*)</li>");
+                     movie.setMovieType(movieType);
+                    //国家
+                    String country = CommonUtils.simpleMatch(html,"<li>制片国家/地区：(.*)</li>");
+                     movie.setCountry(country);
+                    //语言
+                    String movieLanguage = CommonUtils.simpleMatch(html,"<li>语言：(.*)</li>");
+                     movie.setMovieLanguage(movieLanguage);
+                    //时长
+                    String movieTime = CommonUtils.simpleMatch(html,"<li>片长：(.*)</li>");
+                    movie.setMovieTime(movieTime);
+
                     //已经上映
-                    moive.setIsShow(1);
-                    System.out.println(moive);
+                     movie.setIsShow(1);
 
 //                  http://dianying.taobao.com/showDetailSchedule.htm?showId=154578&ts=1482648277453&n_s=new 百度人
                     /**每场电影，播放的影院和场次**/
                     //拼接获取电影影院的url
                     String showId = CommonUtils.simpleMatch(movieUrl, "showId=(\\d+)&");
                     String cinemaUrl = "http://dianying.taobao.com/showDetailSchedule.htm?n_s=new&showId=" + showId;
-                    moive.setMovieDetailUrl(cinemaUrl);
-                    movieList.add(moive);
+                    movie.setMovieDetailUrl(cinemaUrl);
+//                    System.out.println( movie);
+                    movieService.insertMovie(movie);
+                    movieList.add( movie);
                 }
             }
-            movieServiceImpl.saveMovie(movieList);
+
         }
         return movieList;
     }
@@ -121,15 +135,17 @@ public class TaoPiaoPiaoCrawler {
      *
      * @param movieList
      */
-    private List<Document> analyzeCinema(List<Movie> movieList) throws IOException {
-        List<Document> documentsList = new ArrayList<Document>();
+    private Map<MovieCinema,Document> analyzeCinema(List<Movie> movieList) throws IOException {
+        Map<MovieCinema,Document> documentsMap= new HashMap<MovieCinema,Document>();
         //电影和影院关系表
         List<MovieCinema>movieCinemaList = new ArrayList<MovieCinema>();
         if (movieList != null) {
             for (Movie movie : movieList) {
                 int movieId = movie.getId();
+                System.out.println(movie);
                 String movieDetailUrl = movie.getMovieDetailUrl();
                 Document cinemaDocument = Jsoup.connect(movieDetailUrl).timeout(1000 * 60 * 30).get();
+                System.out.println(cinemaDocument.body().toString());
                 Elements cinemaDiv = cinemaDocument.select("body > div.filter-wrap > div > ul > li:nth-child(2) > div");
                 Elements cinemasHref = cinemaDiv.get(0).select("a");
                 //今天明天日期的影院场次url
@@ -164,49 +180,58 @@ public class TaoPiaoPiaoCrawler {
                     //地图位置URl
                     String mapUrl = cinemaDocument.select("body > div.center-wrap.cinemabar-wrap > a.more").attr("href");
                     cinema.setMapInfo(mapUrl);
-                    System.out.println(cinema);
                     //保存影院信息
-                    cinemaServiceImpl.saveCinema(cinema);
+                    cinemaService.saveCinema(cinema);
                     //创建电影和影院的关系对象
                     MovieCinema movieCinema = new MovieCinema();
                     //建立关系
+                    System.out.println(cinema);
                     movieCinema.setCinemaId(cinema.getId());
-                    movieCinema.setMoiveId(movieId);
+                    movieCinema.setMovieId(movieId);
                     //保存关系
                     movieCinemaList.add(movieCinema);
-                    documentsList.add(cinemaDocument);
+                    documentsMap.put(movieCinema,cinemaDocument);
                 }
             }
 //          批量保存关系
-            movieCinemaServiceImpl.saveMovieCinemaList(movieCinemaList);
+            movieCinemaService.saveMovieCinemaList(movieCinemaList);
         }
-        return documentsList;
+        return documentsMap;
     }
 
     /**
      * 解析场次
      *
-     * @param documentsList
+     * @param documentsMap
      */
-    private void analyzeSchedule(List<Document> documentsList) {
-        if (documentsList != null) {
-            for (Document cinemaDocument : documentsList) {
-
-
+    private void analyzeSchedule(Map<MovieCinema,Document> documentsMap) {
+        List<MovieSchedule>movieScheduleList = new ArrayList<MovieSchedule>();
+        if (documentsMap != null) {
+            //场次所对应的电影和电影院关系对象
+            Set<MovieCinema> movieCinemas = documentsMap.keySet();
+            Iterator<MovieCinema> iterator = movieCinemas.iterator();
+            while (iterator.hasNext()){
+                MovieCinema movieCinema = iterator.next();
+                System.out.println(movieCinema);
                 //解析影院场次
-                Elements scheduleTable = cinemaDocument.select("table");
+                Document scheduleDocument = documentsMap.get(movieCinema);
+                Elements scheduleTable = scheduleDocument.select("table");
                 //防止没有电影场次的情况
                 if (scheduleTable.size() != 0) {
                     Elements scheduleTr = scheduleTable.get(0).select("tr");
                     for (Element eleTr : scheduleTr) {
-                        MovieSchedule moiveSchedule = new MovieSchedule();
+                        MovieSchedule movieSchedule = new MovieSchedule();
+                        //电影id
+                        movieSchedule.setMoiveId(movieCinema.getMovieId());
+                        //影院id
+                        movieSchedule.setCinemaId(movieCinema.getCinemaId());
                         //电影播放时间
                         String timeStr = eleTr.select("td.hall-time").text();
                         if (!StringUtil.isBlank(timeStr)) {
                             String startHour = timeStr.substring(0, timeStr.indexOf("预计"));
                             String endHour = timeStr.substring(timeStr.lastIndexOf("预计"));
                             //结束时间
-                            moiveSchedule.setEndTime(endHour);
+                            movieSchedule.setEndTime(endHour);
                             //通过url参数拿到时间去拼凑数据库的时间 &date=2016-12-24&regionName=&ts=1482592840757&n_s=new
 //                            String dateRegx = "date=(.*)&regionName";
 //                            String date = CommonUtils.simpleMatch(detailScheduleUrl, dateRegx);
@@ -216,30 +241,33 @@ public class TaoPiaoPiaoCrawler {
 //                            moiveSchedule.setStartTime(startTime);
                             //语言
                             String language = eleTr.select("td.hall-type").text();
-                            moiveSchedule.setLanguage(language);
+                            movieSchedule.setMovieLanguage(language);
                             //影厅
                             String videoHall = eleTr.select("td.hall-name").text();
-                            moiveSchedule.setVideoHall(videoHall);
+                            movieSchedule.setVideoHall(videoHall);
                             //票的稀缺度
                             String seatCondition = eleTr.select("td.hall-flow").text();
-                            moiveSchedule.setSeatCondition(seatCondition);
+                            movieSchedule.setSeatCondition(seatCondition);
                             String price = eleTr.select("td.hall-price > em.now").text();
                             try {
-                                moiveSchedule.setPrice(Double.valueOf(price));
+                                movieSchedule.setPrice(Double.valueOf(price));
                             } catch (Exception e) {
                                 System.out.println("票价转换异常");
                             }
                             String buyUrl = eleTr.select("td.hall-seat >a").attr("href");
                             if (!StringUtil.isBlank(buyUrl)) {
-                                moiveSchedule.setBuyUrl(buyUrl);
+                                movieSchedule.setBuyUrl(buyUrl);
                             } else {
-                                moiveSchedule.setBuyUrl(eleTr.select("td.hall-seat").text());
+                                movieSchedule.setBuyUrl(eleTr.select("td.hall-seat").text());
                             }
-                            System.out.println(moiveSchedule);
+
+                            System.out.println(movieSchedule);
+                            movieScheduleList.add(movieSchedule);
                         }
                     }
                 }
             }
+            movieScheduleService.saveMovieSchedule(movieScheduleList);
         }
     }
 

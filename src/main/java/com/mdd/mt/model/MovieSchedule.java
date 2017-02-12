@@ -13,7 +13,7 @@ public class MovieSchedule {
 
     private String endTime;
 
-    private String language;
+    private String movieLanguage;
 
     private String videoHall;
 
@@ -24,6 +24,23 @@ public class MovieSchedule {
     private String buyUrl;
 
     private Date createTime;
+
+    @Override
+    public String toString() {
+        return "MovieSchedule{" +
+                "id=" + id +
+                ", moiveId=" + moiveId +
+                ", cinemaId=" + cinemaId +
+                ", startTime=" + startTime +
+                ", endTime='" + endTime + '\'' +
+                ", movieLanguage='" + movieLanguage + '\'' +
+                ", videoHall='" + videoHall + '\'' +
+                ", seatCondition='" + seatCondition + '\'' +
+                ", price=" + price +
+                ", buyUrl='" + buyUrl + '\'' +
+                ", createTime=" + createTime +
+                '}';
+    }
 
     public Integer getId() {
         return id;
@@ -62,15 +79,15 @@ public class MovieSchedule {
     }
 
     public void setEndTime(String endTime) {
-        this.endTime = endTime == null ? null : endTime.trim();
+        this.endTime = endTime;
     }
 
-    public String getLanguage() {
-        return language;
+    public String getMovieLanguage() {
+        return movieLanguage;
     }
 
-    public void setLanguage(String language) {
-        this.language = language == null ? null : language.trim();
+    public void setMovieLanguage(String movieLanguage) {
+        this.movieLanguage = movieLanguage;
     }
 
     public String getVideoHall() {
@@ -78,7 +95,7 @@ public class MovieSchedule {
     }
 
     public void setVideoHall(String videoHall) {
-        this.videoHall = videoHall == null ? null : videoHall.trim();
+        this.videoHall = videoHall;
     }
 
     public String getSeatCondition() {
@@ -86,7 +103,7 @@ public class MovieSchedule {
     }
 
     public void setSeatCondition(String seatCondition) {
-        this.seatCondition = seatCondition == null ? null : seatCondition.trim();
+        this.seatCondition = seatCondition;
     }
 
     public Double getPrice() {
@@ -102,7 +119,7 @@ public class MovieSchedule {
     }
 
     public void setBuyUrl(String buyUrl) {
-        this.buyUrl = buyUrl == null ? null : buyUrl.trim();
+        this.buyUrl = buyUrl;
     }
 
     public Date getCreateTime() {

@@ -8,31 +8,41 @@ import java.util.Date;
  */
 public class MovieCinema {
     private int id;
-    private int moiveId;
+    private int movieId;
     private int cinemaId;
     private Date createTime;
 
-    public Integer getId() {
+    @Override
+    public String toString() {
+        return "MovieCinema{" +
+                "id=" + id +
+                ", movieId=" + movieId +
+                ", cinemaId=" + cinemaId +
+                ", createTime=" + createTime +
+                '}';
+    }
+
+    public int getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(int id) {
         this.id = id;
     }
 
-    public Integer getMoiveId() {
-        return moiveId;
+    public int getMovieId() {
+        return movieId;
     }
 
-    public void setMoiveId(Integer moiveId) {
-        this.moiveId = moiveId;
+    public void setMovieId(int movieId) {
+        this.movieId = movieId;
     }
 
-    public Integer getCinemaId() {
+    public int getCinemaId() {
         return cinemaId;
     }
 
-    public void setCinemaId(Integer cinemaId) {
+    public void setCinemaId(int cinemaId) {
         this.cinemaId = cinemaId;
     }
 
