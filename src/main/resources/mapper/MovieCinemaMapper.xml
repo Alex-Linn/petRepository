@@ -24,7 +24,8 @@
         where id = #{id,jdbcType=INTEGER}
      </delete>
 
-    <insert id="insert" parameterType="com.mdd.mt.model.MovieCinema">
+    <!--插入电影和影院关系-->
+    <insert id="insertMovieCinema" parameterType="com.mdd.mt.model.MovieCinema">
         insert into t_movie_cinema (id, movie_id, cinema_id,
             create_time)
         values (#{id,jdbcType=INTEGER}, #{movieId,jdbcType=INTEGER}, #{cinemaId,jdbcType=INTEGER},
@@ -32,7 +33,7 @@
     </insert>
 
     <!--批量插入-->
-    <insert id="saveMovieCinemaList" parameterType="java.util.List">
+    <insert id="insertMovieCinemaList" parameterType="java.util.List">
         insert into t_movie_cinema (id, movie_id, cinema_id,
         create_time)
         VALUES

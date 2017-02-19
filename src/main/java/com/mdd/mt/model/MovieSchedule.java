@@ -5,7 +5,7 @@ import java.util.Date;
 public class MovieSchedule {
     private Integer id;
 
-    private Integer moiveId;
+    private Integer movieId;
 
     private Integer cinemaId;
 
@@ -25,11 +25,12 @@ public class MovieSchedule {
 
     private Date createTime;
 
+
     @Override
     public String toString() {
         return "MovieSchedule{" +
                 "id=" + id +
-                ", moiveId=" + moiveId +
+                ", movieId=" + movieId +
                 ", cinemaId=" + cinemaId +
                 ", startTime=" + startTime +
                 ", endTime='" + endTime + '\'' +
@@ -50,12 +51,12 @@ public class MovieSchedule {
         this.id = id;
     }
 
-    public Integer getMoiveId() {
-        return moiveId;
+    public Integer getMovieId() {
+        return movieId;
     }
 
-    public void setMoiveId(Integer moiveId) {
-        this.moiveId = moiveId;
+    public void setMovieId(Integer movieId) {
+        this.movieId = movieId;
     }
 
     public Integer getCinemaId() {

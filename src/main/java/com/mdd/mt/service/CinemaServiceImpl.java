@@ -21,11 +21,21 @@ public class CinemaServiceImpl {
      *
      * @param cinema
      */
-    public boolean saveCinema(Cinema cinema) {
-        boolean flag = false;
+    public int saveCinema(Cinema cinema) {
+       int  flag = 0;
         if (cinema != null) {
-            flag = cinemaMapper.insert(cinema);
+            flag = cinemaMapper.insertCinema(cinema);
         }
         return flag;
+    }
+
+    /**
+     * 根据电话号码获取影院信息
+     * @param tel
+     * @return
+     */
+    public Cinema getCinemaByTel(String tel){
+        Cinema cinema = cinemaMapper.selectByTel(tel);
+        return cinema;
     }
 }

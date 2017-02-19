@@ -20,7 +20,14 @@ public class MovieCinemaServiceImpl {
 
     public void saveMovieCinemaList(List<MovieCinema>movieCinemaList){
         if(movieCinemaList!=null){
-            movieCinemaMapper.saveMovieCinemaList(movieCinemaList);
+            movieCinemaMapper.insertMovieCinemaList(movieCinemaList);
+        }
+    }
+
+
+    public void saveMovieCinema(MovieCinema movieCinema){
+        if(movieCinema!=null){
+            movieCinemaMapper.insertMovieCinema(movieCinema);
         }
     }
 

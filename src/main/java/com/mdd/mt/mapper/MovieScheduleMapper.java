@@ -22,5 +22,5 @@ public interface MovieScheduleMapper {
      * @param movieScheduleList
      * @return
      */
-    int saveMovieScheduleList(List<MovieSchedule>movieScheduleList);
+    void saveMovieScheduleList(List<MovieSchedule>movieScheduleList);
 }

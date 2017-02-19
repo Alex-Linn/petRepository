@@ -26,11 +26,9 @@ public class MovieScheduleServiceImpl {
      *
      * @param movieScheduleList
      */
-    public int saveMovieSchedule(List<MovieSchedule> movieScheduleList) {
-        int acount = 0;
+    public void saveMovieSchedule(List<MovieSchedule> movieScheduleList) {
         if (movieScheduleList != null) {
-            acount = movieScheduleMapper.saveMovieScheduleList(movieScheduleList);
+            movieScheduleMapper.saveMovieScheduleList(movieScheduleList);
         }
-        return acount;
     }
 }

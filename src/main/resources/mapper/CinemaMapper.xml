@@ -26,6 +26,16 @@
     where id = #{id,jdbcType=INTEGER}
   </select>
 
+  <!--根据影院的电话号码查询-->
+  <select id="selectByTel" resultMap="BaseResultMap" >
+    select
+    <include refid="Base_Column_List" />
+    from t_cinema
+    where tel = #{tel,jdbcType=VARCHAR}
+  </select>
+
+
+
   <!--删除影院信息-->
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from t_cinema
@@ -33,7 +43,7 @@
   </delete>
 
   <!--插入影院信息-->
-  <insert id="insert" parameterType="com.mdd.mt.model.Cinema" useGeneratedKeys="true" keyProperty="id">
+  <insert id="insertCinema" parameterType="com.mdd.mt.model.Cinema" useGeneratedKeys="true" keyProperty="id">
     insert into t_cinema (id, city, area, 
       address, cinema_name, tel, 
       map_info, detail_schedule_url, create_time

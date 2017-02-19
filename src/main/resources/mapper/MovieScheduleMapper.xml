@@ -3,11 +3,11 @@
 <mapper namespace="com.mdd.mt.mapper.MovieScheduleMapper" >
   <resultMap id="BaseResultMap" type="com.mdd.mt.model.MovieSchedule" >
     <id column="id" property="id" jdbcType="INTEGER" />
-    <result column="moive_id" property="moiveId" jdbcType="INTEGER" />
+    <result column="movie_id" property="movieId" jdbcType="INTEGER" />
     <result column="cinema_id" property="cinemaId" jdbcType="INTEGER" />
     <result column="start_time" property="startTime" jdbcType="TIMESTAMP" />
     <result column="end_time" property="endTime" jdbcType="VARCHAR" />
-    <result column="language" property="language" jdbcType="VARCHAR" />
+    <result column="movie_language" property="movieLanguage" jdbcType="VARCHAR" />
     <result column="video_hall" property="videoHall" jdbcType="VARCHAR" />
     <result column="seat_condition" property="seatCondition" jdbcType="VARCHAR" />
     <result column="price" property="price" jdbcType="DOUBLE" />
@@ -15,7 +15,7 @@
     <result column="create_time" property="createTime" jdbcType="DATE" />
   </resultMap>
   <sql id="Base_Column_List" >
-    id, moive_id, cinema_id, start_time, end_time, language, video_hall, seat_condition, 
+    id, movie_id, cinema_id, start_time, end_time, language, video_hall, seat_condition,
     price, buy_url, create_time
   </sql>
 
@@ -32,14 +32,25 @@
   </delete>
 
   <insert id="insert" parameterType="com.mdd.mt.model.MovieSchedule" >
-    insert into t_movie_schedule (id, moive_id, cinema_id, 
-      start_time, end_time, language, 
-      video_hall, seat_condition, price, 
-      buy_url, create_time)
-    values (#{id,jdbcType=INTEGER}, #{moiveId,jdbcType=INTEGER}, #{cinemaId,jdbcType=INTEGER}, 
+    insert into t_movie_schedule (movie_id, cinema_id, start_time,
+      end_time, movie_language,video_hall, seat_condition, price,buy_url, create_time)
+    values (#{movieId,jdbcType=INTEGER}, #{cinemaId,jdbcType=INTEGER},
       #{startTime,jdbcType=TIMESTAMP}, #{endTime,jdbcType=VARCHAR}, #{language,jdbcType=VARCHAR}, 
       #{videoHall,jdbcType=VARCHAR}, #{seatCondition,jdbcType=VARCHAR}, #{price,jdbcType=DOUBLE}, 
       #{buyUrl,jdbcType=VARCHAR}, #{createTime,jdbcType=DATE})
   </insert>
 
+
+  <!--批量插入-->
+  <insert id="saveMovieScheduleList" parameterType="java.util.List">
+    INSERT into t_movie_schedule (movie_id, cinema_id, start_time,
+    end_time, movie_language,video_hall, seat_condition, price,buy_url, create_time)
+    VALUES
+    <foreach collection="list" item="schedule" index="index" separator=",">
+      (#{schedule.movieId,jdbcType=INTEGER}, #{schedule.cinemaId,jdbcType=INTEGER},
+      #{schedule.startTime,jdbcType=TIMESTAMP}, #{schedule.endTime,jdbcType=VARCHAR}, #{schedule.movieLanguage,jdbcType=VARCHAR},
+      #{schedule.videoHall,jdbcType=VARCHAR}, #{schedule.seatCondition,jdbcType=VARCHAR}, #{schedule.price,jdbcType=DOUBLE},
+      #{schedule.buyUrl,jdbcType=VARCHAR}, now())
+    </foreach>
+  </insert>
 </mapper>

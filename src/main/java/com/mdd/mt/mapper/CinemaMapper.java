@@ -1,17 +1,38 @@
 package com.mdd.mt.mapper;
 
 import com.mdd.mt.model.Cinema;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
 public interface CinemaMapper {
     int deleteByPrimaryKey(Integer id);
 
-    boolean insert(Cinema record);
 
-    int insertSelective(Cinema record);
+    /**
+     * 保存电影信息
+     * @param record
+     * @return
+     */
+    int insertCinema(Cinema record);
 
+    /**
+     * 根据id查询电影
+     * @param id
+     * @return
+     */
     Cinema selectByPrimaryKey(Integer id);
 
+    /**
+     * 根据影院的电话号码查找影院信息，影院号码是唯一的
+     * @param tel
+     * @return
+     */
+    Cinema selectByTel(@Param("tel") String tel);
+
+    /**
+     * 批量插入电影
+     * @param cinemaList
+     */
     void saveCinemaList(List<Cinema> cinemaList);
 }

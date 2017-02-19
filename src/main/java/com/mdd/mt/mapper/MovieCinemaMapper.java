@@ -17,6 +17,12 @@ public interface MovieCinemaMapper {
      * 批量插入
      * @param movieCinemaList
      */
-    void saveMovieCinemaList(List<MovieCinema>movieCinemaList);
+    void insertMovieCinemaList(List<MovieCinema>movieCinemaList);
+
+    /**
+     * 插入影院和电影关系
+     * @param movieCinema
+     */
+    void insertMovieCinema(MovieCinema movieCinema);
 
 }

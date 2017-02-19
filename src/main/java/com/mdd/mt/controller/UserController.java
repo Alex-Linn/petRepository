@@ -38,7 +38,7 @@ public class UserController {
 
     @RequestMapping("/taopiaopiao")
     public String taopiaopiao() throws IOException {
-        taoPiaoPiaoCrawler.crawler("http://dianying.taobao.com/showList.htm?spm=a1z21.6646273.city.5.EAQ1oR&n_s=new&city=440300");
+        taoPiaoPiaoCrawler.crawlerTest("http://dianying.taobao.com/showList.htm?spm=a1z21.6646273.city.5.EAQ1oR&n_s=new&city=440300");
         return "demo";
     }
 

@@ -20,28 +20,31 @@
         <result column="create_time" property="createTime" jdbcType="DATE"/>
     </resultMap>
 
-    <resultMap id="ResultMapWithBLOBs" type="com.mdd.mt.model.Movie" extends="BaseResultMap">
-        <result column="movie_story" property="movieStory" jdbcType="LONGVARCHAR"/>
-    </resultMap>
+
 
     <sql id="Base_Column_List">
         id, movie_name, movie_english_name, director, performer, movie_type, country, movie_language,
-        movie_time, poster_url, rescheduled_time, score, is_show, movie_detail_url, create_time
+        movie_time,movie_story, poster_url, rescheduled_time, score, is_show, movie_detail_url, create_time
     </sql>
 
-    <sql id="Blob_Column_List">
-        moive_story
-    </sql>
 
     <!--根据id查询-->
-    <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer">
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">
         select
-        <include refid="Base_Column_List"/>
-        ,
-        <include refid="Blob_Column_List"/>
+        *
         from t_movie
         where id = #{id,jdbcType=INTEGER}
     </select>
+
+    <!--根据电影名查询(电影名设为唯一索引)-->
+    <select id="selectByMovieName" resultMap="BaseResultMap">
+        select
+        *
+        from t_movie
+        where movie_name = #{movieName,jdbcType=VARCHAR}
+    </select>
+
+
 
     <!--根据id删除-->
     <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
@@ -63,7 +66,7 @@
     </insert>
 
     <!--批量插入-->
-    <insert id="saveMovieList" parameterType="java.util.List" useGeneratedKeys="true" keyProperty="id">
+    <insert id="saveMovieList" parameterType="java.util.List">
         INSERT into t_movie
         (movie_name,movie_english_name,director,performer,movie_type,country,movie_language,movie_time,movie_story,poster_url,
         rescheduled_time,score,is_show,movie_detail_url,create_time)

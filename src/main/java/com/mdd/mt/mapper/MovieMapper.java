@@ -24,4 +24,11 @@ public interface MovieMapper {
      * @param movieList
      */
     void saveMovieList(List<Movie> movieList);
+
+    /**
+     * 根据电影名查询电影
+     * @param movieName
+     * @return
+     */
+    Movie selectByMovieName(String movieName);
 }
