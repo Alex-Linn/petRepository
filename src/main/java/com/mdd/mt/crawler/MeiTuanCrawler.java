@@ -1,5 +1,6 @@
 package com.mdd.mt.crawler;
 
+import com.mdd.mt.model.Movie;
 import com.mdd.mt.service.CinemaServiceImpl;
 import com.mdd.mt.service.MovieCinemaServiceImpl;
 import com.mdd.mt.service.MovieScheduleServiceImpl;
@@ -39,8 +40,29 @@ public class MeiTuanCrawler {
      *
      * @param indexUrl
      */
-    public void crawler(String indexUrl) throws IOException {
-        crawlerMovieUrl(indexUrl);
+    public void crawler(String indexUrl) throws IOException, InterruptedException {
+        List<String> movieDetailUrlList = crawlerMovieUrl(indexUrl);
+        //电影详细页面url  http://www.meituan.com/dianying/1170255?mtt=1.movie%2Fmovies.0.0.ize1ubtc
+        for(String movieUrlId:movieDetailUrlList){
+            Document document = Jsoup.connect("http://www.meituan.com/dianying/" + movieUrlId + "?mtt=1.movie%2Fmovies.0.0.ize1ubtc").get();
+            if(document!=null){
+                Movie movie = new Movie();
+                Element divContainer = document.select("#bd > div.movie-container.J-movie-container").get(0);
+                String movieName = divContainer.select("div.movie-container__body > div.movie-info.movie-info--rich.cf > div.movie-info__name > h2").text();
+                /**如果数据库存在改电影则不入库**/
+                Movie dbMovie = movieService.getMovieByName(movieName);
+                if (dbMovie == null) {
+                    //电影名称
+                    movie.setMovieName(movieName);
+                    //上映时间
+                    String rescheduled_time = divContainer.select("div.movie-container__body > div.movie-info.movie-info--rich.cf > section > dl > dd:nth-child(2)").text();
+                    movie.setRescheduledTime(rescheduled_time);
+                }
+            }
+        }
+
+
+
     }
 
     /**
@@ -67,7 +89,7 @@ public class MeiTuanCrawler {
         return movieUrlList;
     }
 
-    public static void main(String args[]) throws IOException {
+    public static void main(String args[]) throws IOException, InterruptedException {
 //        Connection connect = Jsoup.connect("http://www.meituan.com/dianying/zuixindianying?mtt=1.movie%2Fmoviedeal.0.0.izcfyvrl");
 //        Map<String,String> datamMap = new HashMap<String,String>();
 //        datamMap.put("Accept","text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8");
@@ -83,7 +105,8 @@ public class MeiTuanCrawler {
 //        System.out.println(connect.get().body());
 
         MeiTuanCrawler meiTuanCrawler = new MeiTuanCrawler();
-        meiTuanCrawler.crawlerMovieUrl("http://www.meituan.com/dianying/zuixindianying?mtt=1.movie%2Fmoviedeal.0.0.izcfyvrl");
+//        meiTuanCrawler.crawlerMovieUrl("http://www.meituan.com/dianying/zuixindianying?mtt=1.movie%2Fmoviedeal.0.0.izcfyvrl");
 //        #yui_3_16_0_1_1487494881611_512
+        meiTuanCrawler.crawler("http://www.meituan.com/dianying/zuixindianying?mtt=1.movie%2Fmoviedeal.0.0.izcfyvrl");
     }
 }
