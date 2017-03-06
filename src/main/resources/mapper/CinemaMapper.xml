@@ -10,12 +10,12 @@
     <result column="cinema_name" property="cinemaName" jdbcType="VARCHAR" />
     <result column="tel" property="tel" jdbcType="VARCHAR" />
     <result column="map_info" property="mapInfo" jdbcType="VARCHAR" />
-    <result column="detail_schedule_url" property="detailScheduleUrl" jdbcType="VARCHAR" />
+    <result column="introduction" property="introduction" jdbcType="VARCHAR" />
     <result column="create_time" property="createTime" jdbcType="DATE" />
   </resultMap>
 
   <sql id="Base_Column_List" >
-    id, city, area, address, cinema_name, tel, map_info, detail_schedule_url, create_time
+    id, city, area, address, cinema_name, tel, map_info, introduction, create_time ,cinema_desc
   </sql>
 
   <!--根据id查询-->
@@ -46,26 +46,26 @@
   <insert id="insertCinema" parameterType="com.mdd.mt.model.Cinema" useGeneratedKeys="true" keyProperty="id">
     insert into t_cinema (id, city, area, 
       address, cinema_name, tel, 
-      map_info, detail_schedule_url, create_time
+      map_info, introduction, create_time,cinema_desc
       )
     values (#{id,jdbcType=INTEGER}, #{city,jdbcType=VARCHAR}, #{area,jdbcType=VARCHAR}, 
       #{address,jdbcType=VARCHAR}, #{cinemaName,jdbcType=VARCHAR}, #{tel,jdbcType=VARCHAR}, 
-      #{mapInfo,jdbcType=VARCHAR}, #{detailScheduleUrl,jdbcType=VARCHAR}, now()
+      #{mapInfo,jdbcType=VARCHAR}, #{introduction,jdbcType=VARCHAR}, now(),#{cinemaDesc,jdbcType=VARCHAR}
       )
   </insert>
 
   <!--批量插入-->
   <insert id="saveCinemaList" parameterType="java.util.List">
-    insert into t_cinema (id, city, area,
-      address, cinema_name, tel,
-      map_info, detail_schedule_url, create_time
+    insert into t_cinema (id, city, area, 
+      address, cinema_name, tel, 
+      map_info, introduction, create_time,cinema_desc
     )
     VALUES
     <foreach collection="cinemaList" item="movie" index="index" separator=",">
     (
       #{id,jdbcType=INTEGER}, #{city,jdbcType=VARCHAR}, #{area,jdbcType=VARCHAR},
       #{address,jdbcType=VARCHAR}, #{cinemaName,jdbcType=VARCHAR}, #{tel,jdbcType=VARCHAR},
-      #{mapInfo,jdbcType=VARCHAR}, #{detailScheduleUrl,jdbcType=VARCHAR}, now()
+      #{mapInfo,jdbcType=VARCHAR}, #{introduction,jdbcType=VARCHAR}, now(),#{cinemaDesc,jdbcType=VARCHAR}
     )
     </foreach>
   </insert>

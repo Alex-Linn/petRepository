@@ -5,6 +5,7 @@ import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.mdd.mt.model.Cinema;
 import com.mdd.mt.model.Movie;
+import com.mdd.mt.model.MovieSchedule;
 import com.mdd.mt.service.CinemaServiceImpl;
 import com.mdd.mt.service.MovieCinemaServiceImpl;
 import com.mdd.mt.service.MovieScheduleServiceImpl;
@@ -69,52 +70,105 @@ public class JDCrawler {
 				} catch (IOException e) {
 					log.debug("获取影院id出错！");
 				}
-				
-				Set<String>cinameUrlSet = analyzeCinemaUrl(cinemaJsonStr.toString(), movieUrlId);
-				Iterator<String>it = cinameUrlSet.iterator();
-				while(it.hasNext()){
+
+				Set<String> cinameUrlSet = analyzeCinemaUrl(cinemaJsonStr.toString(), movieUrlId);
+				Iterator<String> it = cinameUrlSet.iterator();
+				while (it.hasNext()) {
 					String cinemaScheduleJsonStr = "";
 					String url = it.next();
 					try {
-						cinemaScheduleJsonStr = Jsoup.connect(url).ignoreContentType(true).timeout(5000).get().body().toString();
-						System.out.println(url);
+						cinemaScheduleJsonStr = Jsoup.connect(url).ignoreContentType(true).timeout(5000).get().body()
+								.toString();
 					} catch (IOException e) {
 						log.debug("获取影院页出错！");
 					}
-					
-					cinemaScheduleJsonStr = cinemaScheduleJsonStr.replace("null(", "").replace("<body>", "").replace("</body>", "");
+
+					cinemaScheduleJsonStr = cinemaScheduleJsonStr.replace("null(", "").replace("<body>", "")
+							.replace("</body>", "");
 					cinemaScheduleJsonStr = cinemaScheduleJsonStr.substring(0, cinemaScheduleJsonStr.lastIndexOf(");"));
 					JSONObject.parse(cinemaScheduleJsonStr);
-					JSONObject JsonObject = JSON.parseObject(cinemaScheduleJsonStr); 
-					//影院信息
-					JSONObject cinemaDetailJson = (JSONObject)JsonObject.get("cinemaDetail");
-					if(cinemaDetailJson!=null){
+					JSONObject JsonObject = JSON.parseObject(cinemaScheduleJsonStr);
+					// 影院信息
+					JSONObject cinemaDetailJson = (JSONObject) JsonObject.get("cinemaDetail");
+					if (cinemaDetailJson != null) {
 						Cinema cinema = new Cinema();
-						//影院名称
+						// 影院名称
 						cinema.setCinemaName((String) cinemaDetailJson.get("cinemaName"));
-						//地址
-						cinema.setAddress((String)cinemaDetailJson.get("address"));
-						//电话
+						// 地址
+						cinema.setAddress((String) cinemaDetailJson.get("address"));
+						// 电话
 						cinema.setTel((String) cinemaDetailJson.get("conactTel"));
-						//区域
+						// 区域
 						cinema.setArea((String) cinemaDetailJson.get("regionName"));
-						cinema.setArea((String) cinemaDetailJson.get("regionName"));
-//						introduction 介绍
+						// 介绍
+						cinema.setIntroduction((String) cinemaDetailJson.get("introduction"));
+						// 环境
+						cinema.setCinemaDesc((String) cinemaDetailJson.get("cinemaDesc"));
+
+						// 解析场次
 						String showData = JsonObject.get("showData").toString();
-						JSONArray jsonArray = JSON.parseArray(showData);
-						for(int i=0;i<jsonArray.size();i++){
-							jsonArray.get(i);
-						}
+						
+						List<MovieSchedule> movieScheduleList = analyzeMovieSchedule(showData);
+						
+						System.out.println(movieScheduleList);
+
 					}
 
-					
 				}
 			}
 		}
 
 	}
-	
-//	private List
+
+	/**
+	 * 解析电影场次
+	 * 
+	 * @param showData
+	 * @return
+	 */
+	private List<MovieSchedule> analyzeMovieSchedule(String showData) {
+		List<MovieSchedule> movieScheduleList = new ArrayList<MovieSchedule>();
+		JSONArray jsonArray = JSON.parseArray(showData);
+		if (jsonArray != null && jsonArray.size() > 0) {
+			for (int i = 0; i < jsonArray.size(); i++) {
+				String itemSchedule = jsonArray.get(i).toString();
+				JSONObject itemScheduleJson = (JSONObject) JSONObject.parse(itemSchedule);
+				movieScheduleList.add(getMovieSchedule(itemScheduleJson));
+				// 其他平台的电影场次
+				JSONArray otherAgentArray = JSON.parseArray(itemScheduleJson.get("otherAgent").toString());
+				if (otherAgentArray != null && otherAgentArray.size() > 0) {
+					for(int j= 0;j<otherAgentArray.size();j++){
+						String otherItemSchedule = otherAgentArray.get(j).toString();
+						JSONObject otherItemScheduleJson = (JSONObject) JSONObject.parse(otherItemSchedule);
+						movieScheduleList.add(getMovieSchedule(otherItemScheduleJson));
+					}
+				}
+
+			}
+		}
+		return movieScheduleList;
+	}
+
+	private MovieSchedule getMovieSchedule(JSONObject itemScheduleJson) {
+		MovieSchedule movieSchedule = new MovieSchedule();
+		if (itemScheduleJson != null) {
+			// 供应商
+			movieSchedule.setWebsiteType((String) itemScheduleJson.get("pagent"));
+			// 开始时间
+			movieSchedule.setStartTime((String) itemScheduleJson.get("ptime"));
+			// 结束时间
+			movieSchedule.setEndTime((String) itemScheduleJson.get("pendtime"));
+			// 票价
+			movieSchedule.setPrice(CommonUtils.string2double((String) itemScheduleJson.get("pprice")));
+			// 厅室
+			movieSchedule.setVideoHall((String) itemScheduleJson.get("pseat"));
+			// 语言
+			movieSchedule.setMovieLanguage((String) itemScheduleJson.get("ptype"));
+			// 语言（要拼接url）
+			movieSchedule.setBuyUrl(itemScheduleJson.get("pid").toString());
+		}
+		return movieSchedule;
+	}
 
 	/**
 	 * 解析电影信息

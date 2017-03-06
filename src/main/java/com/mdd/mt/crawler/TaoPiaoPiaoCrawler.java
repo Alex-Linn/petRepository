@@ -201,9 +201,8 @@ public class TaoPiaoPiaoCrawler {
                                     String date = CommonUtils.simpleMatch(detailScheduleUrl, dateRegx);
                                     String startHour = eleTr.select("td.hall-time > em").text();
                                     date = date + ":" + startHour;
-                                    Date startTime = CommonUtils.string4Date(date);
                                     //电影开始时间
-                                    movieSchedule.setStartTime(startTime);
+                                    movieSchedule.setStartTime(date);
                                 }
                                 //语言
                                 String language = eleTr.select("td.hall-type").text();

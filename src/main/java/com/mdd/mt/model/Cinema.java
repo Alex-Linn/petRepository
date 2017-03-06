@@ -3,108 +3,114 @@ package com.mdd.mt.model;
 import java.util.Date;
 
 public class Cinema {
-    private Integer id;
+	private Integer id;
 
-    private String city;
+	private String city;
 
-    private String area;
+	private String area;
 
-    private String address;
+	private String address;
 
-    private String cinemaName;
+	private String cinemaName;
 
-    private String tel;
+	private String tel;
 
-    private String mapInfo;
+	private String mapInfo;
 
-    private String detailScheduleUrl;
+	private String introduction;
 
-    private Date createTime;
+	private Date createTime;
 
-    public Integer getId() {
-        return id;
-    }
+	private String cinemaDesc;
 
-    public void setId(Integer id) {
-        this.id = id;
-    }
+	@Override
+	public String toString() {
+		return "Cinema [id=" + id + ", city=" + city + ", area=" + area + ", address=" + address + ", cinemaName="
+				+ cinemaName + ", tel=" + tel + ", mapInfo=" + mapInfo + ", introduction=" + introduction
+				+ ", createTime=" + createTime + ", cinemaDesc=" + cinemaDesc + ", getClass()=" + getClass()
+				+ ", hashCode()=" + hashCode() + ", toString()=" + super.toString() + "]";
+	}
 
-    public String getCity() {
-        return city;
-    }
+	public Integer getId() {
+		return id;
+	}
 
-    public void setCity(String city) {
-        this.city = city == null ? null : city.trim();
-    }
+	public void setId(Integer id) {
+		this.id = id;
+	}
 
-    public String getArea() {
-        return area;
-    }
+	public String getCity() {
+		return city;
+	}
 
-    public void setArea(String area) {
-        this.area = area == null ? null : area.trim();
-    }
+	public void setCity(String city) {
+		this.city = city;
+	}
 
-    public String getAddress() {
-        return address;
-    }
+	public String getArea() {
+		return area;
+	}
 
-    public void setAddress(String address) {
-        this.address = address == null ? null : address.trim();
-    }
+	public void setArea(String area) {
+		this.area = area;
+	}
 
-    public String getCinemaName() {
-        return cinemaName;
-    }
+	public String getAddress() {
+		return address;
+	}
 
-    public void setCinemaName(String cinemaName) {
-        this.cinemaName = cinemaName == null ? null : cinemaName.trim();
-    }
+	public void setAddress(String address) {
+		this.address = address;
+	}
 
-    public String getTel() {
-        return tel;
-    }
+	public String getCinemaName() {
+		return cinemaName;
+	}
 
-    public void setTel(String tel) {
-        this.tel = tel == null ? null : tel.trim();
-    }
+	public void setCinemaName(String cinemaName) {
+		this.cinemaName = cinemaName;
+	}
 
-    public String getMapInfo() {
-        return mapInfo;
-    }
+	public String getTel() {
+		return tel;
+	}
 
-    public void setMapInfo(String mapInfo) {
-        this.mapInfo = mapInfo == null ? null : mapInfo.trim();
-    }
+	public void setTel(String tel) {
+		this.tel = tel;
+	}
 
-    public String getDetailScheduleUrl() {
-        return detailScheduleUrl;
-    }
+	public String getMapInfo() {
+		return mapInfo;
+	}
 
-    public void setDetailScheduleUrl(String detailScheduleUrl) {
-        this.detailScheduleUrl = detailScheduleUrl == null ? null : detailScheduleUrl.trim();
-    }
+	public void setMapInfo(String mapInfo) {
+		this.mapInfo = mapInfo;
+	}
 
-    public Date getCreateTime() {
-        return createTime;
-    }
+	public String getIntroduction() {
+		return introduction;
+	}
 
-    public void setCreateTime(Date createTime) {
-        this.createTime = createTime;
-    }
+	public void setIntroduction(String introduction) {
+		this.introduction = introduction;
+	}
 
-    @Override
-    public String toString() {
-        return "Cinema{" +
-                "id=" + id +
-                ", city='" + city + '\'' +
-                ", area='" + area + '\'' +
-                ", address='" + address + '\'' +
-                ", cinemaName='" + cinemaName + '\'' +
-                ", tel='" + tel + '\'' +
-                ", mapInfo='" + mapInfo + '\'' +
-                ", detailScheduleUrl='" + detailScheduleUrl + '\'' +
-                ", createTime=" + createTime +
-                '}';
-    }
+	public Date getCreateTime() {
+		return createTime;
+	}
+
+	public void setCreateTime(Date createTime) {
+		this.createTime = createTime;
+	}
+
+	public String getCinemaDesc() {
+		return cinemaDesc;
+	}
+
+	public void setCinemaDesc(String cinemaDesc) {
+		this.cinemaDesc = cinemaDesc;
+	}
+
+	
+
 }

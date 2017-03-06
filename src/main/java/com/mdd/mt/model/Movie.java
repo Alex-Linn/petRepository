@@ -20,7 +20,6 @@ public class Movie {
     private String rescheduledTime;//上映时间
     private double score;//评分
     private int isShow;//是否上映，1上映 0即将上映
-    private String movieDetailUrl;//电影详细页url
     private Date createTime;
 
     @Override
@@ -40,7 +39,6 @@ public class Movie {
                 ", rescheduledTime='" + rescheduledTime + '\'' +
                 ", score=" + score +
                 ", isShow=" + isShow +
-                ", movieDetailUrl='" + movieDetailUrl + '\'' +
                 ", createTime=" + createTime +
                 '}';
     }
@@ -155,14 +153,6 @@ public class Movie {
 
     public void setIsShow(int isShow) {
         this.isShow = isShow;
-    }
-
-    public String getMovieDetailUrl() {
-        return movieDetailUrl;
-    }
-
-    public void setMovieDetailUrl(String movieDetailUrl) {
-        this.movieDetailUrl = movieDetailUrl;
     }
 
     public Date getCreateTime() {

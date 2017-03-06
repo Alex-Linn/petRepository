@@ -165,9 +165,8 @@ public class TaoBaoCrawler implements PageProcessor {
                                     if (dateMatcher.find()) {
                                         String date = dateMatcher.group(1);
                                         date = date + ":" + startHour;
-                                        Date startTime = CommonUtils.string4Date(date);
                                         //电影开始时间
-                                        moiveSchedule.setStartTime(startTime);
+                                        moiveSchedule.setStartTime(date);
                                     }
                                     //语言
                                     String language = eleTr.select("td.hall-type").text();
