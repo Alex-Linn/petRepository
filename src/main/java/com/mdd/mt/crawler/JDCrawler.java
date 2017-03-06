@@ -1,31 +1,25 @@
 package com.mdd.mt.crawler;
 
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.Iterator;
-import java.util.LinkedHashSet;
-import java.util.List;
-import java.util.Set;
-
-import org.apache.commons.lang.StringUtils;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
-import org.jsoup.Connection;
-import org.jsoup.Jsoup;
-import org.jsoup.nodes.Element;
-import org.jsoup.select.Elements;
-import org.springframework.beans.factory.annotation.Autowired;
-
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
+import com.mdd.mt.model.Cinema;
 import com.mdd.mt.model.Movie;
 import com.mdd.mt.service.CinemaServiceImpl;
 import com.mdd.mt.service.MovieCinemaServiceImpl;
 import com.mdd.mt.service.MovieScheduleServiceImpl;
 import com.mdd.mt.service.MovieServiceImpl;
 import com.mdd.mt.utils.CommonUtils;
+import org.apache.commons.lang.StringUtils;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Element;
+import org.jsoup.select.Elements;
+import org.springframework.beans.factory.annotation.Autowired;
+
+import java.io.IOException;
+import java.util.*;
 
 public class JDCrawler {
 	@Autowired
@@ -73,7 +67,7 @@ public class JDCrawler {
 				try {
 					cinemaJsonStr = Jsoup.connect(cinemaIdUrl).ignoreContentType(true).timeout(5000).get().body();
 				} catch (IOException e) {
-					log.debug("获取影院页出错！");
+					log.debug("获取影院id出错！");
 				}
 				
 				Set<String>cinameUrlSet = analyzeCinemaUrl(cinemaJsonStr.toString(), movieUrlId);
@@ -83,6 +77,7 @@ public class JDCrawler {
 					String url = it.next();
 					try {
 						cinemaScheduleJsonStr = Jsoup.connect(url).ignoreContentType(true).timeout(5000).get().body().toString();
+						System.out.println(url);
 					} catch (IOException e) {
 						log.debug("获取影院页出错！");
 					}
@@ -93,10 +88,25 @@ public class JDCrawler {
 					JSONObject JsonObject = JSON.parseObject(cinemaScheduleJsonStr); 
 					//影院信息
 					JSONObject cinemaDetailJson = (JSONObject)JsonObject.get("cinemaDetail");
-					System.out.println(cinemaDetailJson.get("cinemaName"));
-					System.out.println(cinemaDetailJson.get("address"));
-			        String showData = JsonObject.get("showData").toString(); 
-			        JSONArray jsonArray = JSON.parseArray(showData);
+					if(cinemaDetailJson!=null){
+						Cinema cinema = new Cinema();
+						//影院名称
+						cinema.setCinemaName((String) cinemaDetailJson.get("cinemaName"));
+						//地址
+						cinema.setAddress((String)cinemaDetailJson.get("address"));
+						//电话
+						cinema.setTel((String) cinemaDetailJson.get("conactTel"));
+						//区域
+						cinema.setArea((String) cinemaDetailJson.get("regionName"));
+						cinema.setArea((String) cinemaDetailJson.get("regionName"));
+//						introduction 介绍
+						String showData = JsonObject.get("showData").toString();
+						JSONArray jsonArray = JSON.parseArray(showData);
+						for(int i=0;i<jsonArray.size();i++){
+							jsonArray.get(i);
+						}
+					}
+
 					
 				}
 			}
