@@ -5,6 +5,7 @@ import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.mdd.mt.model.Cinema;
 import com.mdd.mt.model.Movie;
+import com.mdd.mt.model.MovieCinema;
 import com.mdd.mt.model.MovieSchedule;
 import com.mdd.mt.service.CinemaServiceImpl;
 import com.mdd.mt.service.MovieCinemaServiceImpl;
@@ -18,10 +19,12 @@ import org.jsoup.Jsoup;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.io.IOException;
 import java.util.*;
 
+@Service
 public class JDCrawler {
 	@Autowired
 	private MovieServiceImpl movieService;
@@ -59,6 +62,19 @@ public class JDCrawler {
 			// 解析电影
 			Movie movie = analyzeMovie(movieBody);
 			System.out.println(movie);
+			if(movie==null){
+				continue;
+			}
+			System.out.println(movie.getMovieName());
+			//数据库存在则不入库
+			Movie dbMovie = movieService.getMovieByName(movie.getMovieName());
+			int movieId;
+			if(dbMovie!=null){
+				movieId = dbMovie.getId();
+			}else{
+				movieId = movieService.insertMovie(dbMovie);
+			}
+			
 			// 拼接影院url
 			if (StringUtils.isNotBlank(movieUrl) && movieUrl.contains("_")) {
 				String movieUrlId = movieUrl.substring(movieUrl.indexOf("_") + 1);
@@ -66,7 +82,7 @@ public class JDCrawler {
 				String cinemaIdUrl = getCinemaIdUrl + "&movieId=" + movieUrlId + "&day=" + date + "&regionId=0";
 				Element cinemaJsonStr = null;
 				try {
-					cinemaJsonStr = Jsoup.connect(cinemaIdUrl).ignoreContentType(true).timeout(5000).get().body();
+					cinemaJsonStr = Jsoup.connect(cinemaIdUrl).ignoreContentType(true).timeout(10000).get().body();
 				} catch (IOException e) {
 					log.debug("获取影院id出错！");
 				}
@@ -77,7 +93,7 @@ public class JDCrawler {
 					String cinemaScheduleJsonStr = "";
 					String url = it.next();
 					try {
-						cinemaScheduleJsonStr = Jsoup.connect(url).ignoreContentType(true).timeout(5000).get().body()
+						cinemaScheduleJsonStr = Jsoup.connect(url).ignoreContentType(true).timeout(10000).get().body()
 								.toString();
 					} catch (IOException e) {
 						log.debug("获取影院页出错！");
@@ -104,13 +120,30 @@ public class JDCrawler {
 						cinema.setIntroduction((String) cinemaDetailJson.get("introduction"));
 						// 环境
 						cinema.setCinemaDesc((String) cinemaDetailJson.get("cinemaDesc"));
-
+						System.out.println(cinema);
+						//电影院信息数据库存在则不入库
+						Cinema dbCinema = cinemaService.getCinemaByTel(cinema.getTel());
+						int cinemaId; 
+						if(dbCinema!=null){
+							cinemaId = dbCinema.getId();
+						}else{
+							cinemaId = cinemaService.saveCinema(cinema);
+						}
+						
+						//保存电影和电影院关联关系
+						MovieCinema movieCinema = new MovieCinema();
+						movieCinema.setCinemaId(cinemaId);
+						movieCinema.setMovieId(movieId);
+						movieCinemaService.saveMovieCinema(movieCinema);
+						
 						// 解析场次
 						String showData = JsonObject.get("showData").toString();
 						
-						List<MovieSchedule> movieScheduleList = analyzeMovieSchedule(showData);
+						List<MovieSchedule> movieScheduleList = analyzeMovieSchedule(showData,movieId,cinemaId);
 						
 						System.out.println(movieScheduleList);
+						//保存场次信息
+						movieScheduleService.saveMovieSchedule(movieScheduleList);
 
 					}
 
@@ -126,21 +159,27 @@ public class JDCrawler {
 	 * @param showData
 	 * @return
 	 */
-	private List<MovieSchedule> analyzeMovieSchedule(String showData) {
+	private List<MovieSchedule> analyzeMovieSchedule(String showData,int movieId,int cinemaId) {
 		List<MovieSchedule> movieScheduleList = new ArrayList<MovieSchedule>();
 		JSONArray jsonArray = JSON.parseArray(showData);
 		if (jsonArray != null && jsonArray.size() > 0) {
 			for (int i = 0; i < jsonArray.size(); i++) {
 				String itemSchedule = jsonArray.get(i).toString();
 				JSONObject itemScheduleJson = (JSONObject) JSONObject.parse(itemSchedule);
-				movieScheduleList.add(getMovieSchedule(itemScheduleJson));
+				MovieSchedule ms = getMovieSchedule(itemScheduleJson);
+				ms.setCinemaId(cinemaId);
+				ms.setMovieId(movieId);
+				movieScheduleList.add(ms);
 				// 其他平台的电影场次
 				JSONArray otherAgentArray = JSON.parseArray(itemScheduleJson.get("otherAgent").toString());
 				if (otherAgentArray != null && otherAgentArray.size() > 0) {
 					for(int j= 0;j<otherAgentArray.size();j++){
 						String otherItemSchedule = otherAgentArray.get(j).toString();
 						JSONObject otherItemScheduleJson = (JSONObject) JSONObject.parse(otherItemSchedule);
-						movieScheduleList.add(getMovieSchedule(otherItemScheduleJson));
+						MovieSchedule otherMs = getMovieSchedule(otherItemScheduleJson);
+						otherMs.setCinemaId(cinemaId);
+						otherMs.setMovieId(movieId);
+						movieScheduleList.add(otherMs);
 					}
 				}
 

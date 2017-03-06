@@ -57,14 +57,16 @@
 		VALUES
 		<foreach collection="list" item="schedule" index="index"
 			separator=",">
-			(#{schedule.movieId,jdbcType=INTEGER}, #{schedule.cinemaId,jdbcType=INTEGER},
+			(#{schedule.movieId,jdbcType=INTEGER}, 
+			#{schedule.cinemaId,jdbcType=INTEGER},
 			#{schedule.startTime,jdbcType=VARCHAR},
 			#{schedule.endTime,jdbcType=VARCHAR},
 			#{schedule.movieLanguage,jdbcType=VARCHAR},
 			#{schedule.videoHall,jdbcType=VARCHAR},
 			#{schedule.seatCondition,jdbcType=VARCHAR},
 			#{schedule.price,jdbcType=DOUBLE},
-			#{schedule.buyUrl,jdbcType=VARCHAR},#{websiteType,jdbcType=VARCHAR},
+			#{schedule.buyUrl,jdbcType=VARCHAR},
+			#{schedule.websiteType,jdbcType=VARCHAR},
 			now())
 		</foreach>
 	</insert>

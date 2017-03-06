@@ -1,5 +1,6 @@
 package com.mdd.mt.controller;
 
+import com.mdd.mt.crawler.JDCrawler;
 import com.mdd.mt.crawler.TaoPiaoPiaoCrawler;
 import com.mdd.mt.model.User;
 import com.mdd.mt.service.UserService;
@@ -20,6 +21,9 @@ public class UserController {
 
     @Autowired
     private TaoPiaoPiaoCrawler taoPiaoPiaoCrawler;
+    
+    @Autowired
+    private JDCrawler jd;
 
     @RequestMapping("/toIndex")
     public String toIndex(){
@@ -39,6 +43,12 @@ public class UserController {
     @RequestMapping("/taopiaopiao")
     public String taopiaopiao() throws IOException {
         taoPiaoPiaoCrawler.crawlerTest("http://dianying.taobao.com/showList.htm?spm=a1z21.6646273.city.5.EAQ1oR&n_s=new&city=440300");
+        return "demo";
+    }
+    
+    @RequestMapping("/jd")
+    public String jd() throws IOException {
+        jd.crawler("http://movie.jd.com/m_channel");
         return "demo";
     }
 

@@ -27,7 +27,7 @@ public class MovieScheduleServiceImpl {
      * @param movieScheduleList
      */
     public void saveMovieSchedule(List<MovieSchedule> movieScheduleList) {
-        if (movieScheduleList != null) {
+        if (movieScheduleList != null && movieScheduleList.size()>0) {
             movieScheduleMapper.saveMovieScheduleList(movieScheduleList);
         }
     }
