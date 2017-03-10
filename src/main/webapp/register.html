@@ -60,7 +60,7 @@
                 </div>
                 <div class="k_item_2">
                 	<span class="t">图形验证码:</span>
-                    <input name="imagecode" id="imagecode" type="text" class="ip_txt ip_txt_2 fl">
+                    <input name="imagesscode" id="imagescode" type="text" class="ip_txt ip_txt_2 fl">
                     <a href="javascript:void(0);" class="rcode fl" style="border:none;"><img onclick="refresh();return false;" src="./register/randomCode.jpg" id="imgcodedom" width="104" height="26"></a>
                 </div>
                 <div class="k_item_2">
@@ -197,7 +197,7 @@ function login() {
 
 function refresh(){  
 	document.getElementById("imgcodedom").src="http://www.189mv.cn/randomCode.jpg?now=" + new Date().getTime();
-	$("#imagecode").val("");
+	$("#imagescode").val("");
 	return false;
 }
 isSupportReturnUrl = false;
@@ -225,7 +225,7 @@ function sendVerifyCode() {
 		showTips("手机号格式错误");
 		return;
 	}
-	var imgcode =  $.trim($("#imagecode").val());
+	var imgcode =  $.trim($("#imagescode").val());
 	if(imgcode == "") {
 		showTips("图形验证码不能为空");
 		return;
@@ -273,7 +273,7 @@ $(document).ready(function(){
 	$("#registbtn").click(function(){
 		var telphone =  $.trim($("#telphone").val());
 		var verifycode =  $.trim($("#verifycode").val());
-		var imagecode =  $.trim($("#imagecode").val());
+		var imagescode =  $.trim($("#imagescode").val());
   		var password =  $.trim($("#password").val());
   		var repassword =  $.trim($("#repassword").val());
   		var isreader = "";
@@ -298,12 +298,12 @@ $(document).ready(function(){
   			return;
   		}
   		
-  		if(imagecode == "") {
+  		if(imagescode == "") {
   			showTips("图形验证码不能为空");
   			return;
   		}
   		
-  		if(!/^\d{4}$/.test(imagecode)) {
+  		if(!/^\d{4}$/.test(imagescode)) {
   			showTips("图形验证码只能是4位数字");
   			return;
   		}
@@ -361,7 +361,7 @@ $(document).ready(function(){
 	        cache: false,
 	        type:"POST",
 	        data:{
-	          	"telphone":telphone,"verifycode":verifycode,"password":password,"repassword":repassword,"isreader":isreader,"imgcode":imagecode,"timestamp":new Date().getTime()
+	          	"telphone":telphone,"verifycode":verifycode,"password":password,"repassword":repassword,"isreader":isreader,"imgcode":imagescode,"timestamp":new Date().getTime()
 	        },
 	        success: function(json) {
 	        	hideLoading();
