@@ -52,6 +52,15 @@ public class MovieServiceImpl {
         Movie movie = movieMapper.selectByMovieName(movieName);
         return movie;
     }
-
-
+    
+    /**
+     * 评分最高的六部电影
+     * @param movieName
+     * @return
+     */
+    public List<Movie> getTopSixMovie() {
+        List<Movie> movieList = movieMapper.getTopSixMovie();
+        return movieList;
+    }
+    
 }

@@ -18,6 +18,12 @@ public interface MovieMapper {
     int updateByPrimaryKeyWithBLOBs(Movie record);
 
     int updateByPrimaryKey(Movie record);
+    
+    /**
+     * 获得最高评分的六部电影
+     * @return
+     */
+    List<Movie>getTopSixMovie();
 
     /**
      * 批量保存电影

@@ -2,9 +2,18 @@ package com.mdd.mt.mapper;
 
 import com.mdd.mt.model.User;
 
-/**
- * Created by Administrator on 2016/12/15.
- */
 public interface UserMapper {
-    void saveUser(User user);
+    int deleteByPrimaryKey(Integer id);
+
+    int insert(User record);
+
+    int insertSelective(User record);
+
+    User selectByPrimaryKey(Integer id);
+    
+    User selectByUserName(String userName);
+
+    int updateByPrimaryKeySelective(User record);
+
+    int updateByPrimaryKey(User record);
 }

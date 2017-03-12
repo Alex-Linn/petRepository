@@ -25,9 +25,11 @@
 
 
 	<sql id="Base_Column_List">
-		id, movie_name, movie_english_name, director, performer, movie_type,
+		id, movie_name, movie_english_name, director, performer,
+		movie_type,
 		country, movie_language,
-		movie_time,movie_story, poster_url, rescheduled_time, score, is_show, create_time
+		movie_time,movie_story, poster_url,
+		rescheduled_time, score, is_show, create_time
 	</sql>
 
 
@@ -52,7 +54,8 @@
 
 	<!--根据id删除 -->
 	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
-		delete from t_movie
+		delete from
+		t_movie
 		where id = #{id,jdbcType=INTEGER}
 	</delete>
 
@@ -84,5 +87,9 @@
 			#{movie.isShow},NOW())
 		</foreach>
 	</insert>
+
+	<select id="getTopSixMovie" resultMap="BaseResultMap">
+		SELECT * FROM t_movie ORDER BY score DESC LIMIT 1,6;
+	</select>
 
 </mapper>

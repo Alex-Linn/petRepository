@@ -55,7 +55,7 @@ public class JDCrawler {
 		for (String movieUrl : movieUrlList) {
 			Element movieBody = null;
 			try {
-				movieBody = Jsoup.connect(movieUrl).get().body();
+				movieBody = Jsoup.connect(movieUrl).timeout(60*30).get().body();
 			} catch (IOException e) {
 				log.debug("获取电影详细页出错！");
 			}
@@ -82,7 +82,7 @@ public class JDCrawler {
 				String cinemaIdUrl = getCinemaIdUrl + "&movieId=" + movieUrlId + "&day=" + date + "&regionId=0";
 				Element cinemaJsonStr = null;
 				try {
-					cinemaJsonStr = Jsoup.connect(cinemaIdUrl).ignoreContentType(true).timeout(10000).get().body();
+					cinemaJsonStr = Jsoup.connect(cinemaIdUrl).ignoreContentType(true).timeout(60*30).get().body();
 				} catch (IOException e) {
 					log.debug("获取影院id出错！");
 				}
@@ -93,7 +93,7 @@ public class JDCrawler {
 					String cinemaScheduleJsonStr = "";
 					String url = it.next();
 					try {
-						cinemaScheduleJsonStr = Jsoup.connect(url).ignoreContentType(true).timeout(10000).get().body()
+						cinemaScheduleJsonStr = Jsoup.connect(url).ignoreContentType(true).timeout(60*30).get().body()
 								.toString();
 					} catch (IOException e) {
 						log.debug("获取影院页出错！");

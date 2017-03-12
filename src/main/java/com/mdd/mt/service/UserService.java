@@ -14,8 +14,35 @@ public class UserService {
     @Autowired
     private  UserMapper userMapper;
 
-    public void saveUser(User user){
-        userMapper.saveUser(user);
+    /**
+     * 注册
+     * @param user
+     * @return
+     */
+    public boolean reqister(User user){
+        if(user!=null){
+        	User dbuser = userMapper.selectByUserName(user.getUserName());
+        	if(dbuser!=null){
+        		return false;
+        	}
+        }
+        userMapper.insert(user);
+        return true;
     }
+
+    /**
+     * 登入
+     * @param user
+     * @return
+     */
+	public User login(User user) {
+		if(user!=null){
+        	User dbuser = userMapper.selectByUserName(user.getUserName());
+        	if(dbuser!=null&&dbuser.getUserPwd().equals(user.getUserPwd())){
+        		return dbuser;
+        	}
+        }
+		return null;
+	}
 
 }
