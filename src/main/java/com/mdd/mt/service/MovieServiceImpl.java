@@ -53,13 +53,13 @@ public class MovieServiceImpl {
         return movie;
     }
     
-    /**
-     * 评分最高的六部电影
-     * @param movieName
-     * @return
-     */
-    public List<Movie> getTopSixMovie() {
-        List<Movie> movieList = movieMapper.getTopSixMovie();
+   /**
+    * 评分最高的六部电影 isShow 0 是即将上映 1已上映
+    * @param isShow
+    * @return
+    */
+    public List<Movie> getTopSixMovie(int isShow) {
+        List<Movie> movieList = movieMapper.getTopSixMovie(isShow);
         return movieList;
     }
     

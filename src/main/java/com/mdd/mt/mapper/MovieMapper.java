@@ -23,7 +23,7 @@ public interface MovieMapper {
      * 获得最高评分的六部电影
      * @return
      */
-    List<Movie>getTopSixMovie();
+    List<Movie>getTopSixMovie(int isShow);
 
     /**
      * 批量保存电影

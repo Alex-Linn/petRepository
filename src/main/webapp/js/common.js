@@ -2,13 +2,13 @@
 	$.fn.Slide=function(options){
 		var opts = $.extend({},$.fn.Slide.deflunt,options);
 		var index=1;
-		var targetLi = $("." + opts.claNav + " li", $(this));// 鐩爣瀵硅薄
-		var clickNext = $("." + opts.claNav + " .next", $(this));// 鐐瑰嚮涓嬩竴涓寜閽�
-		var clickPrev = $("." + opts.claNav + " .prev", $(this));// 鐐瑰嚮涓婁竴涓寜閽�
-		var ContentBox = $("." + opts.claCon , $(this));// 婊氬姩鐨勫璞�
-		var ContentBoxNum=ContentBox.children().size();// 婊氬姩瀵硅薄鐨勫瓙鍏冪礌涓暟
-		var slideH=ContentBox.children().first().height();// 婊氬姩瀵硅薄鐨勫瓙鍏冪礌涓暟楂樺害锛岀浉褰撲簬婊氬姩鐨勯珮搴�
-		var slideW=ContentBox.children().first().width();// 婊氬姩瀵硅薄鐨勫瓙鍏冪礌瀹藉害锛岀浉褰撲簬婊氬姩鐨勫搴�
+		var targetLi = $("." + opts.claNav + " li", $(this));//鐩爣瀵硅薄
+		var clickNext = $("." + opts.claNav + " .next", $(this));//鐐瑰嚮涓嬩竴涓寜閽�
+		var clickPrev = $("." + opts.claNav + " .prev", $(this));//鐐瑰嚮涓婁竴涓寜閽�
+		var ContentBox = $("." + opts.claCon , $(this));//婊氬姩鐨勫璞�
+		var ContentBoxNum=ContentBox.children().size();//婊氬姩瀵硅薄鐨勫瓙鍏冪礌涓暟
+		var slideH=ContentBox.children().first().height();//婊氬姩瀵硅薄鐨勫瓙鍏冪礌涓暟楂樺害锛岀浉褰撲簬婊氬姩鐨勯珮搴�
+		var slideW=ContentBox.children().first().width();//婊氬姩瀵硅薄鐨勫瓙鍏冪礌瀹藉害锛岀浉褰撲簬婊氬姩鐨勫搴�
 		var autoPlay;
 		var slideWH;
 		if(opts.effect=="scroolY"||opts.effect=="scroolTxt"){
@@ -23,7 +23,7 @@
 		
 		return this.each(function() {
 			var $this=$(this);
-			// 婊氬姩鍑芥暟
+			//婊氬姩鍑芥暟
 			var doPlay=function(){
 				$.fn.Slide.effect[opts.effect](ContentBox, targetLi, index, slideWH, opts);
 				index++;
@@ -48,7 +48,7 @@
 				$.fn.Slide.effectLoop.scroolRight(ContentBox, targetLi, index, slideWH, opts);
 				event.preventDefault();
 			});
-			// 鑷姩鎾斁
+			//鑷姩鎾斁
 			if (opts.autoPlay) {
 				autoPlay = setInterval(doPlay, opts.timer);
 				ContentBox.hover(function(){
@@ -63,7 +63,7 @@
 				});
 			}
 			
-			// 鐩爣浜嬩欢
+			//鐩爣浜嬩欢
 			targetLi.hover(function(){
 				if(autoPlay){
 					clearInterval(autoPlay);
@@ -109,7 +109,7 @@
 			contentObj.children().eq(i).find("."+opts.spanTxt).show();
 		},
 		scroolTxt:function(contentObj,undefined,i,slideH,opts){
-			// showTips(i*opts.steps*slideH);
+			//showTips(i*opts.steps*slideH);
 			contentObj.animate({"margin-top":-opts.steps*slideH},opts.speed,function(){
                 for( var j=0;j<opts.steps;j++){
                 	contentObj.find("li:first").appendTo(contentObj);
@@ -161,10 +161,10 @@ function hideCoverAll() {
 	$("#coverall").hide();
 }
 
-// 弹出框showTips(msg,type,fnt)，用以取代showTips
-// 参数说明，msg：提示内容，
-// type：1（成功提示）、0或其他（错误提示） 区别在于提示文字颜色不同
-// fnt: 回调函数（点击弹框确定按钮后执行的函数）
+//弹出框showTips(msg,type,fnt)，用以取代showTips
+//参数说明，msg：提示内容，
+//        type：1（成功提示）、0或其他（错误提示） 区别在于提示文字颜色不同
+//        fnt: 回调函数（点击弹框确定按钮后执行的函数）
 function showTips(msg,type,fnt) {
 	if(msg) {
 		showCoverAll();
@@ -193,15 +193,15 @@ function showTips(msg,type,fnt) {
 		}
 		var scrolltop = $(document).scrollTop(); 
 		var objTop = (screenHeight - $("#warntips").height())/2 + scrolltop - 20;
-		// $("#warntips").css({top: objTop + 'px'});
+		//$("#warntips").css({top: objTop + 'px'});
 		$("#warntips").show();
 	}
 }
 
-// 确认框showConfrmTips(msg,type,fnt)，用以取代confirm
-// 参数说明，msg：提示内容，
-// type：1（成功提示）、0或其他（错误提示） 区别在于提示文字颜色不同
-// fnt: 回调函数（点击弹框确定按钮后执行的函数）
+//确认框showConfrmTips(msg,type,fnt)，用以取代confirm
+//参数说明，msg：提示内容，
+//        type：1（成功提示）、0或其他（错误提示） 区别在于提示文字颜色不同
+//        fnt: 回调函数（点击弹框确定按钮后执行的函数）
 function showCfmTips(msg,type,fnt) {
 	if(msg) {
 		showCoverAll();
@@ -242,11 +242,11 @@ function showCfmTips(msg,type,fnt) {
 
 window.root = $("#basepath").val();
 window.CIPHER_KEY = $("#CIPHERKEY").val();
-// 登录回调函数
+//登录回调函数
 function loginCallback(json) {}
-// 退出之后的回调函数
+//退出之后的回调函数
 function logoutCallback(json) {}
-// 取消登陆回调
+//取消登陆回调
 function logCancelCallback() {}
 
 var hasQryCity = false;
@@ -324,11 +324,11 @@ $(document).ready(function() {
 		}
 		var isIeger = false;
 		var isMail = false;
-		// 手机号校验
+		//手机号校验
 		if(/^1[3-9]\d{9}$/.test(account)) {
 			isIeger = true;
 		}
-		// 邮箱校验
+		//邮箱校验
 		var pattern = /^([a-zA-Z0-9_-])+@([a-zA-Z0-9_-])+((\.[a-zA-Z0-9_-]{2,3}){1,2})$/;
 		if(pattern.test(account)) {
 			isMail = true;
@@ -386,7 +386,7 @@ $(document).ready(function() {
 			   		loginCallback(json);
 			   	} else {
 			   		if(code == "51") {
-			   			// logImgRefresh();
+			   			//logImgRefresh();
 			   			$("#logimgmsg").html(json.reason);
 			   		} else if(code == "01") {
 			   			$("#accountmsg").html(json.reason);
@@ -395,7 +395,7 @@ $(document).ready(function() {
 			   		} else if(code == "03") {
 			   			$("#logimgmsg").html(json.reason);
 			   		} else if(code == "101") {
-			   			// logImgRefresh();
+			   			//logImgRefresh();
 			   			$("#accountmsg").html(json.reason);
 			   		} else if(code == "504") {
 			   			$("#loginpop").hide();
@@ -455,11 +455,11 @@ $("span.t_c_box").click(function() {
 			    cache: false,
 			    type:"POST",
 			    success: function(html) {
-			    	// $("#loadingCity").hide();
+			    	//$("#loadingCity").hide();
 			    	$("#select_city_sub_menu").html(html);
 			   	},
 			   	error : function(json) {
-				  // XXX
+				  //XXX
 			   	}
 			});
 		}
@@ -490,7 +490,7 @@ var isSupportReturnUrl = true;
 function login() {
 	$("#loginpannel").show();
 	$("#loginloading").hide();
-	// 登录
+	//登录
 	$("#loginpop").show();
 	showCoverAll();
 }
@@ -558,10 +558,8 @@ function hideLoading() {
 }
 
 function changeCity(cityid) {
-	/*
-	 * var returnUrl = root + "chgCity.htm?cityid="+ cityid + "&returnUrl=" +
-	 * root; window.location.href = returnUrl;
-	 */
+	/* var returnUrl = root + "chgCity.htm?cityid="+ cityid + "&returnUrl=" + root;
+	 window.location.href = returnUrl;*/
 	 $.ajax({
         url: root + "xhgCity.htm",
         dataType :"json",
@@ -601,7 +599,7 @@ function setCookie(name,value,day)
     document.cookie = name + "="+ escape(value) + ";expires=" + date.toGMTString() + ";path=/";
 }
 
-function isChinese(str){  // 鍒ゆ柇鏄笉鏄腑鏂�
+function isChinese(str){  //鍒ゆ柇鏄笉鏄腑鏂�
 	var reCh=/[u00-uff]/;
 	return !reCh.test(str);
 }

@@ -70,6 +70,22 @@ public class UserController {
 	}
 	
 	
+	/**
+	 * 加载用户信息中心
+	 * @param modelMap
+	 * @return
+	 */
+	@RequestMapping("loadUserInfo")
+	public String loadUserInfo(ModelMap modelMap,HttpServletRequest request){
+		User user = (User) request.getSession().getAttribute("user");
+		if(user==null){
+			request.setAttribute("message", "你还没有登陆，请先登陆！");
+			return "login";
+		}
+		return "userInfo";
+	}
+	
+	
 	
 	
 	

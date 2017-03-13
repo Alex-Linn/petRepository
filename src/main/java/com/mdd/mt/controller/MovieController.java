@@ -21,10 +21,19 @@ public class MovieController {
 	@Autowired
 	private MovieServiceImpl movieServiceImpl;
 
+	/**
+	 * 加载首页信息
+	 * @param modelMap
+	 * @return
+	 */
 	@RequestMapping("loadIndex")
 	public String loadIndex(ModelMap modelMap) {
-		List<Movie>movieList = movieServiceImpl.getTopSixMovie();
-		modelMap.put("topSixMoive",movieList);
+		//已上映
+		List<Movie>isShowMovieList = movieServiceImpl.getTopSixMovie(1);
+		//未上映
+		List<Movie>noShowMovieList = movieServiceImpl.getTopSixMovie(0);
+		modelMap.put("isShowMovieList",isShowMovieList);
+		modelMap.put("noShowMovieList",noShowMovieList);
 		return "index";
 	}
 }

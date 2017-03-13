@@ -88,8 +88,8 @@
 		</foreach>
 	</insert>
 
-	<select id="getTopSixMovie" resultMap="BaseResultMap">
-		SELECT * FROM t_movie ORDER BY score DESC LIMIT 1,6;
+	<select id="getTopSixMovie" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+		SELECT * FROM t_movie where is_show = #{isShow} ORDER BY score DESC LIMIT 1,6;
 	</select>
 
 </mapper>
