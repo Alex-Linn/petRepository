@@ -2,6 +2,7 @@ package com.mdd.mt.controller;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -35,5 +36,18 @@ public class MovieController {
 		modelMap.put("isShowMovieList",isShowMovieList);
 		modelMap.put("noShowMovieList",noShowMovieList);
 		return "index";
+	}
+	
+	/**
+	 * 电影详细信息
+	 * @param movieId
+	 * @param modelMap
+	 * @return
+	 */
+	@RequestMapping("loadMovie")
+	public String movieDetail(@Param("movieId")int movieId,ModelMap modelMap){
+		Movie movie = movieServiceImpl.getMovieById(movieId);
+		modelMap.addAttribute("movie",movie);
+		return "movieDetail";
 	}
 }

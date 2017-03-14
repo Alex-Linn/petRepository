@@ -63,4 +63,14 @@ public class MovieServiceImpl {
         return movieList;
     }
     
+    /**
+     * 根据id获取电影
+     * @param movieId
+     * @return
+     */
+    public Movie getMovieById(int movieId){
+    	Movie movie = movieMapper.selectByPrimaryKey(movieId);
+    	return movie;
+    }
+    
 }

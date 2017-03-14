@@ -7,11 +7,9 @@
 <meta charset="utf-8">
 <meta name="application-name" content="院线通">
 <meta name="title" content="院线通">
-<title>院线通-金刚狼3：殊死一战</title>
+<title>电影比价平台</title>
 <meta name="keywords"
 	content="金刚狼3：殊死一战,剧情介绍,预告片,上映日期,电影海报,影评,导演,主演(休·杰克曼 / 帕特里克·斯图尔特 / 波伊德·霍布鲁克 / 理查德·E·格兰特 / 斯戴芬·莫昌特)">
-<link rel="dns-prefetch" href="http://www.189mv.cn/">
-<link rel="dns-prefetch" href="http://image.189mv.cn/">
 <link
 	href="<%=request.getContextPath()%>/css/public.css"
 	type="text/css" rel="stylesheet">
@@ -34,8 +32,8 @@
 	<!--end 导航-->
 	<div class="wrapper">
 		<div class="crumbs mart10">
-			您的位置：<a href="http://www.189mv.cn/">院线通</a> &gt;<a
-				href="http://www.189mv.cn/movie/">电影</a> &gt; <span>金刚狼3：殊死一战</span>
+			您的位置：<a href="http://www.189mv.cn/">电影比价平台</a> &gt;<a
+				href="http://www.189mv.cn/movie/">电影</a> &gt; <span>${movie.movieName}</span>
 		</div>
 	</div>
 	<div class="wrapper">
@@ -43,7 +41,7 @@
 			<div class="tx_film fl">
 				<div class="playOuter" id="playVideo">
 					<a href="javascript:void(0);" class="p"><img
-						src="<%=request.getContextPath()%>/images/9850221fec6c4d27a6fb2213e9382203_PIC_18426.jpg"
+						src="${movie.posterUrl}"
 						height="216" width="352"></a>
 
 					<div class="playBtn">
@@ -56,22 +54,22 @@
 			<input name="viewId" id="filmViewId" value="14990" type="hidden">
 			<div class="ct fr">
 				<div class="c">
-					<h3>金刚狼3：殊死一战</h3>
+					<h3>${movie.movieName}</h3>
 				</div>
 				<div class="hu">
 					<ul>
-						<li>导演: 詹姆斯·曼高德</li>
-						<li>主演: 休·杰克曼 / 帕特里克·斯图尔特 / 波伊德·霍布鲁克 / 理查德·E·格兰特 / 斯戴芬·莫昌特</li>
-						<li>语言: 英语</li>
-						<li>片长: 123分钟</li>
+						<li>导演:${movie.director}</li>
+						<li>主演:${movie.performer}</li>
+						<li>语言:${movie.movieLanguage}</li>
+						<li>片长:${movie.movieTime}</li>
 
-						<li>上映日期：2017年3月3日</li>
+						<li>上映日期：${movie.rescheduledTime}</li>
 
 						<li class="pf fix"><span class="fl">评分:</span>
 							<div class="s">
 								<span class="star"> <span class="star_now"
 									style="width: 82%"></span>
-								</span> <em class="score">8.2</em>
+								</span> <em class="score">${movie.score}</em>
 							</div></li>
 						<li class="fix"><span class="fl">分享：</span> <span
 							class="bdsharebuttonbox fl bdshare-button-style0-16"
