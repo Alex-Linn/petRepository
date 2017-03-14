@@ -1,5 +1,8 @@
 package com.mdd.mt.mapper;
 
+
+import java.util.List;
+
 import com.mdd.mt.model.Comment;
 
 public interface CommentMapper {
@@ -16,4 +19,6 @@ public interface CommentMapper {
     int updateByPrimaryKeyWithBLOBs(Comment record);
 
     int updateByPrimaryKey(Comment record);
+    
+    List<Comment>getCommentByMovieId(int movieId);
 }

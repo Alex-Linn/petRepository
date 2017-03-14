@@ -1,5 +1,6 @@
-<%@ page language="javascript" contentType="text/html; charset=utf-8"
+<%@ page language="java" contentType="text/html; charset=utf-8"
 	pageEncoding="utf-8"%>
+	<%@ page isELIgnored="false"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -54,7 +55,7 @@
 			<input name="viewId" id="filmViewId" value="14990" type="hidden">
 			<div class="ct fr">
 				<div class="c">
-					<h3>${movie.movieName}</h3>
+					<h4 style="width: 200px">${movie.movieName}</h4>
 				</div>
 				<div class="hu">
 					<ul>
@@ -63,49 +64,13 @@
 						<li>语言:${movie.movieLanguage}</li>
 						<li>片长:${movie.movieTime}</li>
 
-						<li>上映日期：${movie.rescheduledTime}</li>
+						<li>${movie.rescheduledTime}</li>
 
-						<li class="pf fix"><span class="fl">评分:</span>
-							<div class="s">
-								<span class="star"> <span class="star_now"
-									style="width: 82%"></span>
-								</span> <em class="score">${movie.score}</em>
-							</div></li>
-						<li class="fix"><span class="fl">分享：</span> <span
-							class="bdsharebuttonbox fl bdshare-button-style0-16"
-							data-tag="share_1" style="width: 100px;" id="sharecon"
-							data-bd-bind="1489421608012"> <a
-								href="javascript:void(0);" class="bds_qzone" data-cmd="qzone"
-								title="分享到QQ空间"></a> <a href="javascript:void(0);"
-								class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a> <a
-								href="javascript:void(0);" class="bds_renren" data-cmd="renren"
-								title="分享到人人网"></a> <a href="javascript:void(0);"
-								class="bds_tqq" data-cmd="tqq" title="分享到腾讯微博"></a> <a
-								href="javascript:void(0);" class="bds_t163" data-cmd="t163"
-								title="分享到网易微博"></a>
-						</span> <script>
-							window._bd_share_config = {
-								common : {
-									bdText : '我在院线通看到《金刚狼3：殊死一战》影片评价很不错，准备提前选个靓位去电影院看哦',
-									bdUrl : 'http://www.189mv.cn/movie/29731/',
-									bdPic : 'http://image.189mv.cn/images/vedio/9850221fec6c4d27a6fb2213e9382203_PIC_18426.jpg'
-								},
-								share : [ {
-									"bdSize" : 16
-								} ]
-							}
-							with (document)
-								0[(getElementsByTagName('head')[0] || body)
-										.appendChild(createElement('script')).src = 'http://bdimg.share.baidu.com/static/api/js/share.js?cdnversion='
-										+ ~(-new Date() / 36e5)];
-						</script>
+						<li class="pf fix"><span class="fl">评分:${movie.score}</span>
 						</li>
+								
 					</ul>
-					<div class="look" id="filmgrade">
-						<a href="javascript:void(0);" id="xiangkan" class="tlook"><span>想
-								看</span><em>1017</em></a> <a href="javascript:void(0);" id="kanguo"
-							class="tlook unlook"><span>看 过</span><em>1004</em></a>
-					</div>
+					
 				</div>
 			</div>
 		</div>
@@ -134,17 +99,7 @@
 
 				<div id="movie_tab1" style="display: block;">
 					<div class="h_s_cin com_border">
-						<div class="search_area_723">
-							<div class="act_ser">
-								<div class="i_so i_so_x">
-									<input id="keyword" placeholder="搜索影院名字" class="search-keyword"
-										name="keyword" type="text"> <a
-										href="javascript:void(0)" onclick="javascript:searchByKey();"
-										class="search_btn"></a>
-								</div>
-							</div>
-						</div>
-						<div class="cin_select">
+					<!-- 	<div class="cin_select">
 							<div class="cin_tabs cin_tabs_x cin_tabs_723">
 								<ul class="fix" id="showdateul">
 
@@ -157,7 +112,7 @@
 								</ul>
 							</div>
 
-						</div>
+						</div> -->
 
 						<div class="cin_com">
 							<div class="cin_com_t"></div>
@@ -167,9 +122,6 @@
 										<ul class="fix" id="arealistul">
 											<li><a href="javascript:showAreaCinema('allcinema');"
 												id="allcinema" class="">全部影院</a></li>
-
-											<li><a href="javascript:showAreaCinema('hotcinema');"
-												id="hotcinema" class="cur">推荐影院</a></li>
 
 											<li><a href="javascript:showAreaCinema('360102');"
 												id="360102">东湖区</a></li>
@@ -397,47 +349,6 @@
 							"showCnt" : 0,
 							"type" : "0"
 						} ];
-						currDate = "2017-03-14";
-						firstCinemaId = "sp01936011101";
-						$(function() {
-							$("#showdateul li:last").addClass("last_li");
-							$("#keyword").keyup(function(event) {
-								var keycode = event.which;
-								if (keycode == 13) {
-									searchByKey();
-								}
-							});
-							if ("null" == "cn.eshore.yxt.model.Film@dc033c9") {
-								if (bs == 0) {
-									var dayOfWeekforStrs = "今天(3月14日),明天(3月15日),";
-									var dayOfWeekforStr = dayOfWeekforStrs
-											.split(",");
-									var words = "";
-									if (dayOfWeekforStr != null
-											&& dayOfWeekforStr != "") {
-										if (dayOfWeekforStr[dayOfWeekforStr.length - 2] == dayOfWeekforStr[0]) {
-											words = "今天已没合适的场次，小通为您推荐了<span style='color:red'>"
-													+ dayOfWeekforStr[0]
-													+ "</span>的场次，请您注意"
-										} else {
-											words = "今天已没合适的场次，小通为您推荐了<span style='color:red'>"
-													+ dayOfWeekforStr[0]
-													+ "</span>-<span style='color:red'>"
-													+ dayOfWeekforStr[dayOfWeekforStr.length - 2]
-													+ "</span>的场次，请您注意"
-										}
-									} else {
-										words = "近期没有合适的的场次";
-									}
-
-									showTips(words, function() {
-
-									});
-									bs++;
-								}
-
-							}
-						});
 
 						$("#moreFilm").click(function() {
 							if ($(this).next("div").is(":hidden")) {
@@ -460,10 +371,7 @@
 							<div class="u_jq_cont">
 
 								<span id="some_1">【温馨提示】小学生及学龄前儿童应在家长陪同下观看。<br>2024年，变种人大幅减少，X战警已经解散。身心疲惫的暮狼罗根自愈因子逐渐消失，整天饮酒度日，并靠当司机养家。他在墨西哥边境隐居照顾着饱受病痛折磨的老X...
-								</span><span id="total_1" style="display: none;">【温馨提示】小学生及学龄前儿童应在家长陪同下观看。<br>2024
-									年，变种人大幅减少，X战警已经解散。身心疲惫的暮狼罗根自愈因子逐渐消失，整天饮酒度日，并靠当司机养家。他在墨西哥边境隐居照顾着饱受病痛折磨的老X
-									教授。有一天，一位陌生女子让罗根去载一个叫劳拉的女孩去加拿大边境，一开始罗根拒绝了，但查尔斯一直在等着这个女孩的出现，劳拉拥有超强的战斗力，而且
-									在许多方面都很像金刚狼。她被一个强大公司的幕后人物所追踪，因为她的DNA里有着连接罗根的秘密。一场无休止的追捕开始了……
+								</span><span id="total_1" style="display: none;">【温馨提示】小学生及学龄前儿童应在家长陪同下观看。<br>${movie.movieStory}
 								</span> <a href="javascript:void(0)" class="blue" onclick="showall()"
 									id="juqing_1">展开&gt;&gt;</a>
 
@@ -472,7 +380,7 @@
 						<div class="u_pl">
 							<h4>综合评论</h4>
 							<div class="u_pl_cont">
-								作为《X战警》系列的外传，《金刚狼》系列顾名思义是单独讲述罗根的人生轨迹，《金刚狼3》改编自漫威漫画《金刚狼：暮狼回乡》，在第三部中，金刚狼罗根逐渐失去自愈因子，变老了，不在生猛强悍，他和X教授的生命似乎都在走向尽头。
+								${movie.movieStory}
 							</div>
 						</div>
 
@@ -601,26 +509,12 @@
 									</ul>
 								</div>
 							</div>
-							<div class="bigImg" id="bigImgCon">
-								<img
-									src="%E9%99%A2%E7%BA%BF%E9%80%9A-%E9%87%91%E5%88%9A%E7%8B%BC3%EF%BC%9A%E6%AE%8A%E6%AD%BB%E4%B8%80%E6%88%98_files/9850221fec6c4d27a6fb2213e9382203_JZH_41528.jpg"
-									height="340" width="510">
-							</div>
 						</div>
 
 					</div>
 				</div>
 
 				<!-- 影片详情部分-结束 -->
-
-
-
-
-
-
-
-
-
 
 				<!-- 影评部分-开始 -->
 				<div class="" id="movie_tab3" style="display: none;">
@@ -633,38 +527,8 @@
 							</div>
 							<div id="msgTime"></div>
 							<div class="cmt_stxt">
-								<span class="t">我给<strong class="red" id="filmName">金刚狼3：殊死一战</strong>打分
+								<span class="t">我给<strong class="red" id="filmName">${movie.movieName}</strong>打分
 								</span> <span id="hitscore" style="float: left; margin-top: 5px;">
-									<a href="javascript:void(0);"><img
-										src="%E9%99%A2%E7%BA%BF%E9%80%9A-%E9%87%91%E5%88%9A%E7%8B%BC3%EF%BC%9A%E6%AE%8A%E6%AD%BB%E4%B8%80%E6%88%98_files/ele_12.jpg"
-										align="absmiddle" height="13" border="0" width="14"></a><a
-									href="javascript:void(0);"><img
-										src="%E9%99%A2%E7%BA%BF%E9%80%9A-%E9%87%91%E5%88%9A%E7%8B%BC3%EF%BC%9A%E6%AE%8A%E6%AD%BB%E4%B8%80%E6%88%98_files/ele_12.jpg"
-										align="absmiddle" height="13" border="0" width="14"></a><a
-									href="javascript:void(0);"><img
-										src="%E9%99%A2%E7%BA%BF%E9%80%9A-%E9%87%91%E5%88%9A%E7%8B%BC3%EF%BC%9A%E6%AE%8A%E6%AD%BB%E4%B8%80%E6%88%98_files/ele_12.jpg"
-										align="absmiddle" height="13" border="0" width="14"></a><a
-									href="javascript:void(0);"><img
-										src="%E9%99%A2%E7%BA%BF%E9%80%9A-%E9%87%91%E5%88%9A%E7%8B%BC3%EF%BC%9A%E6%AE%8A%E6%AD%BB%E4%B8%80%E6%88%98_files/ele_12.jpg"
-										align="absmiddle" height="13" border="0" width="14"></a><a
-									href="javascript:void(0);"><img
-										src="%E9%99%A2%E7%BA%BF%E9%80%9A-%E9%87%91%E5%88%9A%E7%8B%BC3%EF%BC%9A%E6%AE%8A%E6%AD%BB%E4%B8%80%E6%88%98_files/ele_12.jpg"
-										align="absmiddle" height="13" border="0" width="14"></a><a
-									href="javascript:void(0);"><img
-										src="%E9%99%A2%E7%BA%BF%E9%80%9A-%E9%87%91%E5%88%9A%E7%8B%BC3%EF%BC%9A%E6%AE%8A%E6%AD%BB%E4%B8%80%E6%88%98_files/ele_12.jpg"
-										align="absmiddle" height="13" border="0" width="14"></a><a
-									href="javascript:void(0);"><img
-										src="%E9%99%A2%E7%BA%BF%E9%80%9A-%E9%87%91%E5%88%9A%E7%8B%BC3%EF%BC%9A%E6%AE%8A%E6%AD%BB%E4%B8%80%E6%88%98_files/ele_12.jpg"
-										align="absmiddle" height="13" border="0" width="14"></a><a
-									href="javascript:void(0);"><img
-										src="%E9%99%A2%E7%BA%BF%E9%80%9A-%E9%87%91%E5%88%9A%E7%8B%BC3%EF%BC%9A%E6%AE%8A%E6%AD%BB%E4%B8%80%E6%88%98_files/ele_12.jpg"
-										align="absmiddle" height="13" border="0" width="14"></a><a
-									href="javascript:void(0);"><img
-										src="%E9%99%A2%E7%BA%BF%E9%80%9A-%E9%87%91%E5%88%9A%E7%8B%BC3%EF%BC%9A%E6%AE%8A%E6%AD%BB%E4%B8%80%E6%88%98_files/ele_12.jpg"
-										align="absmiddle" height="13" border="0" width="14"></a><a
-									href="javascript:void(0);"><img
-										src="%E9%99%A2%E7%BA%BF%E9%80%9A-%E9%87%91%E5%88%9A%E7%8B%BC3%EF%BC%9A%E6%AE%8A%E6%AD%BB%E4%B8%80%E6%88%98_files/ele_12.jpg"
-										align="absmiddle" height="13" border="0" width="14"></a>
 								</span>
 								<div class="cmt_fbtn">
 									<span class="counts">还可以输入<em id="textCount-300">140</em>字
@@ -676,7 +540,7 @@
 						<div class="cmt_wrapper">
 							<div class="cmt_ftxt">
 								<h3 class="cmt_h3 fl">
-									金刚狼3：殊死一战-影评(共<span id="totalbar">20</span>条)
+									${movie.movieName}-影评(共<span id="totalbar">20</span>条)
 								</h3>
 								<div class="cmt_sel">
 									<ul class="fix" id="changeTab">
@@ -749,402 +613,6 @@
 														</table>
 													</div>
 													<div id="replyTab_43747"></div>
-												</div>
-											</div>
-										</div>
-									</div>
-								</div>
-								<div class="cmt_acont fix">
-									<div style="width: 100%;">
-										<span class="ico_face"><img
-											src="%E9%99%A2%E7%BA%BF%E9%80%9A-%E9%87%91%E5%88%9A%E7%8B%BC3%EF%BC%9A%E6%AE%8A%E6%AD%BB%E4%B8%80%E6%88%98_files/8f0c4c4f-1d20-4420-bd76-a350066d3340.jpg"
-											height="52" width="52"></span>
-										<div class="cmt_cont">
-											<p class="cmt_hd">
-												<span class="t">七步成诗</span>
-											</p>
-											<div class="cmt_bd">
-												<p style="word-break: break-all; word-wrap: break-word">狼叔退了，还有冷酷的劳拉，期待下一部</p>
-											</div>
-											<div class="cmt_fd fix">
-												<div class="art_score fl">
-													<em class="score_t fl">评分：</em><span class="hitscore"><span
-														class="scorew" style="width: 100%;"></span></span>
-												</div>
-												<div class="art_times fl">2017-03-12 18:03:14</div>
-												<div class="art_stu fr">
-													<span class="cmt_agree" onclick="praiseOrTrod(this)"
-														id="praise_43743">赞(<span class="praise_num"
-														style="padding: 0px;">0</span>)
-													</span><span class="cmt_disagree" onclick="praiseOrTrod(this)"
-														id="trod_43743">踩(<span class="trod_num"
-														style="padding: 0px;">0</span>)
-													</span><span class="cmt_feedback" onclick="toggle(this)"
-														id="reply_43743">回复(0)</span>
-												</div>
-											</div>
-											<div class="clear"></div>
-											<div id="slide_43743" style="display: none;">
-												<div class="top-reply">
-													<img
-														src="%E9%99%A2%E7%BA%BF%E9%80%9A-%E9%87%91%E5%88%9A%E7%8B%BC3%EF%BC%9A%E6%AE%8A%E6%AD%BB%E4%B8%80%E6%88%98_files/ts_j.jpg"
-														height="11" width="24">
-												</div>
-												<div class="huiFu">
-													<div>
-														<input name="textfield"
-															class="textfield replyRemainNumInput"
-															onkeyup="onlyIntegerKeyUp(this,event)"
-															onclick="toLogin()" type="text"><input
-															name="button1" class="btnReply"
-															onclick="submitHuifu(this)" id="button_43743"
-															type="button">
-														<div class="clear"></div>
-														<table style="font-size: 12px;" cellspacing="0"
-															cellpadding="0" border="0" width="100%">
-															<tbody>
-																<tr>
-																	<td height="26">共<span id="totalReply_43743">0</span>条
-																	</td>
-																	<td align="right">还可以输入 <span
-																		class="replyRemainNum">140</span> 字
-																	</td>
-																	<td width="100">&nbsp;</td>
-																</tr>
-															</tbody>
-														</table>
-													</div>
-													<div id="replyTab_43743"></div>
-												</div>
-											</div>
-										</div>
-									</div>
-								</div>
-								<div class="cmt_acont fix">
-									<div style="width: 100%;">
-										<span class="ico_face"><img
-											src="%E9%99%A2%E7%BA%BF%E9%80%9A-%E9%87%91%E5%88%9A%E7%8B%BC3%EF%BC%9A%E6%AE%8A%E6%AD%BB%E4%B8%80%E6%88%98_files/b94279c1-6645-4e6c-a4ad-3c04e105a9d0.jpg"
-											height="52" width="52"></span>
-										<div class="cmt_cont">
-											<p class="cmt_hd">
-												<span class="t">0921</span>
-											</p>
-											<div class="cmt_bd">
-												<p style="word-break: break-all; word-wrap: break-word">值得去现场支持狼叔，为了xmen</p>
-											</div>
-											<div class="cmt_fd fix">
-												<div class="art_score fl">
-													<em class="score_t fl">评分：</em><span class="hitscore"><span
-														class="scorew" style="width: 90%;"></span></span>
-												</div>
-												<div class="art_times fl">2017-03-10 10:24:44</div>
-												<div class="art_stu fr">
-													<span class="cmt_agree" onclick="praiseOrTrod(this)"
-														id="praise_43717">赞(<span class="praise_num"
-														style="padding: 0px;">1</span>)
-													</span><span class="cmt_disagree" onclick="praiseOrTrod(this)"
-														id="trod_43717">踩(<span class="trod_num"
-														style="padding: 0px;">1</span>)
-													</span><span class="cmt_feedback" onclick="toggle(this)"
-														id="reply_43717">回复(0)</span>
-												</div>
-											</div>
-											<div class="clear"></div>
-											<div id="slide_43717" style="display: none;">
-												<div class="top-reply">
-													<img
-														src="%E9%99%A2%E7%BA%BF%E9%80%9A-%E9%87%91%E5%88%9A%E7%8B%BC3%EF%BC%9A%E6%AE%8A%E6%AD%BB%E4%B8%80%E6%88%98_files/ts_j.jpg"
-														height="11" width="24">
-												</div>
-												<div class="huiFu">
-													<div>
-														<input name="textfield"
-															class="textfield replyRemainNumInput"
-															onkeyup="onlyIntegerKeyUp(this,event)"
-															onclick="toLogin()" type="text"><input
-															name="button1" class="btnReply"
-															onclick="submitHuifu(this)" id="button_43717"
-															type="button">
-														<div class="clear"></div>
-														<table style="font-size: 12px;" cellspacing="0"
-															cellpadding="0" border="0" width="100%">
-															<tbody>
-																<tr>
-																	<td height="26">共<span id="totalReply_43717">0</span>条
-																	</td>
-																	<td align="right">还可以输入 <span
-																		class="replyRemainNum">140</span> 字
-																	</td>
-																	<td width="100">&nbsp;</td>
-																</tr>
-															</tbody>
-														</table>
-													</div>
-													<div id="replyTab_43717"></div>
-												</div>
-											</div>
-										</div>
-									</div>
-								</div>
-								<div class="cmt_acont fix">
-									<div style="width: 100%;">
-										<span class="ico_face"><img
-											src="%E9%99%A2%E7%BA%BF%E9%80%9A-%E9%87%91%E5%88%9A%E7%8B%BC3%EF%BC%9A%E6%AE%8A%E6%AD%BB%E4%B8%80%E6%88%98_files/382b3123-6e79-4d07-9c45-e1ec851b6a08.jpg"
-											height="52" width="52"></span>
-										<div class="cmt_cont">
-											<p class="cmt_hd">
-												<span class="t">影迷一号</span>
-											</p>
-											<div class="cmt_bd">
-												<p style="word-break: break-all; word-wrap: break-word">赞赞赞，超级赞</p>
-											</div>
-											<div class="cmt_fd fix">
-												<div class="art_score fl">
-													<em class="score_t fl">评分：</em><span class="hitscore"><span
-														class="scorew" style="width: 100%;"></span></span>
-												</div>
-												<div class="art_times fl">2017-03-09 20:57:38</div>
-												<div class="art_stu fr">
-													<span class="cmt_agree" onclick="praiseOrTrod(this)"
-														id="praise_43714">赞(<span class="praise_num"
-														style="padding: 0px;">1</span>)
-													</span><span class="cmt_disagree" onclick="praiseOrTrod(this)"
-														id="trod_43714">踩(<span class="trod_num"
-														style="padding: 0px;">1</span>)
-													</span><span class="cmt_feedback" onclick="toggle(this)"
-														id="reply_43714">回复(0)</span>
-												</div>
-											</div>
-											<div class="clear"></div>
-											<div id="slide_43714" style="display: none;">
-												<div class="top-reply">
-													<img
-														src="%E9%99%A2%E7%BA%BF%E9%80%9A-%E9%87%91%E5%88%9A%E7%8B%BC3%EF%BC%9A%E6%AE%8A%E6%AD%BB%E4%B8%80%E6%88%98_files/ts_j.jpg"
-														height="11" width="24">
-												</div>
-												<div class="huiFu">
-													<div>
-														<input name="textfield"
-															class="textfield replyRemainNumInput"
-															onkeyup="onlyIntegerKeyUp(this,event)"
-															onclick="toLogin()" type="text"><input
-															name="button1" class="btnReply"
-															onclick="submitHuifu(this)" id="button_43714"
-															type="button">
-														<div class="clear"></div>
-														<table style="font-size: 12px;" cellspacing="0"
-															cellpadding="0" border="0" width="100%">
-															<tbody>
-																<tr>
-																	<td height="26">共<span id="totalReply_43714">0</span>条
-																	</td>
-																	<td align="right">还可以输入 <span
-																		class="replyRemainNum">140</span> 字
-																	</td>
-																	<td width="100">&nbsp;</td>
-																</tr>
-															</tbody>
-														</table>
-													</div>
-													<div id="replyTab_43714"></div>
-												</div>
-											</div>
-										</div>
-									</div>
-								</div>
-								<div class="cmt_acont fix">
-									<div style="width: 100%;">
-										<span class="ico_face"><img
-											src="%E9%99%A2%E7%BA%BF%E9%80%9A-%E9%87%91%E5%88%9A%E7%8B%BC3%EF%BC%9A%E6%AE%8A%E6%AD%BB%E4%B8%80%E6%88%98_files/ele_07.jpg"
-											height="52" width="52"></span>
-										<div class="cmt_cont">
-											<p class="cmt_hd">
-												<span class="t"></span>
-											</p>
-											<div class="cmt_bd">
-												<p style="word-break: break-all; word-wrap: break-word">狼叔真的老了好多，小劳拉演的不错，感觉狼叔最后死了很可惜，故事后面挺感人的，我隔壁那位哭了。</p>
-											</div>
-											<div class="cmt_fd fix">
-												<div class="art_score fl">
-													<em class="score_t fl">评分：</em><span class="hitscore"><span
-														class="scorew" style="width: 90%;"></span></span>
-												</div>
-												<div class="art_times fl">2017-03-08 17:51:04</div>
-												<div class="art_stu fr">
-													<span class="cmt_agree" onclick="praiseOrTrod(this)"
-														id="praise_43706">赞(<span class="praise_num"
-														style="padding: 0px;">0</span>)
-													</span><span class="cmt_disagree" onclick="praiseOrTrod(this)"
-														id="trod_43706">踩(<span class="trod_num"
-														style="padding: 0px;">0</span>)
-													</span><span class="cmt_feedback" onclick="toggle(this)"
-														id="reply_43706">回复(0)</span>
-												</div>
-											</div>
-											<div class="clear"></div>
-											<div id="slide_43706" style="display: none;">
-												<div class="top-reply">
-													<img
-														src="%E9%99%A2%E7%BA%BF%E9%80%9A-%E9%87%91%E5%88%9A%E7%8B%BC3%EF%BC%9A%E6%AE%8A%E6%AD%BB%E4%B8%80%E6%88%98_files/ts_j.jpg"
-														height="11" width="24">
-												</div>
-												<div class="huiFu">
-													<div>
-														<input name="textfield"
-															class="textfield replyRemainNumInput"
-															onkeyup="onlyIntegerKeyUp(this,event)"
-															onclick="toLogin()" type="text"><input
-															name="button1" class="btnReply"
-															onclick="submitHuifu(this)" id="button_43706"
-															type="button">
-														<div class="clear"></div>
-														<table style="font-size: 12px;" cellspacing="0"
-															cellpadding="0" border="0" width="100%">
-															<tbody>
-																<tr>
-																	<td height="26">共<span id="totalReply_43706">0</span>条
-																	</td>
-																	<td align="right">还可以输入 <span
-																		class="replyRemainNum">140</span> 字
-																	</td>
-																	<td width="100">&nbsp;</td>
-																</tr>
-															</tbody>
-														</table>
-													</div>
-													<div id="replyTab_43706"></div>
-												</div>
-											</div>
-										</div>
-									</div>
-								</div>
-								<div class="cmt_acont fix">
-									<div style="width: 100%;">
-										<span class="ico_face"><img
-											src="%E9%99%A2%E7%BA%BF%E9%80%9A-%E9%87%91%E5%88%9A%E7%8B%BC3%EF%BC%9A%E6%AE%8A%E6%AD%BB%E4%B8%80%E6%88%98_files/08de1713-1575-4192-b8f1-128614e2fa43.jpg"
-											height="52" width="52"></span>
-										<div class="cmt_cont">
-											<p class="cmt_hd">
-												<span class="t">、恋飘雪</span>
-											</p>
-											<div class="cmt_bd">
-												<p style="word-break: break-all; word-wrap: break-word">可以的，很感人</p>
-											</div>
-											<div class="cmt_fd fix">
-												<div class="art_score fl">
-													<em class="score_t fl">评分：</em><span class="hitscore"><span
-														class="scorew" style="width: 100%;"></span></span>
-												</div>
-												<div class="art_times fl">2017-03-07 19:01:36</div>
-												<div class="art_stu fr">
-													<span class="cmt_agree" onclick="praiseOrTrod(this)"
-														id="praise_43699">赞(<span class="praise_num"
-														style="padding: 0px;">0</span>)
-													</span><span class="cmt_disagree" onclick="praiseOrTrod(this)"
-														id="trod_43699">踩(<span class="trod_num"
-														style="padding: 0px;">0</span>)
-													</span><span class="cmt_feedback" onclick="toggle(this)"
-														id="reply_43699">回复(0)</span>
-												</div>
-											</div>
-											<div class="clear"></div>
-											<div id="slide_43699" style="display: none;">
-												<div class="top-reply">
-													<img
-														src="%E9%99%A2%E7%BA%BF%E9%80%9A-%E9%87%91%E5%88%9A%E7%8B%BC3%EF%BC%9A%E6%AE%8A%E6%AD%BB%E4%B8%80%E6%88%98_files/ts_j.jpg"
-														height="11" width="24">
-												</div>
-												<div class="huiFu">
-													<div>
-														<input name="textfield"
-															class="textfield replyRemainNumInput"
-															onkeyup="onlyIntegerKeyUp(this,event)"
-															onclick="toLogin()" type="text"><input
-															name="button1" class="btnReply"
-															onclick="submitHuifu(this)" id="button_43699"
-															type="button">
-														<div class="clear"></div>
-														<table style="font-size: 12px;" cellspacing="0"
-															cellpadding="0" border="0" width="100%">
-															<tbody>
-																<tr>
-																	<td height="26">共<span id="totalReply_43699">0</span>条
-																	</td>
-																	<td align="right">还可以输入 <span
-																		class="replyRemainNum">140</span> 字
-																	</td>
-																	<td width="100">&nbsp;</td>
-																</tr>
-															</tbody>
-														</table>
-													</div>
-													<div id="replyTab_43699"></div>
-												</div>
-											</div>
-										</div>
-									</div>
-								</div>
-								<div class="cmt_acont fix">
-									<div style="width: 100%;">
-										<span class="ico_face"><img
-											src="%E9%99%A2%E7%BA%BF%E9%80%9A-%E9%87%91%E5%88%9A%E7%8B%BC3%EF%BC%9A%E6%AE%8A%E6%AD%BB%E4%B8%80%E6%88%98_files/ele_07.jpg"
-											height="52" width="52"></span>
-										<div class="cmt_cont">
-											<p class="cmt_hd">
-												<span class="t">林燕辉</span>
-											</p>
-											<div class="cmt_bd">
-												<p style="word-break: break-all; word-wrap: break-word">好看，最后劳拉摆了个X</p>
-											</div>
-											<div class="cmt_fd fix">
-												<div class="art_score fl">
-													<em class="score_t fl">评分：</em><span class="hitscore"><span
-														class="scorew" style="width: 100%;"></span></span>
-												</div>
-												<div class="art_times fl">2017-03-05 22:33:00</div>
-												<div class="art_stu fr">
-													<span class="cmt_agree" onclick="praiseOrTrod(this)"
-														id="praise_43681">赞(<span class="praise_num"
-														style="padding: 0px;">3</span>)
-													</span><span class="cmt_disagree" onclick="praiseOrTrod(this)"
-														id="trod_43681">踩(<span class="trod_num"
-														style="padding: 0px;">0</span>)
-													</span><span class="cmt_feedback" onclick="toggle(this)"
-														id="reply_43681">回复(0)</span>
-												</div>
-											</div>
-											<div class="clear"></div>
-											<div id="slide_43681" style="display: none;">
-												<div class="top-reply">
-													<img
-														src="%E9%99%A2%E7%BA%BF%E9%80%9A-%E9%87%91%E5%88%9A%E7%8B%BC3%EF%BC%9A%E6%AE%8A%E6%AD%BB%E4%B8%80%E6%88%98_files/ts_j.jpg"
-														height="11" width="24">
-												</div>
-												<div class="huiFu">
-													<div>
-														<input name="textfield"
-															class="textfield replyRemainNumInput"
-															onkeyup="onlyIntegerKeyUp(this,event)"
-															onclick="toLogin()" type="text"><input
-															name="button1" class="btnReply"
-															onclick="submitHuifu(this)" id="button_43681"
-															type="button">
-														<div class="clear"></div>
-														<table style="font-size: 12px;" cellspacing="0"
-															cellpadding="0" border="0" width="100%">
-															<tbody>
-																<tr>
-																	<td height="26">共<span id="totalReply_43681">0</span>条
-																	</td>
-																	<td align="right">还可以输入 <span
-																		class="replyRemainNum">140</span> 字
-																	</td>
-																	<td width="100">&nbsp;</td>
-																</tr>
-															</tbody>
-														</table>
-													</div>
-													<div id="replyTab_43681"></div>
 												</div>
 											</div>
 										</div>
@@ -1366,18 +834,6 @@
 		</div>
 
 		<!-- 热门推荐部分 -->
-
-
-
-
-
-
-
-
-
-
-
-
 		<div class="hot_z mart10 com_b">
 			<h2>热门推荐</h2>
 
@@ -1473,17 +929,6 @@
 		<input id="filmId" value="29731" type="hidden">
 	</div>
 
-
-
-
-
-
-
-
-
-	<meta charset="utf-8">
-
-
 	<div id="footer" class="fix">
 		<p class="frlink">
 			友情链接:<a href="http://webmail23.189.cn/webmail/" target="_blank">189邮箱</a>
@@ -1493,116 +938,13 @@
 				href="http://www.189mv.cn/contactUs/" target="_blank">联系我们</a>
 		</p>
 		<ul>
-			<li><a href="javascript:void(0);"><img
-					src="%E9%99%A2%E7%BA%BF%E9%80%9A-%E9%87%91%E5%88%9A%E7%8B%BC3%EF%BC%9A%E6%AE%8A%E6%AD%BB%E4%B8%80%E6%88%98_files/dianxin_img.gif"
-					height="42" width="120"></a></li>
 			<li>客服电话：4008610001<br>电信及增值业务经营许可证：粤ICP备14020429号<br>Copyright©
 				2007—2013 中国电信 版权所有
 			</li>
-			<li><a
-				href="http://www.gzjd.gov.cn/newgzjd/baojing/110.jsp?catid=318"><img
-					src="%E9%99%A2%E7%BA%BF%E9%80%9A-%E9%87%91%E5%88%9A%E7%8B%BC3%EF%BC%9A%E6%AE%8A%E6%AD%BB%E4%B8%80%E6%88%98_files/jiancha_img.gif"
-					height="47" width="44"></a></li>
 		</ul>
 	</div>
 
 
-
-	<script type="text/javascript"
-		src="%E9%99%A2%E7%BA%BF%E9%80%9A-%E9%87%91%E5%88%9A%E7%8B%BC3%EF%BC%9A%E6%AE%8A%E6%AD%BB%E4%B8%80%E6%88%98_files/des.js"></script>
-	<input id="basepath" value="http://www.189mv.cn/" type="hidden">
-	<input id="contextPath" value="" type="hidden">
-	<input id="needVerifyCode" value="false" type="hidden">
-	<input id="CIPHERKEY" value="0DA6A575AAE2C39F20191830" type="hidden">
-	<div class="zhezhao" id="coverall"></div>
-	<div class="login_tips" id="loginpop">
-		<div class="c_tips_cont">
-			<a href="javascript:void(0);" class="c_close">关闭</a>
-			<h3 class="tip_h3">用户登录</h3>
-			<div id="loginpannel" style="display: block;">
-				<div style="padding-top: 15px;">
-					登录账号： <input name="" id="loginaccount" placeholder="账号"
-						class="login_ip" style="color: #939392;" type="text">
-				</div>
-				<div class="remindBlock" id="accountmsg"></div>
-				<div>
-					登录密码： <input name="" id="loginpassword" value="" placeholder="密码"
-						class="login_ip" type="password">
-				</div>
-				<div class="remindBlock" id="passwordmsg"></div>
-
-				<div style="display: none;" id="loginImgCode">
-					<div>
-						验&nbsp;证&nbsp;码&nbsp;&nbsp;： <input name="" id="loginimgcode"
-							maxlength="4" placeholder="" class="login_ip"
-							style="width: 90px;" type="text"> <img id="logincodeimg"
-							onclick="logImgRefresh();return false;"
-							style="vertical-align: middle;"
-							src="%E9%99%A2%E7%BA%BF%E9%80%9A-%E9%87%91%E5%88%9A%E7%8B%BC3%EF%BC%9A%E6%AE%8A%E6%AD%BB%E4%B8%80%E6%88%98_files/randomCode.jpg"
-							height="26" width="80"> <a href="javascript:void(0);"
-							onclick="logImgRefresh();return false;">换一张</a>
-					</div>
-					<div class="remindBlock" id="logimgmsg"></div>
-				</div>
-
-				<div class="k_item_1"
-					style="padding-left: 74px; padding-bottom: 10px;">
-					<span class="rem remUser"> <input id="remember"
-						type="checkbox"><label for="">记住账号</label>
-					</span> <a href="http://www.189mv.cn/regist/" class="blue"
-						style="margin-right: 20px;">我要注册</a><a
-						href="http://www.189mv.cn/forget/" class="blue">找回密码</a>
-				</div>
-				<div class="c_tips_btn confirm_btn">
-					<a href="javascript:void(0);" id="dologin" class="">确&nbsp;&nbsp;&nbsp;认</a>
-					<a href="javascript:void(0);" id="logincancel" class="">取&nbsp;&nbsp;&nbsp;消</a>
-				</div>
-
-				<!--  <div class="tianyi"  style="padding:15px 0px;font-size:12px;line-height:22px;">
-			  	<a href="http://passport.189.cn/SelfS/About/About.aspx"  target="_blank">
-			  		关于天翼账号
-			  	</a>
-			  	<div class="clear"></div>
-			  </div> -->
-			</div>
-			<div id="loginloading" style="display: none;">
-				<div class="loginloading" style="height: 167px; text-align: center;">
-					<img
-						src="%E9%99%A2%E7%BA%BF%E9%80%9A-%E9%87%91%E5%88%9A%E7%8B%BC3%EF%BC%9A%E6%AE%8A%E6%AD%BB%E4%B8%80%E6%88%98_files/loading.gif"
-						style="padding-top: 60px;">
-				</div>
-			</div>
-		</div>
-	</div>
-	<div class="c_tips" id="warntips" style="width: 364px; display: none;">
-		<div class="c_tips_cont">
-			<a href="javascript:void(0);" class="c_close">关闭</a>
-			<h3 class="f_tip_txt">温馨提示</h3>
-			<div class="ct_wrapper">
-				<p class="vred" id="tipsmsg"></p>
-			</div>
-			<div class="c_tips_btn" id="tipsbotton"></div>
-		</div>
-	</div>
-	<div class="waiting-pop" id="waitingPop" style="display: none;">
-		<div class="waiting-con"></div>
-	</div>
-	<script type="text/javascript">
-		var _hmt = _hmt || [];
-		(function() {
-			var hm = document.createElement("script");
-			hm.src = "//hm.baidu.com/hm.js?f3a470502268bd255498a2e6bd23f8d4";
-			var s = document.getElementsByTagName("script")[0];
-			s.parentNode.insertBefore(hm, s);
-		})();
-	</script>
-
-	<div class="adrPop" id="map_pop">
-		<div style="padding: 27px;">
-			<a href="javascript:void(0);" class="pop_close" id="close_map">关闭</a>
-			<div id="map_canvas" class="mapCon"></div>
-		</div>
-	</div>
 
 	<script type="text/javascript"
 		src="<%=request.getContextPath()%>/js/jquery.js"></script>
@@ -1676,73 +1018,9 @@
 				}
 			});
 
-			$.ajax({
-				url : root + "qryFilmGrade.htm",
-				dataType : "json",
-				cache : false,
-				type : "POST",
-				data : {
-					"mids" : filmId
-				},
-				success : function(json) {
-					if ("00" === json.result) {
-						var grades = json.grades;
-						if (grades && grades.length) {
-							$("#xiangkan em").html(grades[0].total);
-							$("#kanguo em").html(grades[0].seeCnt);
-						}
-					}
-				},
-				error : function(json) {
-				}
-			});
+	
 
-			$("#filmgrade a").click(
-					function() {
-						var id = $(this).attr("id");
-						var ckeValue = getCookie("film");
-						if (ckeValue) {
-							if (ckeValue.indexOf(filmId) <= -1) {
-								ckeValue += "_" + filmId;
-								setCookie("film", ckeValue, 30);
-							} else {
-								return;
-							}
-						} else {
-							setCookie("film", filmId, 30);
-						}
-
-						var type = "1";
-						if (id == "kanguo") {
-							type = "2";
-						}
-
-						$.ajax({
-							url : root + "updateFilmGrade.htm",
-							dataType : "json",
-							cache : false,
-							type : "POST",
-							data : {
-								"mid" : filmId,
-								"filmName" : filmName,
-								"type" : type
-							},
-							success : function(json) {
-								if ("00" === json.result) {
-									var total = 998;
-									try {
-										total = parseInt($.trim($(
-												"#" + id + " em").html()));
-									} catch (e) {
-									}
-									$("#" + id + " em").html(total + 1);
-								}
-							},
-							error : function(json) {
-							}
-						});
-					});
-		});
+			
 
 		$(document).ready(function() {
 			var viewId = $.trim($("#filmViewId").val());
@@ -1785,7 +1063,7 @@
 			if (tab == "tab3") {
 				//showCritic(1,flagCritic);
 			}
-		}
+		};
 	</script>
 </body>
 </html>
