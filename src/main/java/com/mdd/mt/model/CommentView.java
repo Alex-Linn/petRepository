@@ -8,15 +8,17 @@ public class CommentView {
 	private Integer movieId;
 
 	private Integer userId;
-	
+
 	private String userName;
-	
+
+	private String userTel;
+
 	private String userPicture;
 
 	private Integer score;
 
 	private Integer dianzan;
-	
+
 	private Date createTime;
 
 	private String comment;
@@ -51,6 +53,14 @@ public class CommentView {
 
 	public void setUserName(String userName) {
 		this.userName = userName;
+	}
+
+	public String getUserTel() {
+		return userTel;
+	}
+
+	public void setUserTel(String userTel) {
+		this.userTel = userTel;
 	}
 
 	public String getUserPicture() {
@@ -96,10 +106,8 @@ public class CommentView {
 	@Override
 	public String toString() {
 		return "CommentView [id=" + id + ", movieId=" + movieId + ", userId=" + userId + ", userName=" + userName
-				+ ", userPicture=" + userPicture + ", score=" + score + ", dianzan=" + dianzan + ", createTime="
-				+ createTime + ", comment=" + comment + "]";
+				+ ", userTel=" + userTel + ", userPicture=" + userPicture + ", score=" + score + ", dianzan=" + dianzan
+				+ ", createTime=" + createTime + ", comment=" + comment + "]";
 	}
 
-	
-	
 }

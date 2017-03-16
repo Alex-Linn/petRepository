@@ -70,11 +70,10 @@ public class MovieController {
 			CommentView commentView = new CommentView();
 			User user = userService.getUserById(comment.getUserId());
 			if(user!=null){
-				commentView.setMovieId(comment.getMovieId());
-				commentView.setDianzan(comment.getDianzan());
-				commentView.setScore(comment.getScore());
+				BeanUtils.copyProperties(comment, commentView);
 				commentView.setUserName(user.getUserName());
 				commentView.setUserPicture(user.getUserPicture());
+				commentView.setUserTel(user.getUserTel());
 				commentViewList.add(commentView);
 			}
 		}

@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
 	pageEncoding="utf-8"%>
-	<%@ page isELIgnored="false"%>
-	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page isELIgnored="false"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -12,20 +12,16 @@
 <title>电影比价平台</title>
 <meta name="keywords"
 	content="金刚狼3：殊死一战,剧情介绍,预告片,上映日期,电影海报,影评,导演,主演(休·杰克曼 / 帕特里克·斯图尔特 / 波伊德·霍布鲁克 / 理查德·E·格兰特 / 斯戴芬·莫昌特)">
-<link
-	href="<%=request.getContextPath()%>/css/public.css"
+<link href="<%=request.getContextPath()%>/css/public.css"
 	type="text/css" rel="stylesheet">
-<link
-	href="<%=request.getContextPath()%>/css/list.css"
-	type="text/css" rel="stylesheet">
-<script
-	src="<%=request.getContextPath()%>/js/hm.js"></script>
+<link href="<%=request.getContextPath()%>/css/list.css" type="text/css"
+	rel="stylesheet">
+<script src="<%=request.getContextPath()%>/js/hm.js"></script>
 <script type="text/javascript">
 	function showYinping() {
 	}
 </script>
-<script
-	src="<%=request.getContextPath()%>/js/share.js"></script>
+<script src="<%=request.getContextPath()%>/js/share.js"></script>
 <link rel="stylesheet"
 	href="<%=request.getContextPath()%>/css/share_style0_16.css">
 </head>
@@ -43,8 +39,7 @@
 			<div class="tx_film fl">
 				<div class="playOuter" id="playVideo">
 					<a href="javascript:void(0);" class="p"><img
-						src="${movie.posterUrl}"
-						height="216" width="352"></a>
+						src="${movie.posterUrl}" height="216" width="352"></a>
 
 					<div class="playBtn">
 						<a class="btn" href="javascript:void(0)" style="display: block;"
@@ -69,9 +64,9 @@
 
 						<li class="pf fix"><span class="fl">评分:${movie.score}</span>
 						</li>
-								
+
 					</ul>
-					
+
 				</div>
 			</div>
 		</div>
@@ -100,7 +95,7 @@
 
 				<div id="movie_tab1" style="display: block;">
 					<div class="h_s_cin com_border">
-					<!-- 	<div class="cin_select">
+						<!-- 	<div class="cin_select">
 							<div class="cin_tabs cin_tabs_x cin_tabs_723">
 								<ul class="fix" id="showdateul">
 
@@ -194,7 +189,7 @@
 													<span class="cdcare">影院价</span><span class="price price_1">--</span>
 												</div>
 											</div>
-											
+
 											<div class="md_times" id="cshow_sp01936011101_2D_6"
 												onclick="qrySeats('sp01936011101','01027548584','');"
 												style="margin-right: 10px;">
@@ -297,8 +292,8 @@
 							<h4>剧情简介</h4>
 							<div class="u_jq_cont">
 
-								<span id="some_1"><br>${movie.movieStory}
-								</span><span id="total_1" style="display: none;">【温馨提示】小学生及学龄前儿童应在家长陪同下观看。<br>${movie.movieStory}
+								<span id="some_1"><br>${movie.movieStory} </span><span
+									id="total_1" style="display: none;">【温馨提示】小学生及学龄前儿童应在家长陪同下观看。<br>${movie.movieStory}
 								</span> <a href="javascript:void(0)" class="blue" onclick="showall()"
 									id="juqing_1">展开&gt;&gt;</a>
 
@@ -306,9 +301,7 @@
 						</div>
 						<div class="u_pl">
 							<h4>综合评论</h4>
-							<div class="u_pl_cont">
-								${movie.movieStory}
-							</div>
+							<div class="u_pl_cont">${movie.movieStory}</div>
 						</div>
 
 						<div class="u_jz">
@@ -322,8 +315,7 @@
 									<ul class="JQ-slide-content fix" style="width: 4592px;">
 
 										<li><a href="javascript:void(0);" class="film-Img curImg"><img
-												src="${movie.posterUrl}"
-												height="98" width="150"></a></li>
+												src="${movie.posterUrl}" height="98" width="150"></a></li>
 									</ul>
 								</div>
 							</div>
@@ -335,7 +327,8 @@
 				<!-- 影片详情部分-结束 -->
 
 				<!-- 影评部分-开始 -->
-				<div class="" id="movie_tab3" style="display: none;">
+				<!-- 影评部分-开始 -->
+				<div class="" id="movie_tab3" style="">
 					<div class="hot_cmt">
 						<div class="cmt_comment">
 							<h3 class="cmt_h3">写影评</h3>
@@ -345,8 +338,38 @@
 							</div>
 							<div id="msgTime"></div>
 							<div class="cmt_stxt">
-								<span class="t">我给<strong class="red" id="filmName">${movie.movieName}</strong>打分
+								<span class="t">我给<strong class="red" id="filmName">生化危机：终章</strong>打分
 								</span> <span id="hitscore" style="float: left; margin-top: 5px;">
+									<a href="javascript:void(0);"><img
+										src="%E9%99%A2%E7%BA%BF%E9%80%9A-%E7%94%9F%E5%8C%96%E5%8D%B1%E6%9C%BA%EF%BC%9A%E7%BB%88%E7%AB%A0_files/ele_11.jpg"
+										align="absmiddle" height="13" border="0" width="14"></a><a
+									href="javascript:void(0);"><img
+										src="%E9%99%A2%E7%BA%BF%E9%80%9A-%E7%94%9F%E5%8C%96%E5%8D%B1%E6%9C%BA%EF%BC%9A%E7%BB%88%E7%AB%A0_files/ele_11.jpg"
+										align="absmiddle" height="13" border="0" width="14"></a><a
+									href="javascript:void(0);"><img
+										src="%E9%99%A2%E7%BA%BF%E9%80%9A-%E7%94%9F%E5%8C%96%E5%8D%B1%E6%9C%BA%EF%BC%9A%E7%BB%88%E7%AB%A0_files/ele_11.jpg"
+										align="absmiddle" height="13" border="0" width="14"></a><a
+									href="javascript:void(0);"><img
+										src="%E9%99%A2%E7%BA%BF%E9%80%9A-%E7%94%9F%E5%8C%96%E5%8D%B1%E6%9C%BA%EF%BC%9A%E7%BB%88%E7%AB%A0_files/ele_11.jpg"
+										align="absmiddle" height="13" border="0" width="14"></a><a
+									href="javascript:void(0);"><img
+										src="%E9%99%A2%E7%BA%BF%E9%80%9A-%E7%94%9F%E5%8C%96%E5%8D%B1%E6%9C%BA%EF%BC%9A%E7%BB%88%E7%AB%A0_files/ele_11.jpg"
+										align="absmiddle" height="13" border="0" width="14"></a><a
+									href="javascript:void(0);"><img
+										src="%E9%99%A2%E7%BA%BF%E9%80%9A-%E7%94%9F%E5%8C%96%E5%8D%B1%E6%9C%BA%EF%BC%9A%E7%BB%88%E7%AB%A0_files/ele_11.jpg"
+										align="absmiddle" height="13" border="0" width="14"></a><a
+									href="javascript:void(0);"><img
+										src="%E9%99%A2%E7%BA%BF%E9%80%9A-%E7%94%9F%E5%8C%96%E5%8D%B1%E6%9C%BA%EF%BC%9A%E7%BB%88%E7%AB%A0_files/ele_11.jpg"
+										align="absmiddle" height="13" border="0" width="14"></a><a
+									href="javascript:void(0);"><img
+										src="%E9%99%A2%E7%BA%BF%E9%80%9A-%E7%94%9F%E5%8C%96%E5%8D%B1%E6%9C%BA%EF%BC%9A%E7%BB%88%E7%AB%A0_files/ele_11.jpg"
+										align="absmiddle" height="13" border="0" width="14"></a><a
+									href="javascript:void(0);"><img
+										src="%E9%99%A2%E7%BA%BF%E9%80%9A-%E7%94%9F%E5%8C%96%E5%8D%B1%E6%9C%BA%EF%BC%9A%E7%BB%88%E7%AB%A0_files/ele_11.jpg"
+										align="absmiddle" height="13" border="0" width="14"></a><a
+									href="javascript:void(0);"><img
+										src="%E9%99%A2%E7%BA%BF%E9%80%9A-%E7%94%9F%E5%8C%96%E5%8D%B1%E6%9C%BA%EF%BC%9A%E7%BB%88%E7%AB%A0_files/ele_11.jpg"
+										align="absmiddle" height="13" border="0" width="14"></a>
 								</span>
 								<div class="cmt_fbtn">
 									<span class="counts">还可以输入<em id="textCount-300">140</em>字
@@ -358,7 +381,7 @@
 						<div class="cmt_wrapper">
 							<div class="cmt_ftxt">
 								<h3 class="cmt_h3 fl">
-									${movie.movieName}-影评(共<span id="totalbar">20</span>条)
+									生化危机：终章-影评(共<span id="totalbar">36</span>条)
 								</h3>
 								<div class="cmt_sel">
 									<ul class="fix" id="changeTab">
@@ -369,41 +392,41 @@
 									</ul>
 								</div>
 							</div>
-								<c:forEach items="commentViewList" var="commentView">
+							<div class="cmt_art  critics-con" id="filmcritics">
 								<div class="cmt_acont fix">
 									<div style="width: 100%;">
 										<span class="ico_face"><img
-											src="${commentView.userPicture}"
+											src="%E9%99%A2%E7%BA%BF%E9%80%9A-%E7%94%9F%E5%8C%96%E5%8D%B1%E6%9C%BA%EF%BC%9A%E7%BB%88%E7%AB%A0_files/ele_07.jpg"
 											height="52" width="52"></span>
 										<div class="cmt_cont">
 											<p class="cmt_hd">
-												<span class="t">${commentView.userTel}</span>
+												<span class="t">w***g</span>
 											</p>
 											<div class="cmt_bd">
-												<p style="word-break: break-all; word-wrap: break-word">${commentView.comment}</p>
+												<p style="word-break: break-all; word-wrap: break-word">故事线索还算清晰，画面不算恐怖。</p>
 											</div>
 											<div class="cmt_fd fix">
 												<div class="art_score fl">
-													<em class="score_t fl">评分：${commentView.score}</em><span class="hitscore"><span
-														class="scorew" style="width: 100%;"></span></span>
+													<em class="score_t fl">评分：</em><span class="hitscore"><span
+														class="scorew" style="width: 70%;"></span></span>
 												</div>
-												<div class="art_times fl">${commentView.createTime}</div>
+												<div class="art_times fl">2017-03-07 20:16:23</div>
 												<div class="art_stu fr">
 													<span class="cmt_agree" onclick="praiseOrTrod(this)"
-														id="praise_43669">赞(<span class="praise_num"
-														style="padding: 0px;">1</span>)
+														id="praise_43700">赞(<span class="praise_num"
+														style="padding: 0px;">0</span>)
 													</span><span class="cmt_disagree" onclick="praiseOrTrod(this)"
-														id="trod_43669">踩(<span class="trod_num"
+														id="trod_43700">踩(<span class="trod_num"
 														style="padding: 0px;">0</span>)
 													</span><span class="cmt_feedback" onclick="toggle(this)"
-														id="reply_43669">回复(0)</span>
+														id="reply_43700">回复(0)</span>
 												</div>
 											</div>
 											<div class="clear"></div>
-											<div id="slide_43669" style="display: none;">
+											<div id="slide_43700" style="display: none;">
 												<div class="top-reply">
 													<img
-														src="%E9%99%A2%E7%BA%BF%E9%80%9A-%E9%87%91%E5%88%9A%E7%8B%BC3%EF%BC%9A%E6%AE%8A%E6%AD%BB%E4%B8%80%E6%88%98_files/ts_j.jpg"
+														src="%E9%99%A2%E7%BA%BF%E9%80%9A-%E7%94%9F%E5%8C%96%E5%8D%B1%E6%9C%BA%EF%BC%9A%E7%BB%88%E7%AB%A0_files/ts_j.jpg"
 														height="11" width="24">
 												</div>
 												<div class="huiFu">
@@ -413,14 +436,14 @@
 															onkeyup="onlyIntegerKeyUp(this,event)"
 															onclick="toLogin()" type="text"><input
 															name="button1" class="btnReply"
-															onclick="submitHuifu(this)" id="button_43669"
+															onclick="submitHuifu(this)" id="button_43700"
 															type="button">
 														<div class="clear"></div>
 														<table style="font-size: 12px;" cellspacing="0"
 															cellpadding="0" border="0" width="100%">
 															<tbody>
 																<tr>
-																	<td height="26">共<span id="totalReply_43669">0</span>条
+																	<td height="26">共<span id="totalReply_43700">0</span>条
 																	</td>
 																	<td align="right">还可以输入 <span
 																		class="replyRemainNum">140</span> 字
@@ -430,19 +453,22 @@
 															</tbody>
 														</table>
 													</div>
-													<div id="replyTab_43669"></div>
+													<div id="replyTab_43700"></div>
 												</div>
 											</div>
 										</div>
 									</div>
 								</div>
-								</c:forEach>
+								
+								
 							</div>
 							<div class="pagecontrolre">
 								<a href="#fixtabul" onclick="javascript:callPage(1,'z')"><font
 									color="#F76300">1</font></a><a href="#fixtabul"
 									onclick="javascript:callPage(2,'z')">2</a><a href="#fixtabul"
-									onclick="javascript:callPage(2,'z')">下一页</a>
+									onclick="javascript:callPage(3,'z')">3</a>...<a
+									href="#fixtabul" onclick="javascript:callPage(4,'z')">4</a><a
+									href="#fixtabul" onclick="javascript:callPage(2,'z')">下一页</a>
 							</div>
 						</div>
 
@@ -580,159 +606,174 @@
 	<script type="text/javascript"
 		src="<%=request.getContextPath()%>/js/jwplayer.js"></script>
 	<script type="text/javascript">
-	function showYinping() {
-		showCritic(1,"z");
-	}
-		
-	var filmId = '29731';
-	var filmName = "金刚狼3：殊死一战";
-	//片花地址
-	filmViewUrl = "";
-	function showall(){
-		 if(!$("#some_1").is(":hidden")){
-			 $("#juqing_1").html("收缩&lt;&lt;");
-			 $("#total_1").show();
-			 $("#some_1").hide();
-		 }else{
-			 $("#juqing_1").html("展开&gt;&gt;");
-			 $("#total_1").hide();
-			 $("#some_1").show();
-		 }
-			
-	}
-
-	$(function (){	
-		$("#h_n_col_1").Slide({effect:"scroolLoop",autoPlay:false,speed:"normal",timer:3000,steps:1});
-		//剧照左右按钮
-		var len=$(".JQ-slide-content li").length;
-		var initLen=4;
-		if(len>4){
-			$(".JQ-slide-nav a").show();
+		function showYinping() {
+			showCritic(1, "z");
 		}
-		//剧照大图
-		$(".JQ-slide-content li a").click(function(){
-		   $(".JQ-slide-content li a").removeClass("curImg");
-		   $(this).addClass("curImg");
-		   var curImg=$(this).find("img").attr("src");
-		   $("#bigImgCon").find("img").attr("src",curImg);
+
+		var filmId = '29731';
+		var filmName = "金刚狼3：殊死一战";
+		//片花地址
+		filmViewUrl = "";
+		function showall() {
+			if (!$("#some_1").is(":hidden")) {
+				$("#juqing_1").html("收缩&lt;&lt;");
+				$("#total_1").show();
+				$("#some_1").hide();
+			} else {
+				$("#juqing_1").html("展开&gt;&gt;");
+				$("#total_1").hide();
+				$("#some_1").show();
+			}
+
+		}
+
+		$(function() {
+			$("#h_n_col_1").Slide({
+				effect : "scroolLoop",
+				autoPlay : false,
+				speed : "normal",
+				timer : 3000,
+				steps : 1
+			});
+			//剧照左右按钮
+			var len = $(".JQ-slide-content li").length;
+			var initLen = 4;
+			if (len > 4) {
+				$(".JQ-slide-nav a").show();
+			}
+			//剧照大图
+			$(".JQ-slide-content li a").click(function() {
+				$(".JQ-slide-content li a").removeClass("curImg");
+				$(this).addClass("curImg");
+				var curImg = $(this).find("img").attr("src");
+				$("#bigImgCon").find("img").attr("src", curImg);
+			});
+
+			//播放片花
+			$("#filmUrl").click(function() {
+				if (filmViewUrl) {
+					$("#playVideo").empty();
+					jwplayer("playVideo").setup({
+						autostart : true,
+						flashplayer : "http://www.189mv.cn/web/images/pl.swf",
+						file : filmViewUrl,
+						image : "http://www.189mv.cn/web/images/film_img.jpg",
+						height : 216,
+						width : 352
+					});
+				}
+			});
+
+			$.ajax({
+				url : root + "qryFilmGrade.htm",
+				dataType : "json",
+				cache : false,
+				type : "POST",
+				data : {
+					"mids" : filmId
+				},
+				success : function(json) {
+					if ("00" === json.result) {
+						var grades = json.grades;
+						if (grades && grades.length) {
+							$("#xiangkan em").html(grades[0].total);
+							$("#kanguo em").html(grades[0].seeCnt);
+						}
+					}
+				},
+				error : function(json) {
+				}
+			});
+
+			$("#filmgrade a").click(
+					function() {
+						var id = $(this).attr("id");
+						var ckeValue = getCookie("film");
+						if (ckeValue) {
+							if (ckeValue.indexOf(filmId) <= -1) {
+								ckeValue += "_" + filmId;
+								setCookie("film", ckeValue, 30);
+							} else {
+								return;
+							}
+						} else {
+							setCookie("film", filmId, 30);
+						}
+
+						var type = "1";
+						if (id == "kanguo") {
+							type = "2";
+						}
+
+						$.ajax({
+							url : root + "updateFilmGrade.htm",
+							dataType : "json",
+							cache : false,
+							type : "POST",
+							data : {
+								"mid" : filmId,
+								"filmName" : filmName,
+								"type" : type
+							},
+							success : function(json) {
+								if ("00" === json.result) {
+									var total = 998;
+									try {
+										total = parseInt($.trim($(
+												"#" + id + " em").html()));
+									} catch (e) {
+									}
+									$("#" + id + " em").html(total + 1);
+								}
+							},
+							error : function(json) {
+							}
+						});
+					});
 		});
-		
-		//播放片花
-		$("#filmUrl").click(function(){
-			if(filmViewUrl) {
-				$("#playVideo").empty();
-				jwplayer("playVideo").setup({
-					autostart: true,
-		  			flashplayer: "http://www.189mv.cn/web/images/pl.swf",
-		  			file:filmViewUrl,
-		  			image:"http://www.189mv.cn/web/images/film_img.jpg",
-		  			height: 216,
-		  			width:352
-		  		});
+
+		$(document).ready(function() {
+			var viewId = $.trim($("#filmViewId").val());
+			if (viewId) {
+				$.ajax({
+					url : root + "qryFilmView.htm",
+					dataType : "json",
+					cache : false,
+					type : "POST",
+					data : {
+						"vid" : viewId
+					},
+					success : function(json) {
+						var code = json.result;
+						if ("00" == code) {
+							filmViewUrl = json.reason;
+						}
+					},
+					error : function(json) {
+					}
+				});
 			}
 		});
-		
-		 $.ajax({
-		    url: root + "qryFilmGrade.htm",
-		    dataType :"json",
-		    cache: false,
-		    type:"POST",
-		    data : {"mids" : filmId},
-		    success: function(json) {
-		    	if("00" === json.result) {
-		    		var grades = json.grades;
-		    		if(grades && grades.length) {
-		    			$("#xiangkan em").html(grades[0].total);
-		    			$("#kanguo em").html(grades[0].seeCnt);
-		    		}
-		    	}
-		   	},
-		   	error : function(json) {
-		   	}
-		});
-		 
-		$("#filmgrade a").click(function(){
-			var id = $(this).attr("id");
-			var ckeValue = getCookie("film");
-		   	if(ckeValue) {
-		   		 if(ckeValue.indexOf(filmId) <= -1) {
-		   			ckeValue += "_" + filmId;
-		   			setCookie("film",ckeValue,30);
-		   		 } else {
-		   			 return;
-		   		 }
-		   	 } else {
-		   		 setCookie("film", filmId,30);
-		   	 }
-				
-		   	var type = "1";
-		   	if(id == "kanguo") {
-		   		type = "2";
-		   	}
-		   	
-			 $.ajax({
-			    url: root + "updateFilmGrade.htm",
-			    dataType :"json",
-			    cache: false,
-			    type:"POST",
-			    data : {"mid" : filmId , "filmName" : filmName , "type" : type},
-			    success: function(json) {
-			    	if("00" === json.result) {
-			    		var total = 998;
-			    		try {
-			    			total = parseInt($.trim($("#" + id + " em").html()));
-			    		}catch(e) {
-			    		}
-			    		$("#"+id + " em").html(total+1);
-			    	}
-			   	},
-			   	error : function(json) {}
-			});
-		});
-	});
 
-	$(document).ready(function() {
-		var viewId = $.trim($("#filmViewId").val());
-		if(viewId) {
-			$.ajax({
-		        url: root + "qryFilmView.htm",
-		        dataType :"json",
-		        cache: false,
-		        type:"POST",
-		        data:{
-		          	"vid":viewId
-		        },
-		        success: function(json) {
-		        	var code = json.result;
-		        	if("00" == code) {
-		        		filmViewUrl = json.reason;
-		        	}
-		       },
-		       error : function(json) {}
-		   	});
-		}
-	});
+		function chgTab(dom, tab) {
+			var clz = $.trim($(dom).attr("class"));
+			if (clz.indexOf("cur") > -1) {
+				return;
+			}
+			$("#fixtabul a").removeClass("cur");
+			$("#lia_" + tab).addClass("cur");
 
-	function chgTab(dom,tab) {
-		var clz = $.trim($(dom).attr("class"));
-		if(clz.indexOf("cur") > -1) {
-			return;
+			$("#movie_tab1").hide();
+			$("#movie_tab2").hide();
+			$("#movie_tab3").hide();
+			$("#movie_" + tab).show();
+
+			//显示影评内容
+			var flagCritic = "z";
+			if (tab == "tab3") {
+				//showCritic(1,flagCritic);
+			}
 		}
-		$("#fixtabul a").removeClass("cur");
-		$("#lia_" + tab).addClass("cur");
-		
-		
-		$("#movie_tab1").hide();
-		$("#movie_tab2").hide();
-		$("#movie_tab3").hide();
-		$("#movie_" + tab).show();
-		
-		//显示影评内容
-		var flagCritic="z";
-		if(tab=="tab3"){
-			//showCritic(1,flagCritic);
-		}
-	}
 	</script>
 </body>
 </html>
