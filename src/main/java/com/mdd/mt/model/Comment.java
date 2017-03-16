@@ -13,15 +13,16 @@ public class Comment {
 
 	private Integer dianzan;
 
+	private Date createTime;
+	
+	private String comment;
+	
 	@Override
 	public String toString() {
 		return "Comment [id=" + id + ", movieId=" + movieId + ", userId=" + userId + ", score=" + score + ", dianzan="
 				+ dianzan + ", createTime=" + createTime + ", comment=" + comment + "]";
 	}
 
-	private Date createTime;
-
-	private String comment;
 
 	public Integer getId() {
 		return id;

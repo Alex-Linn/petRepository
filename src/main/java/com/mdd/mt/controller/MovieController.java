@@ -65,11 +65,14 @@ public class MovieController {
 		//影评信息
 		List<CommentView>commentViewList = new ArrayList<CommentView>();
 		List<Comment>commentList = commentServiceImpl.getCommentByMovieId(movieId);
+		System.out.println(commentList);
 		for(Comment comment:commentList){
 			CommentView commentView = new CommentView();
 			User user = userService.getUserById(comment.getUserId());
 			if(user!=null){
-				BeanUtils.copyProperties(comment, commentView);
+				commentView.setMovieId(comment.getMovieId());
+				commentView.setDianzan(comment.getDianzan());
+				commentView.setScore(comment.getScore());
 				commentView.setUserName(user.getUserName());
 				commentView.setUserPicture(user.getUserPicture());
 				commentViewList.add(commentView);
