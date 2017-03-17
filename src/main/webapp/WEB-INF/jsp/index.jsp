@@ -34,7 +34,7 @@
 
 					<li style="opacity: 0; z-index: 0;"><a
 						href="http://www.189mv.cn/banner?type=3&amp;title=http://www.189mv.cn/movie/29952"
-						target="_blank"><i></i><img
+						"><i></i><img
 							src="<%=request.getContextPath()%>/images/630a9a60-a962-4234-b4f6-3c3abd4513c9.jpg"
 							height="400" width="1002"><span style=""
 							class="banner_scroll">天才捕手</span><span
@@ -42,7 +42,7 @@
 
 					<li style="opacity: 0; z-index: 0;"><a
 						href="http://www.189mv.cn/banner?type=3&amp;title=http://www.189mv.cn/movie/29670/"
-						target="_blank"><i></i><img
+						"><i></i><img
 							src="<%=request.getContextPath()%>/images/f3dbea18-9282-4381-b992-9ee9f43b9f3d.jpg"
 							height="400" width="1002"><span style=""
 							class="banner_scroll">最终幻想15：王者之剑</span><span
@@ -50,7 +50,7 @@
 
 					<li style="opacity: 0; z-index: 0;"><a
 						href="http://www.189mv.cn/banner?type=3&amp;title=http://www.189mv.cn/movie/29732/"
-						target="_blank"><i></i><img
+						"><i></i><img
 							src="<%=request.getContextPath()%>/images/16d056ac-f52f-4bb3-884b-0a53c70ceda6.jpg"
 							height="400" width="1002"><span style=""
 							class="banner_scroll">乐高蝙蝠侠大电影</span><span
@@ -58,7 +58,7 @@
 
 					<li style="opacity: 1; z-index: 1;"><a
 						href="http://www.189mv.cn/banner?type=3&amp;title=http://www.189mv.cn/movie/29731/"
-						target="_blank"><i></i><img
+						"><i></i><img
 							src="<%=request.getContextPath()%>/images/d353792d-f05b-41ca-9287-e89c4379b4d3.jpg"
 							height="400" width="1002"><span style=""
 							class="banner_scroll">金刚狼3：殊死一战</span><span
@@ -66,7 +66,7 @@
 
 					<li style="opacity: 0; z-index: 0;"><a
 						href="http://www.189mv.cn/banner?type=3&amp;title=http://www.189mv.cn/movie/29650"
-						target="_blank"><i></i><img
+						"><i></i><img
 							src="<%=request.getContextPath()%>/images/de79ece4-5236-4d62-b539-7eae7c8385c8.jpg"
 							height="400" width="1002"><span style=""
 							class="banner_scroll">生化危机：终章</span><span
@@ -105,13 +105,13 @@
 		<div class="hot_film com_b mart fix">
 			<div class="h_txt">
 				<h2>正在热映</h2>
-				<a href="http://www.189mv.cn/movie/" class="m" target="_blank">共12部电影，查看全部&gt;&gt;</a>
+				<a href="http://www.189mv.cn/movie/" class="m" ">共12部电影，查看全部&gt;&gt;</a>
 			</div>
 
 			<div class="tx_film fl">
 				<div class="pic">
 					<input id="hotfilmid" value="29790" type="hidden"> <a
-						href="http://www.189mv.cn/movie/29790/" target="_blank"
+						href="http://www.189mv.cn/movie/29790/" "
 						id="firsthotfilmimg" class="p"><img
 						src="${isShowMovieList.get(0).posterUrl}"
 						height="270" width="440"></a>
@@ -142,14 +142,14 @@
 				<ul class="pic_lsit fix">
 				<c:forEach items="${isShowMovieList}" var="isShowMovie">
 					<li><a href="<%=request.getContextPath()%>/mt/movieDetail?movieId=${isShowMovie.id}" class="pic"
-						title="${isShowMovie.movieName}" target="_blank"><img
+						title="${isShowMovie.movieName}" "><img
 							src="${isShowMovie.posterUrl}"
 							height="170" width="137"></a>
 
 						<div class="con">
 							<h3>
 								<a href="<%=request.getContextPath()%>/mt/movieDetail?movieId=${isShowMovie.id}" class="blue"
-									title="${isShowMovie.movieName}" target="_blank">${isShowMovie.movieName}</a>
+									title="${isShowMovie.movieName}" ">${isShowMovie.movieName}</a>
 							</h3>
 							<div class="s">
 								<span class="star"> <span class="star_now"
@@ -170,7 +170,7 @@
 			<div class="go_box">
 				<div class="go_txt clearfix">
 					<h2>即将上映</h2>
-					<a href="http://www.189mv.cn/movie?tab=2" target="_blank"
+					<a href="http://www.189mv.cn/movie?tab=2" "
 						class="m total-num">共30部电影，查看全部&gt;&gt;</a>
 				</div>
 				<div id="go_cont" class="go_cont">
@@ -182,14 +182,14 @@
 									<div class="hm_box">
 										<div class="pic">
 											<a href="<%=request.getContextPath()%>/mt/movieDetail?movieId=${noShowMovie.id}" title="${noShowMovie.movieName}"
-												target="_blank"><img
+												><img
 												src="${noShowMovie.posterUrl}"
 												height="170" width="137"></a>
 										</div>
 										<div class="cont">
 											<h3>
 												<a href="<%=request.getContextPath()%>/mt/movieDetail?movieId=${noShowMovie.id}" class="blue"
-													title="${noShowMovie.movieName}" target="_blank">${noShowMovie.movieName}</a>
+													title="${noShowMovie.movieName}" >${noShowMovie.movieName}</a>
 											</h3>
 											<p>${noShowMovie.rescheduledTime}上映</p>
 											<div class="look-new">
@@ -217,7 +217,7 @@
 			<div class="hot_news_inner">
 				<div class="h_txt">
 					<h2>热门新闻</h2>
-					<a href="http://www.189mv.cn/news/" target="_blank" class="more"
+					<a href="http://www.189mv.cn/news/"  class="more"
 						id="more">更多&gt;&gt;</a>
 				</div>
 				<div class="news_cont fix">
@@ -225,17 +225,17 @@
 
 
 						<div class="pic">
-							<a href="http://www.189mv.cn/news/16398/" target="_blank"><img
+							<a href="http://www.189mv.cn/news/16398/" ><img
 								src="<%=request.getContextPath()%>/images/news_45208.jpg"
 								alt="新闻" height="202" width="344"></a>
 						</div>
 						<div class="cont">
 							<h3 class="blue">
-								<a href="http://www.189mv.cn/news/16398/" target="_blank">第89届奥斯卡金像奖颁奖典礼</a>
+								<a href="http://www.189mv.cn/news/16398/" >第89届奥斯卡金像奖颁奖典礼</a>
 							</h3>
 							<p>
 								现场闹乌龙！奥斯卡颁奖现场最佳影片发错了 <span class="more">[<a
-									href="http://www.189mv.cn/news/16398/" target="_blank">阅读全文</a>]
+									href="http://www.189mv.cn/news/16398/" >阅读全文</a>]
 								</span>
 							</p>
 
@@ -247,35 +247,35 @@
 
 						<dl>
 							<dt>
-								<a href="http://www.189mv.cn/news/16378/" target="_blank">2017年3月内地影市前瞻</a>
+								<a href="http://www.189mv.cn/news/16378/">2017年3月内地影市前瞻</a>
 							</dt>
 							<dd>狼叔"护女"金刚救人 美女野兽经典重现</dd>
 						</dl>
 
 						<dl>
 							<dt>
-								<a href="http://www.189mv.cn/news/16358/" target="_blank">2017年1月内地影市前瞻</a>
+								<a href="http://www.189mv.cn/news/16358/" >2017年1月内地影市前瞻</a>
 							</dt>
 							<dd>星爷葛大爷韩寒激战年初一 BJ星战打情怀...</dd>
 						</dl>
 
 						<dl>
 							<dt>
-								<a href="http://www.189mv.cn/news/16338/" target="_blank">2016年12月内地影市前瞻</a>
+								<a href="http://www.189mv.cn/news/16338/" >2016年12月内地影市前瞻</a>
 							</dt>
 							<dd>张艺谋率队打怪兽 大片搏杀预热贺岁档</dd>
 						</dl>
 
 						<dl>
 							<dt>
-								<a href="http://www.189mv.cn/news/16318/" target="_blank">2016年11月内地影市前瞻</a>
+								<a href="http://www.189mv.cn/news/16318/" >2016年11月内地影市前瞻</a>
 							</dt>
 							<dd>海外片密集上映 “潘金莲”单挑好莱坞</dd>
 						</dl>
 
 						<dl>
 							<dt>
-								<a href="http://www.189mv.cn/news/16299/" target="_blank">2016年10月内地影市前瞻</a>
+								<a href="http://www.189mv.cn/news/16299/">2016年10月内地影市前瞻</a>
 							</dt>
 							<dd>国庆档四雄开战 引进大片密集亮相</dd>
 						</dl>
@@ -294,19 +294,19 @@
 
 				<dl class="fix">
 					<dt class="pic">
-						<a title="专访《锦绣缘》黄晓明：我喜欢演霸道总裁" target="_blank"
+						<a title="专访《锦绣缘》黄晓明：我喜欢演霸道总裁"
 							href="http://www.189mv.cn/news/13500/"><img
 							src="<%=request.getContextPath()%>/images/news_37425.jpg"
 							height="90" width="90"></a>
 					</dt>
 					<dd>
 						<h4>
-							<a href="http://www.189mv.cn/news/13500/" target="_blank"
+							<a href="http://www.189mv.cn/news/13500/" 
 								title="专访《锦绣缘》黄晓明：我喜欢演霸道总裁" class="blue">专访《锦绣缘》黄晓明...</a>
 						</h4>
 						<p>
 							这是他首次担任电视剧出品人，发布会上，黄晓明表现的很卖力，他配合着记...<span class="more">[<a
-								target="_blank" href="http://www.189mv.cn/news/13500/">阅读全文</a>]
+								href="http://www.189mv.cn/news/13500/">阅读全文</a>]
 							</span>
 						</p>
 					</dd>
@@ -314,19 +314,19 @@
 
 				<dl class="fix">
 					<dt class="pic">
-						<a title="独家专访迪士尼《超能陆战队》主创团队" target="_blank"
+						<a title="独家专访迪士尼《超能陆战队》主创团队" 
 							href="http://www.189mv.cn/news/13439/"><img
 							src="<%=request.getContextPath()%>/images/news_37361.jpg"
 							height="90" width="90"></a>
 					</dt>
 					<dd>
 						<h4>
-							<a href="http://www.189mv.cn/news/13439/" target="_blank"
+							<a href="http://www.189mv.cn/news/13439/" 
 								title="独家专访迪士尼《超能陆战队》主创团队" class="blue">独家专访迪士尼《超能...</a>
 						</h4>
 						<p>
 							美国特派记者专赴《超能陆战队》诞生之地——迪士尼动画工作室，与影片中...<span class="more">[<a
-								target="_blank" href="http://www.189mv.cn/news/13439/">阅读全文</a>]
+								" href="http://www.189mv.cn/news/13439/">阅读全文</a>]
 							</span>
 						</p>
 					</dd>
@@ -334,19 +334,19 @@
 
 				<dl class="fix">
 					<dt class="pic">
-						<a title="专访动画电影《花木兰》导演巴里·库克" target="_blank"
+						<a title="专访动画电影《花木兰》导演巴里·库克" "
 							href="http://www.189mv.cn/news/13140/"><img
 							src="<%=request.getContextPath()%>/images/news_37003.jpg"
 							height="90" width="90"></a>
 					</dt>
 					<dd>
 						<h4>
-							<a href="http://www.189mv.cn/news/13140/" target="_blank"
+							<a href="http://www.189mv.cn/news/13140/" "
 								title="专访动画电影《花木兰》导演巴里·库克" class="blue">专访动画电影《花木兰...</a>
 						</h4>
 						<p>
 							在《花木兰》导演巴里·库克看来，要想让“孙悟空”走向世界，不仅需要大...<span class="more">[<a
-								target="_blank" href="http://www.189mv.cn/news/13140/">阅读全文</a>]
+								" href="http://www.189mv.cn/news/13140/">阅读全文</a>]
 							</span>
 						</p>
 					</dd>
@@ -365,7 +365,7 @@
 				<ul class="fix">
 
 					<li><a href="http://weibo.com/yuanxiantong" class="k_4"
-						target="_blank">
+						">
 							<h3 class="blue">新浪微博</h3>
 							<p>@院线通</p>
 							<p>更好的影讯，更多的优惠，</p>
@@ -374,7 +374,7 @@
 				</ul>
 			</div>
 		</div>
-		<a href="http://www.189mv.cn/phone/?tab=3" target="_blank">
+		<a href="http://www.189mv.cn/phone/?tab=3" ">
 			<div class="weixin_index weixin_index1">
 				<div class="img-cen">
 					<img src="<%=request.getContextPath()%>/images/weixin1.jpg"
@@ -388,7 +388,7 @@
 					<div class="clear"></div>
 				</div>
 			</div>
-		</a> <a href="http://www.189mv.cn/phone/?tab=3" target="_blank">
+		</a> <a href="http://www.189mv.cn/phone/?tab=3" ">
 			<div class="weixin_index">
 				<div class="img-cen">
 					<img src="<%=request.getContextPath()%>/images/weixin.jpg">
@@ -401,7 +401,7 @@
 					<div class="clear"></div>
 				</div>
 			</div>
-		</a> <a href="http://www.189mv.cn/phone/" target="_blank">
+		</a> <a href="http://www.189mv.cn/phone/" ">
 			<div class="kehuduan_index">
 				<div class="img-cen">
 					<img src="<%=request.getContextPath()%>/images/kehuduan.png">
@@ -419,11 +419,11 @@
 
 	<div id="footer" class="fix">
 		<p class="frlink">
-			友情链接:<a href="http://webmail23.189.cn/webmail/" target="_blank">189邮箱</a>
-			| <a href="http://itv.huiyong123.com/" target="_blank">ITV</a> | <a
-				href="http://gd.189.cn/" target="_blank">网上营业厅</a> | <a
-				href="http://gd.chinavnet.com/" target="_blank">互联星空</a> | <a
-				href="http://www.189mv.cn/contactUs/" target="_blank">联系我们</a>
+			友情链接:<a href="http://webmail23.189.cn/webmail/" ">189邮箱</a>
+			| <a href="http://itv.huiyong123.com/" ">ITV</a> | <a
+				href="http://gd.189.cn/" ">网上营业厅</a> | <a
+				href="http://gd.chinavnet.com/" ">互联星空</a> | <a
+				href="http://www.189mv.cn/contactUs/" ">联系我们</a>
 		</p>
 		<ul>
 			<li>客服电话：4008610001<br>电影比价平台经营许可证：粤ICP备14020429号<br>Copyright©

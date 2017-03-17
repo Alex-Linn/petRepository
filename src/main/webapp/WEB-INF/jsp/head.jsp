@@ -23,7 +23,7 @@
 				<a href="<%=request.getContextPath() %>/mt/loadUserInfo">${user.userName}</a> | <a
 					href="<%=request.getContextPath() %>/mt/loadUserInfo" class="blue">我的个人中心</a> | <a
 					href="<%=request.getContextPath() %>/mt/logout">退出</a> | <a
-					href="javascript:void(0);" target="_blank">帮助</a>
+					href="javascript:void(0);" >帮助</a>
 			</div>
 		</div>
 	</div>
@@ -31,14 +31,14 @@
 	<div class="b_blue">
 		<div class="main_nav">
 			<ul class="m_nav_list fix">
-				<li class="home"><a href="<%=request.getContextPath() %>/mt/loadIndex" target="_blank">首页</a></li>
-				<li><a href="<%=request.getContextPath() %>/mt/loadMovieList" target="_blank">正在热映电影</a></li>
-				<li><a href="<%=request.getContextPath() %>/mt/loadMovieList" target="_blank">即将上映电影</a></li>
-				<li><a href="<%=request.getContextPath() %>/mt/loadCinemaList" target="_blank" >影院</a></li>
-				<li><a href="<%=request.getContextPath() %>/mt/loadNews" target="_blank">电影资讯</a></li>
-				<li><a href="<%=request.getContextPath() %>/mt/loadDiscount" target="_blank">优惠信息</a></li>
+				<li class="home"><a href="<%=request.getContextPath() %>/mt/loadIndex" >首页</a></li>
+				<li><a href="<%=request.getContextPath() %>/mt/loadMovieList" >正在热映电影</a></li>
+				<li><a href="<%=request.getContextPath() %>/mt/loadMovieList" >即将上映电影</a></li>
+				<li><a href="<%=request.getContextPath() %>/mt/loadCinemaList" >影院</a></li>
+				<li><a href="<%=request.getContextPath() %>/mt/loadNews" >电影资讯</a></li>
+				<li><a href="<%=request.getContextPath() %>/mt/loadDiscount" >优惠信息</a></li>
 				<li><a href="<%=request.getContextPath() %>/mt/help"
-					style="padding: 0px 20px;" target="_blank">帮助</a></li>
+					style="padding: 0px 20px;">帮助</a></li>
 			</ul>
 		</div>
 	</div>

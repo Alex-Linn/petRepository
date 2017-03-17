@@ -26,7 +26,7 @@
 			</div>
 			
         </div><!--城市选择-->
-    <div class="t_nav" id="userstatediv"><a href="javascript:register();">注册</a> | <a href="javascript:login();" id="loginbtn">登录</a> | <a href="http://www.189mv.cn/help/" target="_blank">帮助</a></div>
+    <div class="t_nav" id="userstatediv"><a href="javascript:register();">注册</a> | <a href="javascript:login();" id="loginbtn">登录</a> | <a href="http://www.189mv.cn/help/" ">帮助</a></div>
   </div>
 </div>
 
@@ -107,10 +107,10 @@
 		<ul class="JQ-slide-content pic_lsit fix">
 	
    <li>
-	<a href="http://www.189mv.cn/movie/29790/" class="pic" title="一条狗的使命" target="_blank"><img src="./images/f014f945658b3d287a7128021c0d82f1_HB1_41676.jpg" width="137" height="170"></a>
+	<a href="http://www.189mv.cn/movie/29790/" class="pic" title="一条狗的使命" "><img src="./images/f014f945658b3d287a7128021c0d82f1_HB1_41676.jpg" width="137" height="170"></a>
      
 	 <div class="con">
-	    <h3><a href="http://www.189mv.cn/movie/29790/" class="blue" title="一条狗的使命" target="_blank">一条狗的使命</a></h3>
+	    <h3><a href="http://www.189mv.cn/movie/29790/" class="blue" title="一条狗的使命" ">一条狗的使命</a></h3>
 	    <div class="s">
 	    <span class="star">
 	        <span class="star_now" style="width:82%"></span>
@@ -121,10 +121,10 @@
 	</li>
 	
    <li>
-	<a href="http://www.189mv.cn/movie/29670/" class="pic" title="最终幻想15：王者之剑" target="_blank"><img src="./images/8da8d2857fe10a437361f20db18c085d_HB1_41376.jpg" width="137" height="170"></a>
+	<a href="http://www.189mv.cn/movie/29670/" class="pic" title="最终幻想15：王者之剑" "><img src="./images/8da8d2857fe10a437361f20db18c085d_HB1_41376.jpg" width="137" height="170"></a>
      
 	 <div class="con">
-	    <h3><a href="http://www.189mv.cn/movie/29670/" class="blue" title="最终幻想15：王者之剑" target="_blank">最终幻想15：王者之剑</a></h3>
+	    <h3><a href="http://www.189mv.cn/movie/29670/" class="blue" title="最终幻想15：王者之剑" ">最终幻想15：王者之剑</a></h3>
 	    <div class="s">
 	    <span class="star">
 	        <span class="star_now" style="width:80%"></span>
@@ -135,10 +135,10 @@
 	</li>
 	
    <li>
-	<a href="http://www.189mv.cn/movie/29952/" class="pic" title="天才捕手" target="_blank"><img src="./images/63e220b8fe15058141765cff09630c57_HB1_41991.jpg" width="137" height="170"></a>
+	<a href="http://www.189mv.cn/movie/29952/" class="pic" title="天才捕手" "><img src="./images/63e220b8fe15058141765cff09630c57_HB1_41991.jpg" width="137" height="170"></a>
      
 	 <div class="con">
-	    <h3><a href="http://www.189mv.cn/movie/29952/" class="blue" title="天才捕手" target="_blank">天才捕手</a></h3>
+	    <h3><a href="http://www.189mv.cn/movie/29952/" class="blue" title="天才捕手" ">天才捕手</a></h3>
 	    <div class="s">
 	    <span class="star">
 	        <span class="star_now" style="width:80%"></span>
@@ -149,10 +149,10 @@
 	</li>
 	
    <li>
-	<a href="http://www.189mv.cn/movie/29650/" class="pic" title="生化危机：终章" target="_blank"><img src="<%=request.getContextPath()%>/images/7499965c0fffafc8424c36b8ba37b0d8_HB1_41836.jpg" width="137" height="170"></a>
+	<a href="http://www.189mv.cn/movie/29650/" class="pic" title="生化危机：终章" "><img src="<%=request.getContextPath()%>/images/7499965c0fffafc8424c36b8ba37b0d8_HB1_41836.jpg" width="137" height="170"></a>
      
 	 <div class="con">
-	    <h3><a href="http://www.189mv.cn/movie/29650/" class="blue" title="生化危机：终章" target="_blank">生化危机：终章</a></h3>
+	    <h3><a href="http://www.189mv.cn/movie/29650/" class="blue" title="生化危机：终章" ">生化危机：终章</a></h3>
 	    <div class="s">
 	    <span class="star">
 	        <span class="star_now" style="width:80%"></span>
@@ -163,10 +163,10 @@
 	</li>
 	
    <li>
-	<a href="http://www.189mv.cn/movie/29892/" class="pic" title="玛格丽特的春天" target="_blank"><img src="<%=request.getContextPath()%>/images/acb98b0af3748bc4f305d6cc0747bbf9_HB1_41807.jpg" width="137" height="170"></a>
+	<a href="http://www.189mv.cn/movie/29892/" class="pic" title="玛格丽特的春天" "><img src="<%=request.getContextPath()%>/images/acb98b0af3748bc4f305d6cc0747bbf9_HB1_41807.jpg" width="137" height="170"></a>
      
 	 <div class="con">
-	    <h3><a href="http://www.189mv.cn/movie/29892/" class="blue" title="玛格丽特的春天" target="_blank">玛格丽特的春天</a></h3>
+	    <h3><a href="http://www.189mv.cn/movie/29892/" class="blue" title="玛格丽特的春天" ">玛格丽特的春天</a></h3>
 	    <div class="s">
 	    <span class="star">
 	        <span class="star_now" style="width:77%"></span>
@@ -177,10 +177,10 @@
 	</li>
 	
    <li>
-	<a href="http://www.189mv.cn/movie/29850/" class="pic" title="夜色撩人" target="_blank"><img src="<%=request.getContextPath()%>/images/8674bf513a0526e2755f0c08a41f6dd2_HB1_41754.jpg" width="137" height="170"></a>
+	<a href="http://www.189mv.cn/movie/29850/" class="pic" title="夜色撩人" "><img src="<%=request.getContextPath()%>/images/8674bf513a0526e2755f0c08a41f6dd2_HB1_41754.jpg" width="137" height="170"></a>
      
 	 <div class="con">
-	    <h3><a href="http://www.189mv.cn/movie/29850/" class="blue" title="夜色撩人" target="_blank">夜色撩人</a></h3>
+	    <h3><a href="http://www.189mv.cn/movie/29850/" class="blue" title="夜色撩人" ">夜色撩人</a></h3>
 	    <div class="s">
 	    <span class="star">
 	        <span class="star_now" style="width:77%"></span>
@@ -191,10 +191,10 @@
 	</li>
 	
    <li>
-	<a href="http://www.189mv.cn/movie/27310/" class="pic" title="碟仙诡谭2" target="_blank"><img src="http://image.189mv.cn/images/filmlib/fd30e78d3117b50599eb14aa264fcbe5_HB1_33567.jpg?w=300&amp;quality=100" width="137" height="170"></a>
+	<a href="http://www.189mv.cn/movie/27310/" class="pic" title="碟仙诡谭2" "><img src="http://image.189mv.cn/images/filmlib/fd30e78d3117b50599eb14aa264fcbe5_HB1_33567.jpg?w=300&amp;quality=100" width="137" height="170"></a>
      
 	 <div class="con">
-	    <h3><a href="http://www.189mv.cn/movie/27310/" class="blue" title="碟仙诡谭2" target="_blank">碟仙诡谭2</a></h3>
+	    <h3><a href="http://www.189mv.cn/movie/27310/" class="blue" title="碟仙诡谭2" ">碟仙诡谭2</a></h3>
 	    <div class="s">
 	    <span class="star">
 	        <span class="star_now" style="width:74%"></span>
@@ -205,10 +205,10 @@
 	</li>
 	
    <li>
-	<a href="http://www.189mv.cn/movie/29510/" class="pic" title="欢乐好声音" target="_blank"><img src="http://image.189mv.cn/images/filmlib/3ba0633b2d957b70aeebfe617234fe30_HB1_40762.jpg?w=300&amp;quality=100" width="137" height="170"></a>
+	<a href="http://www.189mv.cn/movie/29510/" class="pic" title="欢乐好声音" "><img src="http://image.189mv.cn/images/filmlib/3ba0633b2d957b70aeebfe617234fe30_HB1_40762.jpg?w=300&amp;quality=100" width="137" height="170"></a>
      
 	 <div class="con">
-	    <h3><a href="http://www.189mv.cn/movie/29510/" class="blue" title="欢乐好声音" target="_blank">欢乐好声音</a></h3>
+	    <h3><a href="http://www.189mv.cn/movie/29510/" class="blue" title="欢乐好声音" ">欢乐好声音</a></h3>
 	    <div class="s">
 	    <span class="star">
 	        <span class="star_now" style="width:83%"></span>
@@ -219,10 +219,10 @@
 	</li>
 	
    <li>
-	<a href="http://www.189mv.cn/movie/29530/" class="pic" title="爱乐之城" target="_blank"><img src="http://image.189mv.cn/images/filmlib/52692876b5b1e6d84b14f5744ba2be10_HB1_40856.jpg?w=300&amp;quality=100" width="137" height="170"></a>
+	<a href="http://www.189mv.cn/movie/29530/" class="pic" title="爱乐之城" "><img src="http://image.189mv.cn/images/filmlib/52692876b5b1e6d84b14f5744ba2be10_HB1_40856.jpg?w=300&amp;quality=100" width="137" height="170"></a>
      
 	 <div class="con">
-	    <h3><a href="http://www.189mv.cn/movie/29530/" class="blue" title="爱乐之城" target="_blank">爱乐之城</a></h3>
+	    <h3><a href="http://www.189mv.cn/movie/29530/" class="blue" title="爱乐之城" ">爱乐之城</a></h3>
 	    <div class="s">
 	    <span class="star">
 	        <span class="star_now" style="width:90%"></span>
@@ -233,10 +233,10 @@
 	</li>
 	
    <li>
-	<a href="http://www.189mv.cn/movie/29011/" class="pic" title="惊魂绣花鞋" target="_blank"><img src="http://image.189mv.cn/images/filmlib/70e4c454ba6b9d697eb9f387702cbfbb_HB1_39103.jpg?w=300&amp;quality=100" width="137" height="170"></a>
+	<a href="http://www.189mv.cn/movie/29011/" class="pic" title="惊魂绣花鞋" "><img src="http://image.189mv.cn/images/filmlib/70e4c454ba6b9d697eb9f387702cbfbb_HB1_39103.jpg?w=300&amp;quality=100" width="137" height="170"></a>
      
 	 <div class="con">
-	    <h3><a href="http://www.189mv.cn/movie/29011/" class="blue" title="惊魂绣花鞋" target="_blank">惊魂绣花鞋</a></h3>
+	    <h3><a href="http://www.189mv.cn/movie/29011/" class="blue" title="惊魂绣花鞋" ">惊魂绣花鞋</a></h3>
 	    <div class="s">
 	    <span class="star">
 	        <span class="star_now" style="width:73%"></span>
@@ -247,10 +247,10 @@
 	</li>
 	
    <li>
-	<a href="http://www.189mv.cn/movie/29732/" class="pic" title="乐高蝙蝠侠大电影" target="_blank"><img src="http://image.189mv.cn/images/filmlib/d596c163af4b7ef2f6f090b1083d3575_HB1_41556.jpg?w=300&amp;quality=100" width="137" height="170"></a>
+	<a href="http://www.189mv.cn/movie/29732/" class="pic" title="乐高蝙蝠侠大电影" "><img src="http://image.189mv.cn/images/filmlib/d596c163af4b7ef2f6f090b1083d3575_HB1_41556.jpg?w=300&amp;quality=100" width="137" height="170"></a>
      
 	 <div class="con">
-	    <h3><a href="http://www.189mv.cn/movie/29732/" class="blue" title="乐高蝙蝠侠大电影" target="_blank">乐高蝙蝠侠大电影</a></h3>
+	    <h3><a href="http://www.189mv.cn/movie/29732/" class="blue" title="乐高蝙蝠侠大电影" ">乐高蝙蝠侠大电影</a></h3>
 	    <div class="s">
 	    <span class="star">
 	        <span class="star_now" style="width:83%"></span>
@@ -261,10 +261,10 @@
 	</li>
 	
    <li>
-	<a href="http://www.189mv.cn/movie/28309/" class="pic" title="诡眼" target="_blank"><img src="http://image.189mv.cn/images/filmlib/533c080aada54f6512307ffac816ecab_HB1_41882.jpg?w=300&amp;quality=100" width="137" height="170"></a>
+	<a href="http://www.189mv.cn/movie/28309/" class="pic" title="诡眼" "><img src="http://image.189mv.cn/images/filmlib/533c080aada54f6512307ffac816ecab_HB1_41882.jpg?w=300&amp;quality=100" width="137" height="170"></a>
      
 	 <div class="con">
-	    <h3><a href="http://www.189mv.cn/movie/28309/" class="blue" title="诡眼" target="_blank">诡眼</a></h3>
+	    <h3><a href="http://www.189mv.cn/movie/28309/" class="blue" title="诡眼" ">诡眼</a></h3>
 	    <div class="s">
 	    <span class="star">
 	        <span class="star_now" style="width:68%"></span>
@@ -275,10 +275,10 @@
 	</li>
 	
    <li>
-	<a href="http://www.189mv.cn/movie/29450/" class="pic" title="乘风破浪" target="_blank"><img src="http://image.189mv.cn/images/filmlib/a7fcefa65cb0ad6b1cc0ede31a8e586d_HB1_40460.jpg?w=300&amp;quality=100" width="137" height="170"></a>
+	<a href="http://www.189mv.cn/movie/29450/" class="pic" title="乘风破浪" "><img src="http://image.189mv.cn/images/filmlib/a7fcefa65cb0ad6b1cc0ede31a8e586d_HB1_40460.jpg?w=300&amp;quality=100" width="137" height="170"></a>
      
 	 <div class="con">
-	    <h3><a href="http://www.189mv.cn/movie/29450/" class="blue" title="乘风破浪" target="_blank">乘风破浪</a></h3>
+	    <h3><a href="http://www.189mv.cn/movie/29450/" class="blue" title="乘风破浪" ">乘风破浪</a></h3>
 	    <div class="s">
 	    <span class="star">
 	        <span class="star_now" style="width:80%"></span>
@@ -393,8 +393,8 @@ $(function (){
   </div>
 </div>
   <div id="footer" class="fix">
-       	  <p class="frlink">友情链接:<a href="http://webmail23.189.cn/webmail/" target="_blank">189邮箱</a> | <a href="http://itv.huiyong123.com/" target="_blank">ITV</a> | <a href="http://gd.189.cn/" target="_blank">网上营业厅</a> | <a href="http://gd.chinavnet.com/" target="_blank">互联星空</a> 
-       	  | <a href="http://www.189mv.cn/contactUs/" target="_blank">联系我们</a></p>
+       	  <p class="frlink">友情链接:<a href="http://webmail23.189.cn/webmail/" ">189邮箱</a> | <a href="http://itv.huiyong123.com/" ">ITV</a> | <a href="http://gd.189.cn/" ">网上营业厅</a> | <a href="http://gd.chinavnet.com/" ">互联星空</a> 
+       	  | <a href="http://www.189mv.cn/contactUs/" ">联系我们</a></p>
           <ul>
       		 <li><a href="javascript:void(0);"><img src="./院线通-首页_files/dianxin_img.gif" width="120" height="42"></a></li>
         	<li>客服电话：4008610001<br>电信及增值业务经营许可证：粤ICP备14020429号<br>Copyright© 2007—2013 中国电信 版权所有</li>

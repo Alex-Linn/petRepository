@@ -94,8 +94,6 @@
 		});
 		
 		$("#loginButton").click(function(){
-			alert(userPwd);
-			alert(userName);
 			if(userName!=''&&userPwd!=''){
 				$("#myform").submit();
 			}

@@ -36,7 +36,7 @@
 		,
 		<include refid="Blob_Column_List" />
 		from t_comment
-		where movie_id = #{movieId,jdbcType=INTEGER}
+		where movie_id = #{movieId,jdbcType=INTEGER} order by create_time desc
 	</select>
 	
 	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
