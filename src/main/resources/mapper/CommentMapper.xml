@@ -49,7 +49,7 @@
 		comment)
 		values (#{id,jdbcType=INTEGER}, #{movieId,jdbcType=INTEGER},
 		#{userId,jdbcType=INTEGER},
-		#{score,jdbcType=INTEGER}, #{dianzan,jdbcType=INTEGER}, #{createTime,jdbcType=DATE},
+		#{score,jdbcType=INTEGER}, #{dianzan,jdbcType=INTEGER}, now(),
 		#{comment,jdbcType=LONGVARCHAR})
 	</insert>
 	<insert id="insertSelective" parameterType="com.mdd.mt.model.Comment">

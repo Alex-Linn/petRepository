@@ -31,4 +31,8 @@ public class MovieScheduleServiceImpl {
             movieScheduleMapper.saveMovieScheduleList(movieScheduleList);
         }
     }
+
+	public List<MovieSchedule> loadScheduleList(int movieId, int cinemaId) {
+		return movieScheduleMapper.loadScheduleList(movieId,cinemaId);
+	}
 }

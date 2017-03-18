@@ -13,11 +13,14 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.mdd.mt.model.Cinema;
 import com.mdd.mt.model.Comment;
 import com.mdd.mt.model.CommentView;
 import com.mdd.mt.model.Movie;
 import com.mdd.mt.model.User;
+import com.mdd.mt.service.CinemaServiceImpl;
 import com.mdd.mt.service.CommentServiceImpl;
 import com.mdd.mt.service.MovieServiceImpl;
 import com.mdd.mt.service.UserService;
@@ -38,6 +41,9 @@ public class MovieController {
 
 	@Autowired
 	private UserService userService;
+	
+	@Autowired
+	private CinemaServiceImpl cinemaServiceImpl;
 
 	/**
 	 * 加载首页信息
@@ -65,7 +71,7 @@ public class MovieController {
 	 */
 	@RequestMapping("movieDetail")
 	public String movieDetail(@Param("movieId") int movieId, ModelMap modelMap) {
-		movieDetailUtil(movieId, modelMap);
+		movieDetailUtil(movieId,"深圳", modelMap);
 		return "movieDetail";
 	}
 
@@ -83,8 +89,8 @@ public class MovieController {
 			modelMap.addAttribute("message","请你先登入！");
 			return "login";
 		}
-		movieDetailUtil(comment.getMovieId(), modelMap);
 		commentServiceImpl.insertComment(comment);
+		movieDetailUtil(comment.getMovieId(), "深圳",modelMap);
 		return "movieDetailWithComment";
 	}
 
@@ -93,7 +99,10 @@ public class MovieController {
 	 * @param movieId
 	 * @param modelMap
 	 */
-	private void movieDetailUtil(int movieId, ModelMap modelMap) {
+	private void movieDetailUtil(int movieId, String city,ModelMap modelMap) {
+		//选票场次
+		List<String> areaList = cinemaServiceImpl.loadAreaByCity("深圳");
+		modelMap.addAttribute("areaList", areaList);
 		// 电影信息
 		Movie movie = movieServiceImpl.getMovieById(movieId);
 		modelMap.addAttribute("movie", movie);
@@ -126,5 +135,7 @@ public class MovieController {
 		modelMap.addAttribute("movieList", movieList);
 		return "movieList";
 	}
+	
+	
 	
 }

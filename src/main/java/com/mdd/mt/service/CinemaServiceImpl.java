@@ -2,6 +2,7 @@ package com.mdd.mt.service;
 
 import com.mdd.mt.mapper.CinemaMapper;
 import com.mdd.mt.model.Cinema;
+import com.mdd.mt.model.Movie;
 
 import java.util.List;
 
@@ -62,5 +63,22 @@ public class CinemaServiceImpl {
 	 */
 	public List<Cinema> loadCinemaList(String city, String area) {
 		return cinemaMapper.loadCinemaList(city, area);
+	}
+
+	/**
+	 * 加载影院信息
+	 * @param cinemaId
+	 */
+	public Cinema loadCinemaById(int cinemaId) {
+		return cinemaMapper.loadCinemaById(cinemaId);
+	}
+
+	/**
+	 * 查询该电影放映的电影
+	 * @param cinemaId
+	 * @return
+	 */
+	public List<Movie> loadMovieByCinemaId(int cinemaId) {
+		return cinemaMapper.loadMovieByCinemaId(cinemaId);
 	}
 }

@@ -66,13 +66,13 @@
 
 							<dl class="area_dl last fix">
 								<dt class="pic">
-									<a href="http://www.189mv.cn/cinema/sp00144036001/"><img
+									<a href="<%=request.getContextPath()%>/mt/loadCinema?cinemaId=${cinema.id}"><img
 										src="${cinema.picture}" width="263"
 										height="168"></a>
 								</dt>
 								<dd>
 									<h3 class="txt">
-										<a href="http://www.189mv.cn/cinema/sp00144036001/">${cinema.cinemaName}</a>
+										<a href="<%=request.getContextPath()%>/mt/loadCinema?cinemaId=${cinema.id}">${cinema.cinemaName}</a>
 									</h3>
 
 									<p class="p">

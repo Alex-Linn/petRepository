@@ -4,6 +4,8 @@ import com.mdd.mt.model.MovieSchedule;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Param;
+
 public interface MovieScheduleMapper {
     int deleteByPrimaryKey(Integer id);
 
@@ -23,4 +25,12 @@ public interface MovieScheduleMapper {
      * @return
      */
     void saveMovieScheduleList(List<MovieSchedule>movieScheduleList);
+
+    /**
+     * 查询电影场次
+     * @param movieId
+     * @param cinemaId
+     * @return
+     */
+	List<MovieSchedule> loadScheduleList(@Param("movieId")int movieId, @Param("cinemaId")int cinemaId);
 }

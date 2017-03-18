@@ -44,7 +44,7 @@
 			<input name="viewId" id="filmViewId" value="14990" type="hidden">
 			<div class="ct fr">
 				<div class="c">
-					<h4 style="width: 200px">${movie.movieName}</h4>
+					<h4 style="width: 900px">${movie.movieName}</h4>
 				</div>
 				<div class="hu">
 					<ul>
@@ -52,7 +52,6 @@
 						<li>主演:${movie.performer}</li>
 						<li>语言:${movie.movieLanguage}</li>
 						<li>片长:${movie.movieTime}</li>
-
 						<li>${movie.rescheduledTime}</li>
 
 						<li class="pf fix"><span class="fl">评分:${movie.score}</span>
@@ -88,54 +87,15 @@
 
 				<div id="movie_tab1" style="display: block;">
 					<div class="h_s_cin com_border">
-						<!-- 	<div class="cin_select">
-							<div class="cin_tabs cin_tabs_x cin_tabs_723">
-								<ul class="fix" id="showdateul">
-
-									<li class="cur" onclick="chgShowDate(this,'2017-03-14');"><p>今天</p>
-										<p>（3月14日）</p></li>
-
-									<li class="last_li" onclick="chgShowDate(this,'2017-03-15');"><p>明天</p>
-										<p>（3月15日）</p></li>
-
-								</ul>
-							</div>
-
-						</div> -->
-
 						<div class="cin_com">
 							<div class="cin_com_t"></div>
 							<div class="cin_s">
 								<div class="cin_comp">
 									<div class="cin_area cin_area_723">
 										<ul class="fix" id="arealistul">
-											<li><a href="javascript:showAreaCinema('allcinema');"
-												id="allcinema" class="">全部影院</a></li>
-
-											<li><a href="javascript:showAreaCinema('360102');"
-												id="360102">东湖区</a></li>
-
-											<li><a href="javascript:showAreaCinema('360111');"
-												id="360111">青山湖区</a></li>
-
-											<li><a href="javascript:showAreaCinema('360121');"
-												id="360121">南昌县</a></li>
-
-											<li><a href="javascript:showAreaCinema('360122');"
-												id="360122">新建县</a></li>
-
-											<li><a href="javascript:showAreaCinema('360199');"
-												id="360199">红谷滩区</a></li>
-
-										</ul>
-									</div>
-									<div class="cin_area cin_f_reset reset-cin">
-										<ul class="fix" id="cinemalistul">
-
-											<li style=""><a style="overflow: hidden;"
-												title="南昌17.5影城-胜利店"
-												href="javascript:showCinema('sp01936011101');">南昌17.5影城-胜利店</a></li>
-
+											<c:forEach items="${areaList}" var="area">
+												<li><a href="javascript:void(0);" class="cinemaArea">${area}</a></li>
+											</c:forEach>
 										</ul>
 									</div>
 								</div>
@@ -155,15 +115,7 @@
 							style="background: rgb(255, 255, 255) none repeat scroll 0% 0%; display: block;">
 							<div class="hx_cin">
 								<div class="hs_com" id="show_div">
-									<div class="hs_mtxt fix">
-										<span class="reset-828"><a
-											href="http://www.189mv.cn/cinema/sp01936011101/">南昌17.5影城-胜利店</a></span><span
-											class="adress-828">东湖区胜利路263号炫谷青年街三层</span>
-									</div>
-									<div class="fw_show" id="cfilmype_sp01936011101">
-										<a id="cfilmype_sp01936011101_2D"
-											href="javascript:chgFilmAttr('sp01936011101','2D');"
-											class="cur">2D</a>
+									<div class="hs_mtxt fix" id="cinemaShow">
 									</div>
 									<div class="mdcont fix">
 										<div class="mdcont_l fix" style="width: 688px;">
@@ -209,71 +161,78 @@
 						style="display: none;">无符合条件的影院</p>
 					<p id="qryshowloading" class="nodata border3 mar_pad"
 						style="display: none;">
-						<img
-							src="%E9%99%A2%E7%BA%BF%E9%80%9A-%E9%87%91%E5%88%9A%E7%8B%BC3%EF%BC%9A%E6%AE%8A%E6%AD%BB%E4%B8%80%E6%88%98_files/loading.gif">
+						
+						<img src="<%=request.getContextPath()%>/images/loading.gif">
 					</p>
-
+					<script type="text/javascript"
+						src="<%=request.getContextPath()%>/js/jquery.js"></script>
+					<script type="text/javascript"
+						src="<%=request.getContextPath()%>/js/common.js"></script>
 					<script type="text/javascript">
-						cinemaList = [ {
-							"cinemaId" : "sp01936011101",
-							"cinemaName" : "南昌17.5影城-胜利店",
-							"countyCode" : "360102",
-							"countyName" : "东湖区",
-							"showCnt" : 0,
-							"type" : "1"
-						}, {
-							"cinemaId" : "sp0313282",
-							"cinemaName" : "冷杉欢腾影城上海北路店",
-							"countyCode" : "360111",
-							"countyName" : "青山湖区",
-							"showCnt" : 0,
-							"type" : "0"
-						}, {
-							"cinemaId" : "sp019CMT36014601",
-							"cinemaName" : "南昌冷杉欢腾影城",
-							"countyCode" : "360111",
-							"countyName" : "青山湖区",
-							"showCnt" : 0,
-							"type" : "0"
-						}, {
-							"cinemaId" : "sp019DD36014301",
-							"cinemaName" : "南昌越幕影院莲塘路店",
-							"countyCode" : "360121",
-							"countyName" : "南昌县",
-							"showCnt" : 0,
-							"type" : "0"
-						}, {
-							"cinemaId" : "sp019CMT36012801",
-							"cinemaName" : "星美国际影城-南昌红谷新城店",
-							"countyCode" : "360122",
-							"countyName" : "新建县",
-							"showCnt" : 0,
-							"type" : "0"
-						}, {
-							"cinemaId" : "sp01936011201",
-							"cinemaName" : "南昌17.5影城-乐买佳店",
-							"countyCode" : "360122",
-							"countyName" : "新建县",
-							"showCnt" : 0,
-							"type" : "0"
-						}, {
-							"cinemaId" : "sp019VS121113",
-							"cinemaName" : "南昌金逸影城-红谷滩店",
-							"countyCode" : "360199",
-							"countyName" : "红谷滩区",
-							"showCnt" : 0,
-							"type" : "0"
-						} ];
 
-						$("#moreFilm").click(function() {
-							if ($(this).next("div").is(":hidden")) {
-								$(this).next("div").show();
-								$(this).parent().addClass("cur");
-							} else {
-								$(this).next("div").hide();
-								$(this).parent().removeClass("cur");
-							}
+					$(document).ready(function() {
+						$("a.cinemaArea").click(function() {
+							var area = $(this).text();
+							var url = "<%=request.getContextPath()%>/mt/ajaxLoadCinemaList";
+							$.ajax({
+								url : url,
+								dataType : "json",
+								cache : false,
+								type : "POST",
+								data : {
+									"city" : '深圳',
+									"area" : area
+								},
+								success : function(json) {
+									$("#cinemaShow").empty();
+									var cinemaListJson=eval(json);
+									if(cinemaListJson!=null&&cinemaListJson.length>0){
+										for(var i=0;i<cinemaListJson.length;i++){
+											var $cinemaSpan=$("<a class='cinemaId' id='"+cinemaListJson[i].id+"' href='javascript:void(0)'>"+cinemaListJson[i].cinemaName+"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>");  
+											$("#cinemaShow").append($cinemaSpan);
+										}
+									}
+									
+								}
+							});
 						});
+						
+						$("#cinemaShow").on("click","a", function() {
+							alert("----");
+							var cinemaId = $(this).attr("id");
+							alert(cinemaId);
+							var movieId = ${movie.id};
+							var url = "<%=request.getContextPath()%>/mt/movieScheduleList";
+							$.ajax({
+								url : url,
+								dataType : "json",
+								cache : false,
+								type : "POST",
+								data : {
+									"movieId" : movieId,
+									"cinemaId" : cinemaId
+								},
+								success : function(json) {
+									$("#scheduleDiv").empty();
+									var s=eval(json);
+									if(s!=null&&s.length>0){
+										for(var i=0;i<s.length;i++){
+											var startTime = "<ul><li>"+s[i].startTime+"</li>";
+											var movieLanguage = "<li>"+s[i].movieLanguage+"</li>";
+											var videoHall ="<li>s[i].videoHall</li>";
+											var price = "<li>票价</li><li>供应商</li>";
+											var buyUrl = "<li>s[i].buyUrl</li></ul>";
+											var $ul=$(startTime+movieLanguage+videoHall+price+buyUrl);  
+											$("#scheduleDiv").append($ul);
+										}
+									}
+									
+								}
+							});
+						});
+						
+						
+					});
 					</script>
 				</div>
 
@@ -499,10 +458,7 @@
 
 
 
-	<script type="text/javascript"
-		src="<%=request.getContextPath()%>/js/jquery.js"></script>
-	<script type="text/javascript"
-		src="<%=request.getContextPath()%>/js/common.js"></script>
+	
 
 	<script type="text/javascript"
 		src="<%=request.getContextPath()%>/js/show.js"></script>
@@ -534,133 +490,14 @@
 
 		}
 
-		$(function() {
-			$("#h_n_col_1").Slide({
-				effect : "scroolLoop",
-				autoPlay : false,
-				speed : "normal",
-				timer : 3000,
-				steps : 1
-			});
-			//剧照左右按钮
-			var len = $(".JQ-slide-content li").length;
-			var initLen = 4;
-			if (len > 4) {
-				$(".JQ-slide-nav a").show();
-			}
-			//剧照大图
-			$(".JQ-slide-content li a").click(function() {
-				$(".JQ-slide-content li a").removeClass("curImg");
-				$(this).addClass("curImg");
-				var curImg = $(this).find("img").attr("src");
-				$("#bigImgCon").find("img").attr("src", curImg);
-			});
-
-			//播放片花
-			$("#filmUrl").click(function() {
-				if (filmViewUrl) {
-					$("#playVideo").empty();
-					jwplayer("playVideo").setup({
-						autostart : true,
-						flashplayer : "http://www.189mv.cn/web/images/pl.swf",
-						file : filmViewUrl,
-						image : "http://www.189mv.cn/web/images/film_img.jpg",
-						height : 216,
-						width : 352
-					});
-				}
-			});
-
-			$.ajax({
-				url : root + "qryFilmGrade.htm",
-				dataType : "json",
-				cache : false,
-				type : "POST",
-				data : {
-					"mids" : filmId
-				},
-				success : function(json) {
-					if ("00" === json.result) {
-						var grades = json.grades;
-						if (grades && grades.length) {
-							$("#xiangkan em").html(grades[0].total);
-							$("#kanguo em").html(grades[0].seeCnt);
-						}
-					}
-				},
-				error : function(json) {
-				}
-			});
-
-			$("#filmgrade a").click(
-					function() {
-						var id = $(this).attr("id");
-						var ckeValue = getCookie("film");
-						if (ckeValue) {
-							if (ckeValue.indexOf(filmId) <= -1) {
-								ckeValue += "_" + filmId;
-								setCookie("film", ckeValue, 30);
-							} else {
-								return;
-							}
-						} else {
-							setCookie("film", filmId, 30);
-						}
-
-						var type = "1";
-						if (id == "kanguo") {
-							type = "2";
-						}
-
-						$.ajax({
-							url : root + "updateFilmGrade.htm",
-							dataType : "json",
-							cache : false,
-							type : "POST",
-							data : {
-								"mid" : filmId,
-								"filmName" : filmName,
-								"type" : type
-							},
-							success : function(json) {
-								if ("00" === json.result) {
-									var total = 998;
-									try {
-										total = parseInt($.trim($(
-												"#" + id + " em").html()));
-									} catch (e) {
-									}
-									$("#" + id + " em").html(total + 1);
-								}
-							},
-							error : function(json) {
-							}
-						});
-					});
-		});
-
 		$(document).ready(function() {
-			var viewId = $.trim($("#filmViewId").val());
-			if (viewId) {
-				$.ajax({
-					url : root + "qryFilmView.htm",
-					dataType : "json",
-					cache : false,
-					type : "POST",
-					data : {
-						"vid" : viewId
-					},
-					success : function(json) {
-						var code = json.result;
-						if ("00" == code) {
-							filmViewUrl = json.reason;
-						}
-					},
-					error : function(json) {
-					}
-				});
-			}
+			$("#movie_tab1").show();
+			$("#movie_tab3").hide();
+			$("#movie_tab2").hide();
+			chgTab($("#lia_tab1"),'tab1');
 		});
+
+		
 
 		function chgTab(dom, tab) {
 			var clz = $.trim($(dom).attr("class"));
@@ -678,7 +515,7 @@
 			//显示影评内容
 			var flagCritic = "z";
 			if (tab == "tab3") {
-				//showCritic(1,flagCritic);
+				showCritic(1,flagCritic);
 			}
 		}
 	</script>

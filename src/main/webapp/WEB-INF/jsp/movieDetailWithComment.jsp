@@ -2,26 +2,18 @@
 	pageEncoding="utf-8"%>
 <%@ page isELIgnored="false"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jstl/fmt" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jstl/fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="content-type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
-<meta name="application-name" content="院线通">
-<meta name="title" content="院线通">
 <title>电影比价平台</title>
-<meta name="keywords"
-	content="金刚狼3：殊死一战,剧情介绍,预告片,上映日期,电影海报,影评,导演,主演(休·杰克曼 / 帕特里克·斯图尔特 / 波伊德·霍布鲁克 / 理查德·E·格兰特 / 斯戴芬·莫昌特)">
 <link href="<%=request.getContextPath()%>/css/public.css"
 	type="text/css" rel="stylesheet">
 <link href="<%=request.getContextPath()%>/css/list.css" type="text/css"
 	rel="stylesheet">
 <script src="<%=request.getContextPath()%>/js/hm.js"></script>
-<script type="text/javascript">
-	function showYinping() {
-	}
-</script>
 <script src="<%=request.getContextPath()%>/js/share.js"></script>
 <link rel="stylesheet"
 	href="<%=request.getContextPath()%>/css/share_style0_16.css">
@@ -52,7 +44,7 @@
 			<input name="viewId" id="filmViewId" value="14990" type="hidden">
 			<div class="ct fr">
 				<div class="c">
-					<h4 style="width: 200px">${movie.movieName}</h4>
+					<h4 style="width: 900px">${movie.movieName}</h4>
 				</div>
 				<div class="hu">
 					<ul>
@@ -60,7 +52,6 @@
 						<li>主演:${movie.performer}</li>
 						<li>语言:${movie.movieLanguage}</li>
 						<li>片长:${movie.movieTime}</li>
-
 						<li>${movie.rescheduledTime}</li>
 
 						<li class="pf fix"><span class="fl">评分:${movie.score}</span>
@@ -96,54 +87,22 @@
 
 				<div id="movie_tab1" style="display: block;">
 					<div class="h_s_cin com_border">
-						<!-- 	<div class="cin_select">
-							<div class="cin_tabs cin_tabs_x cin_tabs_723">
-								<ul class="fix" id="showdateul">
-
-									<li class="cur" onclick="chgShowDate(this,'2017-03-14');"><p>今天</p>
-										<p>（3月14日）</p></li>
-
-									<li class="last_li" onclick="chgShowDate(this,'2017-03-15');"><p>明天</p>
-										<p>（3月15日）</p></li>
-
-								</ul>
-							</div>
-
-						</div> -->
-
 						<div class="cin_com">
 							<div class="cin_com_t"></div>
 							<div class="cin_s">
 								<div class="cin_comp">
 									<div class="cin_area cin_area_723">
 										<ul class="fix" id="arealistul">
-											<li><a href="javascript:showAreaCinema('allcinema');"
-												id="allcinema" class="">全部影院</a></li>
-
-											<li><a href="javascript:showAreaCinema('360102');"
-												id="360102">东湖区</a></li>
-
-											<li><a href="javascript:showAreaCinema('360111');"
-												id="360111">青山湖区</a></li>
-
-											<li><a href="javascript:showAreaCinema('360121');"
-												id="360121">南昌县</a></li>
-
-											<li><a href="javascript:showAreaCinema('360122');"
-												id="360122">新建县</a></li>
-
-											<li><a href="javascript:showAreaCinema('360199');"
-												id="360199">红谷滩区</a></li>
-
+											<c:forEach items="${areaList}" var="area">
+												<li><a href="javascript:void(0);" class="cinemaArea">${area}</a></li>
+											</c:forEach>
 										</ul>
 									</div>
 									<div class="cin_area cin_f_reset reset-cin">
 										<ul class="fix" id="cinemalistul">
-
-											<li style=""><a style="overflow: hidden;"
-												title="南昌17.5影城-胜利店"
-												href="javascript:showCinema('sp01936011101');">南昌17.5影城-胜利店</a></li>
-
+											<li>
+												<div></div>
+											</li>
 										</ul>
 									</div>
 								</div>
@@ -191,22 +150,6 @@
 												</div>
 											</div>
 
-											<div class="md_times" id="cshow_sp01936011101_2D_6"
-												onclick="qrySeats('sp01936011101','01027548584','');"
-												style="margin-right: 10px;">
-												<div class="md_mtime">21:50</div>
-												<div class="md_mt md_mt_715" title="五号厅">五号厅</div>
-												<div class="md_com md_com_1">
-													<span class="cdcare">钻/金卡价</span><span class="price">30元</span>
-												</div>
-												<div class="md_com md_com_2">
-													<span class="cdcare">银卡价</span><span class="price">30元</span>
-												</div>
-												<div class="md_com md_com_3">
-													<span class="cdcare">影院价</span><span class="price price_1">--</span>
-												</div>
-											</div>
-											<div class="clea"></div>
 										</div>
 									</div>
 								</div>
@@ -217,71 +160,33 @@
 						style="display: none;">无符合条件的影院</p>
 					<p id="qryshowloading" class="nodata border3 mar_pad"
 						style="display: none;">
-						<img
-							src="%E9%99%A2%E7%BA%BF%E9%80%9A-%E9%87%91%E5%88%9A%E7%8B%BC3%EF%BC%9A%E6%AE%8A%E6%AD%BB%E4%B8%80%E6%88%98_files/loading.gif">
+						<img src="<%=request.getContextPath()%>/images/loading.gif">
 					</p>
 
 					<script type="text/javascript">
-						cinemaList = [ {
-							"cinemaId" : "sp01936011101",
-							"cinemaName" : "南昌17.5影城-胜利店",
-							"countyCode" : "360102",
-							"countyName" : "东湖区",
-							"showCnt" : 0,
-							"type" : "1"
-						}, {
-							"cinemaId" : "sp0313282",
-							"cinemaName" : "冷杉欢腾影城上海北路店",
-							"countyCode" : "360111",
-							"countyName" : "青山湖区",
-							"showCnt" : 0,
-							"type" : "0"
-						}, {
-							"cinemaId" : "sp019CMT36014601",
-							"cinemaName" : "南昌冷杉欢腾影城",
-							"countyCode" : "360111",
-							"countyName" : "青山湖区",
-							"showCnt" : 0,
-							"type" : "0"
-						}, {
-							"cinemaId" : "sp019DD36014301",
-							"cinemaName" : "南昌越幕影院莲塘路店",
-							"countyCode" : "360121",
-							"countyName" : "南昌县",
-							"showCnt" : 0,
-							"type" : "0"
-						}, {
-							"cinemaId" : "sp019CMT36012801",
-							"cinemaName" : "星美国际影城-南昌红谷新城店",
-							"countyCode" : "360122",
-							"countyName" : "新建县",
-							"showCnt" : 0,
-							"type" : "0"
-						}, {
-							"cinemaId" : "sp01936011201",
-							"cinemaName" : "南昌17.5影城-乐买佳店",
-							"countyCode" : "360122",
-							"countyName" : "新建县",
-							"showCnt" : 0,
-							"type" : "0"
-						}, {
-							"cinemaId" : "sp019VS121113",
-							"cinemaName" : "南昌金逸影城-红谷滩店",
-							"countyCode" : "360199",
-							"countyName" : "红谷滩区",
-							"showCnt" : 0,
-							"type" : "0"
-						} ];
 
-						$("#moreFilm").click(function() {
-							if ($(this).next("div").is(":hidden")) {
-								$(this).next("div").show();
-								$(this).parent().addClass("cur");
-							} else {
-								$(this).next("div").hide();
-								$(this).parent().removeClass("cur");
-							}
+					$(document).ready(function() {
+						$("a.cinemaArea").click(function() {
+							var area = $(this).text();
+							var url = "<%=request.getContextPath()%>/mt/ajaxLoadCinemaList";
+							$.ajax({
+								url : url,
+								dataType : "json",
+								cache : false,
+								type : "POST",
+								data : {
+									"city" : '深圳',
+									"area" : area
+								},
+								success : function(json) {
+									var code = json.result;
+									if ("00" == code) {
+										filmViewUrl = json.reason;
+									}
+								}
+							});
 						});
+					});
 					</script>
 				</div>
 
@@ -328,35 +233,32 @@
 				<!-- 影片详情部分-结束 -->
 
 				<!-- 影评部分-开始 -->
-				<div class="" id="movie_tab3" style="">
+				<div class="" id="movie_tab3">
 					<div class="hot_cmt">
 						<div class="cmt_comment">
-							<form action="mt/postComment" method="post">
-							<h3 class="cmt_h3">写影评</h3>
-							<div class="cmt_tar">
-								<textarea name="" class="cmt_textarea toLogin" cols="" name="comment" rows=""
-									id="discuss-300" onclick="toLogin(this)"></textarea>
-							</div>
-							<div id="msgTime"></div>
-							<div class="cmt_stxt">
-								<span class="t"><strong class="red" id="filmName">${movie.movieName}</strong>
-								</span> <span id="hitscore" style="float: left; margin-top: 5px;">
-									<a href="javascript:void(0);"><img
-										src="<%=request.getContextPath()%>/images/ele_11.jpg"
-									   height="13" border="0" width="14"></a><a
-									href="javascript:void(0);"><img
-										src="<%=request.getContextPath()%>/images/ele_11.jpg"
-										 height="13" border="0" width="14"></a><a
-									href="javascript:void(0);">
-								</span>
-								<div class="cmt_fbtn">
-									<span class="counts">还可以输入<em id="textCount-300">140</em>字
-									</span> <input class="btn" type="submit" id="submitCritic" 
-										value="发表评论" style="cursor: pointer;" type="button">
+							<form action="<%=request.getContextPath()%>/mt/postComment">
+								<h3 class="cmt_h3">写影评</h3>
+								<div class="cmt_tar">
+									<textarea name="comment" class="cmt_textarea toLogin"
+										id="discuss-300"></textarea>
 								</div>
-							</div>
-							<input type="hidden" name="movieId" value="${movie.movieName }"/>
-							<input type="hidden" name="userId" value="${user.id }"/>
+								<div id="msgTime"></div>
+								<div class="cmt_stxt">
+									<span class="t"><strong class="red" id="filmName">${movie.movieName}</strong>
+									</span> <span id="hitscore" style="float: left; margin-top: 5px;">
+										<img src="<%=request.getContextPath()%>/images/ele_11.jpg"
+										height="13" border="0" width="14"> <img
+										src="<%=request.getContextPath()%>/images/ele_11.jpg"
+										height="13" border="0" width="14">
+									</span>
+									<div class="cmt_fbtn">
+										<span class="counts">还可以输入<em id="textCount-300">140</em>字
+										</span> <input class="btn" type="submit" value="发表评论"
+											style="cursor: pointer;">
+									</div>
+								</div>
+								<input type="hidden" name="movieId" value="${movie.id}" /> <input
+									type="hidden" name="userId" value="${user.id}" />
 							</form>
 						</div>
 						<div class="cmt_wrapper">
@@ -374,76 +276,76 @@
 								</div>
 							</div>
 							<div class="cmt_art  critics-con" id="filmcritics">
-							<c:forEach items="${commentViewList}" var="commentView">
-							
-								<div class="cmt_acont fix">
-									<div style="width: 100%;">
-										<span class="ico_face"><img
-											src="<%=request.getContextPath()%>/images/ele_07.jpg"
-											height="52" width="52"></span>
-										<div class="cmt_cont">
-											<p class="cmt_hd">
-												<span class="t">${commentView.userName}</span>
-											</p>
-											<div class="cmt_bd">
-												<p style="word-break: break-all; word-wrap: break-word">${commentView.comment}</p>
-											</div>
-											<div class="cmt_fd fix">
-												<div class="art_score fl">
-													<em class="score_t fl">评分：${commentView.score}</em><span class="hitscore"><span
-														class="scorew" style="width: 70%;"></span></span>
+								<c:forEach items="${commentViewList}" var="commentView">
+
+									<div class="cmt_acont fix">
+										<div style="width: 100%;">
+											<span class="ico_face"><img
+												src="<%=request.getContextPath()%>/images/ele_07.jpg"
+												height="52" width="52"></span>
+											<div class="cmt_cont">
+												<p class="cmt_hd">
+													<span class="t">${commentView.userName}</span>
+												</p>
+												<div class="cmt_bd">
+													<p style="word-break: break-all; word-wrap: break-word">${commentView.comment}</p>
 												</div>
-												<div class="art_times fl">${commentView.createTime}</div>
-												<div class="art_stu fr">
-													<span class="cmt_agree" onclick="praiseOrTrod(this)"
-														id="praise_43700">赞(<span class="praise_num"
-														style="padding: 0px;">0</span>)
-													</span><span class="cmt_disagree" onclick="praiseOrTrod(this)"
-														id="trod_43700">踩(<span class="trod_num"
-														style="padding: 0px;">0</span>)
-													</span><span class="cmt_feedback" onclick="toggle(this)"
-														id="reply_43700">回复(0)</span>
-												</div>
-											</div>
-											<div class="clear"></div>
-											<div id="slide_43700" style="display: none;">
-												<div class="top-reply">
-													<img
-														src="<%=request.getContextPath()%>/images/ts_j.jpg"
-														height="11" width="24">
-												</div>
-												<div class="huiFu">
-													<div>
-														<input name="textfield"
-															class="textfield replyRemainNumInput"
-															onkeyup="onlyIntegerKeyUp(this,event)"
-															onclick="toLogin()" type="text"><input
-															name="button1" class="btnReply"
-															onclick="submitHuifu(this)" id="button_43700"
-															type="button">
-														<div class="clear"></div>
-														<table style="font-size: 12px;" cellspacing="0"
-															cellpadding="0" border="0" width="100%">
-															<tbody>
-																<tr>
-																	<td height="26">共<span id="totalReply_43700">0</span>条
-																	</td>
-																	<td align="right">还可以输入 <span
-																		class="replyRemainNum">140</span> 字
-																	</td>
-																	<td width="100">&nbsp;</td>
-																</tr>
-															</tbody>
-														</table>
+												<div class="cmt_fd fix">
+													<div class="art_score fl">
+														<em class="score_t fl">评分：${commentView.score}</em><span
+															class="hitscore"><span class="scorew"
+															style="width: 70%;"></span></span>
 													</div>
-													<div id="replyTab_43700"></div>
+													<div class="art_times fl">${commentView.createTime}</div>
+													<div class="art_stu fr">
+														<span class="cmt_agree" onclick="praiseOrTrod(this)"
+															id="praise_43700">赞(<span class="praise_num"
+															style="padding: 0px;">0</span>)
+														</span><span class="cmt_disagree" onclick="praiseOrTrod(this)"
+															id="trod_43700">踩(<span class="trod_num"
+															style="padding: 0px;">0</span>)
+														</span><span class="cmt_feedback" onclick="toggle(this)"
+															id="reply_43700">回复(0)</span>
+													</div>
+												</div>
+												<div class="clear"></div>
+												<div id="slide_43700" style="display: none;">
+													<div class="top-reply">
+														<img src="<%=request.getContextPath()%>/images/ts_j.jpg"
+															height="11" width="24">
+													</div>
+													<div class="huiFu">
+														<div>
+															<input name="textfield"
+																class="textfield replyRemainNumInput"
+																onkeyup="onlyIntegerKeyUp(this,event)"
+																onclick="toLogin()" type="text"><input
+																name="button1" class="btnReply"
+																onclick="submitHuifu(this)" id="button_43700"
+																type="button">
+															<div class="clear"></div>
+															<table style="font-size: 12px;" cellspacing="0"
+																cellpadding="0" border="0" width="100%">
+																<tbody>
+																	<tr>
+																		<td height="26">共<span id="totalReply_43700">0</span>条
+																		</td>
+																		<td align="right">还可以输入 <span
+																			class="replyRemainNum">140</span> 字
+																		</td>
+																		<td width="100">&nbsp;</td>
+																	</tr>
+																</tbody>
+															</table>
+														</div>
+														<div id="replyTab_43700"></div>
+													</div>
 												</div>
 											</div>
 										</div>
 									</div>
-								</div>
 								</c:forEach>
-								
+
 							</div>
 							<div class="pagecontrolre">
 								<a href="#fixtabul" onclick="javascript:callPage(1,'z')"><font
@@ -470,13 +372,13 @@
 				<ul class="pic_lsit fix">
 
 					<li class=""><a href="http://www.189mv.cn/movie/29790/"
-						class="pic" title="一条狗的使命" "><img
+						class="pic" title="一条狗的使命""><img
 							src="%E9%99%A2%E7%BA%BF%E9%80%9A-%E9%87%91%E5%88%9A%E7%8B%BC3%EF%BC%9A%E6%AE%8A%E6%AD%BB%E4%B8%80%E6%88%98_files/f014f945658b3d287a7128021c0d82f1_HB1_41676.jpg"
 							height="170" width="137"></a>
 						<div class="con">
 							<h3>
 								<a href="http://www.189mv.cn/movie/29790/" class="blue"
-									title="一条狗的使命" ">一条狗的使命</a>
+									title="一条狗的使命"">一条狗的使命</a>
 							</h3>
 							<div class="s">
 								<span class="star"> <span class="star_now"
@@ -484,71 +386,6 @@
 								</span> <em class="score">8.2</em>
 							</div>
 						</div></li>
-
-					<li class=""><a href="http://www.189mv.cn/movie/29731/"
-						class="pic" title="金刚狼3：殊死一战" "><img
-							src="%E9%99%A2%E7%BA%BF%E9%80%9A-%E9%87%91%E5%88%9A%E7%8B%BC3%EF%BC%9A%E6%AE%8A%E6%AD%BB%E4%B8%80%E6%88%98_files/9850221fec6c4d27a6fb2213e9382203_HB1_42156.jpg"
-							height="170" width="137"></a>
-						<div class="con">
-							<h3>
-								<a href="http://www.189mv.cn/movie/29731/" class="blue"
-									title="金刚狼3：殊死一战" ">金刚狼3：殊死一战</a>
-							</h3>
-							<div class="s">
-								<span class="star"> <span class="star_now"
-									style="width: 82%"></span>
-								</span> <em class="score">8.2</em>
-							</div>
-						</div></li>
-
-					<li class=""><a href="http://www.189mv.cn/movie/29650/"
-						class="pic" title="生化危机：终章" "><img
-							src="%E9%99%A2%E7%BA%BF%E9%80%9A-%E9%87%91%E5%88%9A%E7%8B%BC3%EF%BC%9A%E6%AE%8A%E6%AD%BB%E4%B8%80%E6%88%98_files/7499965c0fffafc8424c36b8ba37b0d8_HB1_41836.jpg"
-							height="170" width="137"></a>
-						<div class="con">
-							<h3>
-								<a href="http://www.189mv.cn/movie/29650/" class="blue"
-									title="生化危机：终章" ">生化危机：终章</a>
-							</h3>
-							<div class="s">
-								<span class="star"> <span class="star_now"
-									style="width: 80%"></span>
-								</span> <em class="score">8.0</em>
-							</div>
-						</div></li>
-
-					<li class=""><a href="http://www.189mv.cn/movie/29670/"
-						class="pic" title="最终幻想15：王者之剑" "><img
-							src="%E9%99%A2%E7%BA%BF%E9%80%9A-%E9%87%91%E5%88%9A%E7%8B%BC3%EF%BC%9A%E6%AE%8A%E6%AD%BB%E4%B8%80%E6%88%98_files/8da8d2857fe10a437361f20db18c085d_HB1_41376.jpg"
-							height="170" width="137"></a>
-						<div class="con">
-							<h3>
-								<a href="http://www.189mv.cn/movie/29670/" class="blue"
-									title="最终幻想15：王者之剑" ">最终幻想15：王者之剑</a>
-							</h3>
-							<div class="s">
-								<span class="star"> <span class="star_now"
-									style="width: 80%"></span>
-								</span> <em class="score">8.0</em>
-							</div>
-						</div></li>
-
-					<li class="last"><a href="http://www.189mv.cn/movie/29952/"
-						class="pic" title="天才捕手" "><img
-							src="%E9%99%A2%E7%BA%BF%E9%80%9A-%E9%87%91%E5%88%9A%E7%8B%BC3%EF%BC%9A%E6%AE%8A%E6%AD%BB%E4%B8%80%E6%88%98_files/63e220b8fe15058141765cff09630c57_HB1_41991.jpg"
-							height="170" width="137"></a>
-						<div class="con">
-							<h3>
-								<a href="http://www.189mv.cn/movie/29952/" class="blue"
-									title="天才捕手" ">天才捕手</a>
-							</h3>
-							<div class="s">
-								<span class="star"> <span class="star_now"
-									style="width: 80%"></span>
-								</span> <em class="score">8.0</em>
-							</div>
-						</div></li>
-
 				</ul>
 			</div>
 
@@ -560,11 +397,11 @@
 
 	<div id="footer" class="fix">
 		<p class="frlink">
-			友情链接:<a href="http://webmail23.189.cn/webmail/" ">189邮箱</a>
-			| <a href="http://itv.huiyong123.com/" ">ITV</a> | <a
-				href="http://gd.189.cn/" ">网上营业厅</a> | <a
-				href="http://gd.chinavnet.com/" ">互联星空</a> | <a
-				href="http://www.189mv.cn/contactUs/" ">联系我们</a>
+			友情链接:<a href="http://webmail23.189.cn/webmail/"">189邮箱</a> | <a
+				href="http://itv.huiyong123.com/"">ITV</a> | <a
+				href="http://gd.189.cn/"">网上营业厅</a> | <a
+				href="http://gd.chinavnet.com/"">互联星空</a> | <a
+				href="http://www.189mv.cn/contactUs/"">联系我们</a>
 		</p>
 		<ul>
 			<li>客服电话：4008610001<br>电信及增值业务经营许可证：粤ICP备14020429号<br>Copyright©
@@ -610,134 +447,13 @@
 
 		}
 
-		$(function() {
-			$("#h_n_col_1").Slide({
-				effect : "scroolLoop",
-				autoPlay : false,
-				speed : "normal",
-				timer : 3000,
-				steps : 1
-			});
-			//剧照左右按钮
-			var len = $(".JQ-slide-content li").length;
-			var initLen = 4;
-			if (len > 4) {
-				$(".JQ-slide-nav a").show();
-			}
-			//剧照大图
-			$(".JQ-slide-content li a").click(function() {
-				$(".JQ-slide-content li a").removeClass("curImg");
-				$(this).addClass("curImg");
-				var curImg = $(this).find("img").attr("src");
-				$("#bigImgCon").find("img").attr("src", curImg);
-			});
-
-			//播放片花
-			$("#filmUrl").click(function() {
-				if (filmViewUrl) {
-					$("#playVideo").empty();
-					jwplayer("playVideo").setup({
-						autostart : true,
-						flashplayer : "http://www.189mv.cn/web/images/pl.swf",
-						file : filmViewUrl,
-						image : "http://www.189mv.cn/web/images/film_img.jpg",
-						height : 216,
-						width : 352
-					});
-				}
-			});
-
-			$.ajax({
-				url : root + "qryFilmGrade.htm",
-				dataType : "json",
-				cache : false,
-				type : "POST",
-				data : {
-					"mids" : filmId
-				},
-				success : function(json) {
-					if ("00" === json.result) {
-						var grades = json.grades;
-						if (grades && grades.length) {
-							$("#xiangkan em").html(grades[0].total);
-							$("#kanguo em").html(grades[0].seeCnt);
-						}
-					}
-				},
-				error : function(json) {
-				}
-			});
-
-			$("#filmgrade a").click(
-					function() {
-						var id = $(this).attr("id");
-						var ckeValue = getCookie("film");
-						if (ckeValue) {
-							if (ckeValue.indexOf(filmId) <= -1) {
-								ckeValue += "_" + filmId;
-								setCookie("film", ckeValue, 30);
-							} else {
-								return;
-							}
-						} else {
-							setCookie("film", filmId, 30);
-						}
-
-						var type = "1";
-						if (id == "kanguo") {
-							type = "2";
-						}
-
-						$.ajax({
-							url : root + "updateFilmGrade.htm",
-							dataType : "json",
-							cache : false,
-							type : "POST",
-							data : {
-								"mid" : filmId,
-								"filmName" : filmName,
-								"type" : type
-							},
-							success : function(json) {
-								if ("00" === json.result) {
-									var total = 998;
-									try {
-										total = parseInt($.trim($(
-												"#" + id + " em").html()));
-									} catch (e) {
-									}
-									$("#" + id + " em").html(total + 1);
-								}
-							},
-							error : function(json) {
-							}
-						});
-					});
-		});
-
 		$(document).ready(function() {
-			var viewId = $.trim($("#filmViewId").val());
-			if (viewId) {
-				$.ajax({
-					url : root + "qryFilmView.htm",
-					dataType : "json",
-					cache : false,
-					type : "POST",
-					data : {
-						"vid" : viewId
-					},
-					success : function(json) {
-						var code = json.result;
-						if ("00" == code) {
-							filmViewUrl = json.reason;
-						}
-					},
-					error : function(json) {
-					}
-				});
-			}
+			$("#movie_tab3").show();
+			$("#movie_tab1").hide();
+			$("#movie_tab2").hide();
+			chgTab($("#lia_tab3"),'tab3');
 		});
-
+		
 		function chgTab(dom, tab) {
 			var clz = $.trim($(dom).attr("class"));
 			if (clz.indexOf("cur") > -1) {
@@ -754,14 +470,8 @@
 			//显示影评内容
 			var flagCritic = "z";
 			if (tab == "tab3") {
-				//showCritic(1,flagCritic);
+				showCritic(1,flagCritic);
 			}
-		}
-		//评论 
-		function submitCritics(){
-			//评论 
-			var comment = $("#button_43700").val();
-			
 		}
 	</script>
 </body>

@@ -18,7 +18,8 @@
 		<result column="create_time" property="createTime" jdbcType="DATE" />
 	</resultMap>
 	<sql id="Base_Column_List">
-		id, movie_id, cinema_id, start_time, end_time, language, video_hall,
+		id, movie_id, cinema_id, start_time, end_time, movie_anguage,
+		video_hall,
 		seat_condition,
 		price, buy_url,website_type, create_time
 	</sql>
@@ -30,20 +31,34 @@
 		from t_movie_schedule
 		where id = #{id,jdbcType=INTEGER}
 	</select>
+	
+	<select id="loadScheduleList" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from t_movie_schedule
+		where movie_id = #{movieId,jdbcType=INTEGER}
+		and
+		cinema_id = #{cinemaId,jdbcType=INTEGER}
+	</select>
 
 	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
-		delete from t_movie_schedule
+		delete from
+		t_movie_schedule
 		where id = #{id,jdbcType=INTEGER}
 	</delete>
 
 	<insert id="insert" parameterType="com.mdd.mt.model.MovieSchedule">
-		insert into t_movie_schedule (movie_id, cinema_id, start_time,
-		end_time, movie_language,video_hall, seat_condition, price,buy_url,
+		insert into t_movie_schedule
+		(movie_id, cinema_id, start_time,
+		end_time, movie_language,video_hall,
+		seat_condition, price,buy_url,
 		website_type,create_time)
-		values (#{movieId,jdbcType=INTEGER}, #{cinemaId,jdbcType=INTEGER},
+		values
+		(#{movieId,jdbcType=INTEGER}, #{cinemaId,jdbcType=INTEGER},
 		#{startTime,jdbcType=VARCHAR}, #{endTime,jdbcType=VARCHAR},
 		#{language,jdbcType=VARCHAR},
-		#{videoHall,jdbcType=VARCHAR}, #{seatCondition,jdbcType=VARCHAR}, #{price,jdbcType=DOUBLE},
+		#{videoHall,jdbcType=VARCHAR},
+		#{seatCondition,jdbcType=VARCHAR}, #{price,jdbcType=DOUBLE},
 		#{buyUrl,jdbcType=VARCHAR},#{websiteType,jdbcType=VARCHAR},
 		#{createTime,jdbcType=DATE})
 	</insert>
@@ -57,7 +72,7 @@
 		VALUES
 		<foreach collection="list" item="schedule" index="index"
 			separator=",">
-			(#{schedule.movieId,jdbcType=INTEGER}, 
+			(#{schedule.movieId,jdbcType=INTEGER},
 			#{schedule.cinemaId,jdbcType=INTEGER},
 			#{schedule.startTime,jdbcType=VARCHAR},
 			#{schedule.endTime,jdbcType=VARCHAR},

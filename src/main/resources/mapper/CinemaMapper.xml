@@ -14,12 +14,33 @@
 		<result column="picture" property="picture" jdbcType="VARCHAR" />
 		<result column="create_time" property="createTime" jdbcType="DATE" />
 	</resultMap>
+		<resultMap id="movietMap" type="com.mdd.mt.model.Movie">
+		<id column="id" property="id" jdbcType="INTEGER" />
+		<result column="movie_name" property="movieName" jdbcType="VARCHAR" />
+		<result column="movie_english_name" property="movieEnglishName"
+			jdbcType="VARCHAR" />
+		<result column="director" property="director" jdbcType="VARCHAR" />
+		<result column="performer" property="performer" jdbcType="VARCHAR" />
+		<result column="movie_type" property="movieType" jdbcType="VARCHAR" />
+		<result column="country" property="country" jdbcType="VARCHAR" />
+		<result column="movie_language" property="movieLanguage"
+			jdbcType="VARCHAR" />
+		<result column="movie_time" property="movieTime" jdbcType="VARCHAR" />
+		<result column="movie_story" property="movieStory" jdbcType="VARCHAR" />
+		<result column="poster_url" property="posterUrl" jdbcType="VARCHAR" />
+		<result column="rescheduled_time" property="rescheduledTime"
+			jdbcType="VARCHAR" />
+		<result column="score" property="score" jdbcType="DOUBLE" />
+		<result column="is_show" property="isShow" jdbcType="INTEGER" />
+		<result column="create_time" property="createTime" jdbcType="DATE" />
+	</resultMap>
 
-	<sql id="Base_Column_List">
+	<sql id="Base_Column_List" >
 		id, city, area, address, cinema_name, tel, map_info,
 		introduction,picture,
 		create_time ,cinema_desc
 	</sql>
+	
 
 	<!--根据id查询 -->
 	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
@@ -54,16 +75,44 @@
 		select
 		<include refid="Base_Column_List" />
 		from t_cinema
-		where city = #{city,jdbcType=VARCHAR}
-		and area = #{area,jdbcType=VARCHAR}
+		<where>
+			<if test="city!=null and city!=''">
+				city = #{city,jdbcType=VARCHAR}
+			</if>
+			<if test="area!=null and area!=''">
+				and  area = #{area,jdbcType=VARCHAR}
+			</if>
+		</where>
 	</select>
-
+	
+	<!--根据影院的id查询 -->
+	<select id="loadCinemaById" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from t_cinema
+		where id = #{cinemaId}
+		
+	</select>
+	
+	
+	<select id="loadMovieByCinemaId" resultMap="movietMap" >
+		select
+		m.id,m.poster_url,m.movie_name
+		from t_movie as m,t_movie_cinema as mc
+		where 
+		mc.cinema_id = #{cinemaId,jdbcType=INTEGER} 
+		and 
+		m.id = mc.movie_id	
+	</select>
+	
+	
 	<!--删除影院信息 -->
 	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
 		delete from
 		t_cinema
 		where id = #{id,jdbcType=INTEGER}
 	</delete>
+
 
 	<!--插入影院信息 -->
 	<insert id="insertCinema" parameterType="com.mdd.mt.model.Cinema"
