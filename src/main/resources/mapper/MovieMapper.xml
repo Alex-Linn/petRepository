@@ -51,6 +51,14 @@
 	</select>
 
 
+	<!--根据电影类型查询 -->
+	<select id="loadMovieList" resultMap="BaseResultMap">
+		select
+		*
+		from t_movie
+		where
+		is_show = #{isShow,jdbcType=INTEGER}
+	</select>
 
 	<!--根据id删除 -->
 	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
@@ -88,8 +96,10 @@
 		</foreach>
 	</insert>
 
-	<select id="getTopSixMovie" resultMap="BaseResultMap" parameterType="java.lang.Integer">
-		SELECT * FROM t_movie where is_show = #{isShow} ORDER BY score DESC LIMIT 1,6;
+	<select id="getTopSixMovie" resultMap="BaseResultMap"
+		parameterType="java.lang.Integer">
+		SELECT * FROM t_movie where is_show = #{isShow} ORDER BY
+		score DESC LIMIT 1,6;
 	</select>
 
 </mapper>

@@ -3,6 +3,9 @@ package com.mdd.mt.controller;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -72,8 +75,14 @@ public class MovieController {
 	 * @param modelMap
 	 * @return
 	 */
-	@RequestMapping(value = "postComment",method=RequestMethod.POST)
-	public String postComment(Comment comment, ModelMap modelMap) {
+	@RequestMapping("postComment")
+	public String postComment(Comment comment, ModelMap modelMap,HttpServletRequest request) {
+		HttpSession session = request.getSession();
+		User user = (User)session.getAttribute("user");
+		if(user==null){
+			modelMap.addAttribute("message","请你先登入！");
+			return "login";
+		}
 		movieDetailUtil(comment.getMovieId(), modelMap);
 		commentServiceImpl.insertComment(comment);
 		return "movieDetailWithComment";
@@ -104,4 +113,18 @@ public class MovieController {
 		}
 		modelMap.addAttribute("commentViewList", commentViewList);
 	}
+	
+	
+	/**
+	 * 加载热映电影
+	 * @param modelMap
+	 * @return
+	 */
+	@RequestMapping("loadMovieList")
+	public String loadMovieList(ModelMap modelMap,int isShow){
+		List<Movie>movieList = movieServiceImpl.loadMovieList(isShow);
+		modelMap.addAttribute("movieList", movieList);
+		return "movieList";
+	}
+	
 }

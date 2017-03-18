@@ -324,58 +324,58 @@ function showTips(msg,type,fnt,page,flag) {
 		$("#warntips").show();
 	}
 }
-//提交影评判断
- function submitCritics(){
-			    var content=$("#discuss-300").val();
-				var score=cur+1;
-				if(score>10){
-					score=10;
-				}
-				 if(score<1){
-						showTips("请为电影进行打分！");
-						return;
-					}
-				 if($("#discuss-300").val()==""){
-						showTips("评论内容不能为空");
-						return;
-					}
-				$.ajax({
-		    	      url: root+"filmcritics/addCritics.action",
-		    	      dataType :"json",
-		    	      cache: false,
-		    	      type:"POST",
-		    	      data:{
-		    	    	  movieId:filmId,movieName:filmName,score:score,content:content,sourceChannel:sourceChannel,time:new Date().getMilliseconds()
-		    	      },
-		    	      success: function(json) {
-		    	    	if(json.code=="200"){
-		    	    		$("#discuss-300").val("");
-		    	    		$("#msgTime").empty();
-		    	    		$("#msgTime").text("温馨提示：您上次的评分是"+json.fcm.score+"分");
-		    	    		$("#textCount-300").text(filmCriticsLength);
-		    	    		$("#changeTab").find("li").removeClass("cur");
-		    	    	    $("#z").addClass("cur");
-		    	    	   
-		    	    	    showCritic(1,"z");
-		    	    	}else if(json.code=="405"){
-		    	    		$("#discuss-300").val("");
-		    	    		$("#msgTime").empty();
-		    	    		$("#textCount-300").text(filmCriticsLength);
-		    	    		$("#changeTab").find("li").removeClass("cur");
-		    	    	    $("#z").addClass("cur");
-		    	    	    $("#hitscore a").children().attr("src",root+"web/images/ele_12.jpg");
-		    	    		 showTips(json.msg,0,showCritic,1,"z");
-		    	    	}else if(json.code=="-3"){
-		    	    		toLogin();
-		    	    	}else{
-		    	    		showTips(json.msg);
-		    	    	}
-		    	      },
-		    	      error : function(json) {
-		    	  		//showTips("系统错误，请稍后再试！！！");
-		    	      }
-		    	 	}); 	
-}
+////提交影评判断
+// function submitCritics(){
+//			    var content=$("#discuss-300").val();
+//				var score=cur+1;
+//				if(score>10){
+//					score=10;
+//				}
+//				 if(score<1){
+//						showTips("请为电影进行打分！");
+//						return;
+//					}
+//				 if($("#discuss-300").val()==""){
+//						showTips("评论内容不能为空");
+//						return;
+//					}
+//				$.ajax({
+//		    	      url: root+"filmcritics/addCritics.action",
+//		    	      dataType :"json",
+//		    	      cache: false,
+//		    	      type:"POST",
+//		    	      data:{
+//		    	    	  movieId:filmId,movieName:filmName,score:score,content:content,sourceChannel:sourceChannel,time:new Date().getMilliseconds()
+//		    	      },
+//		    	      success: function(json) {
+//		    	    	if(json.code=="200"){
+//		    	    		$("#discuss-300").val("");
+//		    	    		$("#msgTime").empty();
+//		    	    		$("#msgTime").text("温馨提示：您上次的评分是"+json.fcm.score+"分");
+//		    	    		$("#textCount-300").text(filmCriticsLength);
+//		    	    		$("#changeTab").find("li").removeClass("cur");
+//		    	    	    $("#z").addClass("cur");
+//		    	    	   
+//		    	    	    showCritic(1,"z");
+//		    	    	}else if(json.code=="405"){
+//		    	    		$("#discuss-300").val("");
+//		    	    		$("#msgTime").empty();
+//		    	    		$("#textCount-300").text(filmCriticsLength);
+//		    	    		$("#changeTab").find("li").removeClass("cur");
+//		    	    	    $("#z").addClass("cur");
+//		    	    	    $("#hitscore a").children().attr("src",root+"web/images/ele_12.jpg");
+//		    	    		 showTips(json.msg,0,showCritic,1,"z");
+//		    	    	}else if(json.code=="-3"){
+//		    	    		toLogin();
+//		    	    	}else{
+//		    	    		showTips(json.msg);
+//		    	    	}
+//		    	      },
+//		    	      error : function(json) {
+//		    	  		//showTips("系统错误，请稍后再试！！！");
+//		    	      }
+//		    	 	}); 	
+//}
 
  //回复列表
  function toggle(obj){
@@ -577,18 +577,18 @@ function callPage1(num,commentId){
      $("#"+flag).addClass("cur");
      showCritic(1,flag);
  }
- $(document).ready(function(){
-	 $("#discuss-300").keyup(function(){
-		  var curLength=$(this).val().length;	
-		  if(curLength>filmCriticsLength){
-			var num=$(this).val().substr(0,filmCriticsLength);
-			$(this).val(num);
-			$("#textCount-300").text(0);
-			}
-			else{
-				$("#textCount-300").text(filmCriticsLength-$(this).val().length);
-			} 		    
-		});
+// $(document).ready(function(){
+//	 $("#discuss-300").keyup(function(){
+//		  var curLength=$(this).val().length;	
+//		  if(curLength>filmCriticsLength){
+//			var num=$(this).val().substr(0,filmCriticsLength);
+//			$(this).val(num);
+//			$("#textCount-300").text(0);
+//			}
+//			else{
+//				$("#textCount-300").text(filmCriticsLength-$(this).val().length);
+//			} 		    
+//		});
 	//点击评分
  	$("#hitscore a").click(function(){ 
  		cur=$(this).index();
@@ -609,7 +609,7 @@ function callPage1(num,commentId){
 				$(this).parent().find(".replyRemainNum").text(filmCriticsLength-$(this).val().length);
 			}     
 	  });*/
- });
+// });
  
  function onlyIntegerKeyUp(self,e) {
 	 var curLength=$(self).val().length;	

@@ -2,18 +2,26 @@
 	pageEncoding="utf-8"%>
 <%@ page isELIgnored="false"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jstl/fmt"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="content-type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
+<meta name="application-name" content="院线通">
+<meta name="title" content="院线通">
 <title>电影比价平台</title>
+<meta name="keywords"
+	content="金刚狼3：殊死一战,剧情介绍,预告片,上映日期,电影海报,影评,导演,主演(休·杰克曼 / 帕特里克·斯图尔特 / 波伊德·霍布鲁克 / 理查德·E·格兰特 / 斯戴芬·莫昌特)">
 <link href="<%=request.getContextPath()%>/css/public.css"
 	type="text/css" rel="stylesheet">
 <link href="<%=request.getContextPath()%>/css/list.css" type="text/css"
 	rel="stylesheet">
 <script src="<%=request.getContextPath()%>/js/hm.js"></script>
+<script type="text/javascript">
+	function showYinping() {
+	}
+</script>
 <script src="<%=request.getContextPath()%>/js/share.js"></script>
 <link rel="stylesheet"
 	href="<%=request.getContextPath()%>/css/share_style0_16.css">
@@ -71,14 +79,14 @@
 					<ul class="fix" id="fixtabul">
 
 						<li><a href="javascript:chgTab(this,'tab1');" id="lia_tab1"
-							class="cur">选座购票</a></li>
+							class="">选座购票</a></li>
 
 						<li><a href="javascript:chgTab(this,'tab2');" id="lia_tab2"
 							class="">影片详情</a></li>
 
 
 						<li><a href="javascript:chgTab(this,'tab3');" id="lia_tab3"
-							class="w">影评</a></li>
+							class="cur">影评</a></li>
 
 					</ul>
 					<div class="clear"></div>
@@ -323,29 +331,32 @@
 				<div class="" id="movie_tab3" style="">
 					<div class="hot_cmt">
 						<div class="cmt_comment">
-							<form action="<%=request.getContextPath()%>/mt/postComment">
-								<h3 class="cmt_h3">写影评</h3>
-								<div class="cmt_tar">
-									<textarea name="comment" class="cmt_textarea toLogin"
-										id="discuss-300"></textarea>
-								</div>
-								<div id="msgTime"></div>
-								<div class="cmt_stxt">
-									<span class="t"><strong class="red" id="filmName">${movie.movieName}</strong>
-									</span> <span id="hitscore" style="float: left; margin-top: 5px;">
-										<img src="<%=request.getContextPath()%>/images/ele_11.jpg"
-										height="13" border="0" width="14"> <img
+							<form action="mt/postComment" method="post">
+							<h3 class="cmt_h3">写影评</h3>
+							<div class="cmt_tar">
+								<textarea name="" class="cmt_textarea toLogin" cols="" name="comment" rows=""
+									id="discuss-300" onclick="toLogin(this)"></textarea>
+							</div>
+							<div id="msgTime"></div>
+							<div class="cmt_stxt">
+								<span class="t"><strong class="red" id="filmName">${movie.movieName}</strong>
+								</span> <span id="hitscore" style="float: left; margin-top: 5px;">
+									<a href="javascript:void(0);"><img
 										src="<%=request.getContextPath()%>/images/ele_11.jpg"
-										height="13" border="0" width="14">
-									</span>
-									<div class="cmt_fbtn">
-										<span class="counts">还可以输入<em id="textCount-300">140</em>字
-										</span> <input class="btn" type="submit" value="发表评论"
-											style="cursor: pointer;">
-									</div>
+									   height="13" border="0" width="14"></a><a
+									href="javascript:void(0);"><img
+										src="<%=request.getContextPath()%>/images/ele_11.jpg"
+										 height="13" border="0" width="14"></a><a
+									href="javascript:void(0);">
+								</span>
+								<div class="cmt_fbtn">
+									<span class="counts">还可以输入<em id="textCount-300">140</em>字
+									</span> <input class="btn" type="submit" id="submitCritic" 
+										value="发表评论" style="cursor: pointer;" type="button">
 								</div>
-								<input type="hidden" name="movieId" value="${movie.id}" /> <input
-									type="hidden" name="userId" value="${user.id}" />
+							</div>
+							<input type="hidden" name="movieId" value="${movie.movieName }"/>
+							<input type="hidden" name="userId" value="${user.id }"/>
 							</form>
 						</div>
 						<div class="cmt_wrapper">
@@ -363,76 +374,76 @@
 								</div>
 							</div>
 							<div class="cmt_art  critics-con" id="filmcritics">
-								<c:forEach items="${commentViewList}" var="commentView">
-
-									<div class="cmt_acont fix">
-										<div style="width: 100%;">
-											<span class="ico_face"><img
-												src="<%=request.getContextPath()%>/images/ele_07.jpg"
-												height="52" width="52"></span>
-											<div class="cmt_cont">
-												<p class="cmt_hd">
-													<span class="t">${commentView.userName}</span>
-												</p>
-												<div class="cmt_bd">
-													<p style="word-break: break-all; word-wrap: break-word">${commentView.comment}</p>
+							<c:forEach items="${commentViewList}" var="commentView">
+							
+								<div class="cmt_acont fix">
+									<div style="width: 100%;">
+										<span class="ico_face"><img
+											src="<%=request.getContextPath()%>/images/ele_07.jpg"
+											height="52" width="52"></span>
+										<div class="cmt_cont">
+											<p class="cmt_hd">
+												<span class="t">${commentView.userName}</span>
+											</p>
+											<div class="cmt_bd">
+												<p style="word-break: break-all; word-wrap: break-word">${commentView.comment}</p>
+											</div>
+											<div class="cmt_fd fix">
+												<div class="art_score fl">
+													<em class="score_t fl">评分：${commentView.score}</em><span class="hitscore"><span
+														class="scorew" style="width: 70%;"></span></span>
 												</div>
-												<div class="cmt_fd fix">
-													<div class="art_score fl">
-														<em class="score_t fl">评分：${commentView.score}</em><span
-															class="hitscore"><span class="scorew"
-															style="width: 70%;"></span></span>
-													</div>
-													<div class="art_times fl">${commentView.createTime}</div>
-													<div class="art_stu fr">
-														<span class="cmt_agree" onclick="praiseOrTrod(this)"
-															id="praise_43700">赞(<span class="praise_num"
-															style="padding: 0px;">0</span>)
-														</span><span class="cmt_disagree" onclick="praiseOrTrod(this)"
-															id="trod_43700">踩(<span class="trod_num"
-															style="padding: 0px;">0</span>)
-														</span><span class="cmt_feedback" onclick="toggle(this)"
-															id="reply_43700">回复(0)</span>
-													</div>
+												<div class="art_times fl">${commentView.createTime}</div>
+												<div class="art_stu fr">
+													<span class="cmt_agree" onclick="praiseOrTrod(this)"
+														id="praise_43700">赞(<span class="praise_num"
+														style="padding: 0px;">0</span>)
+													</span><span class="cmt_disagree" onclick="praiseOrTrod(this)"
+														id="trod_43700">踩(<span class="trod_num"
+														style="padding: 0px;">0</span>)
+													</span><span class="cmt_feedback" onclick="toggle(this)"
+														id="reply_43700">回复(0)</span>
 												</div>
-												<div class="clear"></div>
-												<div id="slide_43700" style="display: none;">
-													<div class="top-reply">
-														<img src="<%=request.getContextPath()%>/images/ts_j.jpg"
-															height="11" width="24">
+											</div>
+											<div class="clear"></div>
+											<div id="slide_43700" style="display: none;">
+												<div class="top-reply">
+													<img
+														src="<%=request.getContextPath()%>/images/ts_j.jpg"
+														height="11" width="24">
+												</div>
+												<div class="huiFu">
+													<div>
+														<input name="textfield"
+															class="textfield replyRemainNumInput"
+															onkeyup="onlyIntegerKeyUp(this,event)"
+															onclick="toLogin()" type="text"><input
+															name="button1" class="btnReply"
+															onclick="submitHuifu(this)" id="button_43700"
+															type="button">
+														<div class="clear"></div>
+														<table style="font-size: 12px;" cellspacing="0"
+															cellpadding="0" border="0" width="100%">
+															<tbody>
+																<tr>
+																	<td height="26">共<span id="totalReply_43700">0</span>条
+																	</td>
+																	<td align="right">还可以输入 <span
+																		class="replyRemainNum">140</span> 字
+																	</td>
+																	<td width="100">&nbsp;</td>
+																</tr>
+															</tbody>
+														</table>
 													</div>
-													<div class="huiFu">
-														<div>
-															<input name="textfield"
-																class="textfield replyRemainNumInput"
-																onkeyup="onlyIntegerKeyUp(this,event)"
-																onclick="toLogin()" type="text"><input
-																name="button1" class="btnReply"
-																onclick="submitHuifu(this)" id="button_43700"
-																type="button">
-															<div class="clear"></div>
-															<table style="font-size: 12px;" cellspacing="0"
-																cellpadding="0" border="0" width="100%">
-																<tbody>
-																	<tr>
-																		<td height="26">共<span id="totalReply_43700">0</span>条
-																		</td>
-																		<td align="right">还可以输入 <span
-																			class="replyRemainNum">140</span> 字
-																		</td>
-																		<td width="100">&nbsp;</td>
-																	</tr>
-																</tbody>
-															</table>
-														</div>
-														<div id="replyTab_43700"></div>
-													</div>
+													<div id="replyTab_43700"></div>
 												</div>
 											</div>
 										</div>
 									</div>
+								</div>
 								</c:forEach>
-
+								
 							</div>
 							<div class="pagecontrolre">
 								<a href="#fixtabul" onclick="javascript:callPage(1,'z')"><font
@@ -459,13 +470,13 @@
 				<ul class="pic_lsit fix">
 
 					<li class=""><a href="http://www.189mv.cn/movie/29790/"
-						class="pic" title="一条狗的使命""><img
+						class="pic" title="一条狗的使命" "><img
 							src="%E9%99%A2%E7%BA%BF%E9%80%9A-%E9%87%91%E5%88%9A%E7%8B%BC3%EF%BC%9A%E6%AE%8A%E6%AD%BB%E4%B8%80%E6%88%98_files/f014f945658b3d287a7128021c0d82f1_HB1_41676.jpg"
 							height="170" width="137"></a>
 						<div class="con">
 							<h3>
 								<a href="http://www.189mv.cn/movie/29790/" class="blue"
-									title="一条狗的使命"">一条狗的使命</a>
+									title="一条狗的使命" ">一条狗的使命</a>
 							</h3>
 							<div class="s">
 								<span class="star"> <span class="star_now"
@@ -473,6 +484,71 @@
 								</span> <em class="score">8.2</em>
 							</div>
 						</div></li>
+
+					<li class=""><a href="http://www.189mv.cn/movie/29731/"
+						class="pic" title="金刚狼3：殊死一战" "><img
+							src="%E9%99%A2%E7%BA%BF%E9%80%9A-%E9%87%91%E5%88%9A%E7%8B%BC3%EF%BC%9A%E6%AE%8A%E6%AD%BB%E4%B8%80%E6%88%98_files/9850221fec6c4d27a6fb2213e9382203_HB1_42156.jpg"
+							height="170" width="137"></a>
+						<div class="con">
+							<h3>
+								<a href="http://www.189mv.cn/movie/29731/" class="blue"
+									title="金刚狼3：殊死一战" ">金刚狼3：殊死一战</a>
+							</h3>
+							<div class="s">
+								<span class="star"> <span class="star_now"
+									style="width: 82%"></span>
+								</span> <em class="score">8.2</em>
+							</div>
+						</div></li>
+
+					<li class=""><a href="http://www.189mv.cn/movie/29650/"
+						class="pic" title="生化危机：终章" "><img
+							src="%E9%99%A2%E7%BA%BF%E9%80%9A-%E9%87%91%E5%88%9A%E7%8B%BC3%EF%BC%9A%E6%AE%8A%E6%AD%BB%E4%B8%80%E6%88%98_files/7499965c0fffafc8424c36b8ba37b0d8_HB1_41836.jpg"
+							height="170" width="137"></a>
+						<div class="con">
+							<h3>
+								<a href="http://www.189mv.cn/movie/29650/" class="blue"
+									title="生化危机：终章" ">生化危机：终章</a>
+							</h3>
+							<div class="s">
+								<span class="star"> <span class="star_now"
+									style="width: 80%"></span>
+								</span> <em class="score">8.0</em>
+							</div>
+						</div></li>
+
+					<li class=""><a href="http://www.189mv.cn/movie/29670/"
+						class="pic" title="最终幻想15：王者之剑" "><img
+							src="%E9%99%A2%E7%BA%BF%E9%80%9A-%E9%87%91%E5%88%9A%E7%8B%BC3%EF%BC%9A%E6%AE%8A%E6%AD%BB%E4%B8%80%E6%88%98_files/8da8d2857fe10a437361f20db18c085d_HB1_41376.jpg"
+							height="170" width="137"></a>
+						<div class="con">
+							<h3>
+								<a href="http://www.189mv.cn/movie/29670/" class="blue"
+									title="最终幻想15：王者之剑" ">最终幻想15：王者之剑</a>
+							</h3>
+							<div class="s">
+								<span class="star"> <span class="star_now"
+									style="width: 80%"></span>
+								</span> <em class="score">8.0</em>
+							</div>
+						</div></li>
+
+					<li class="last"><a href="http://www.189mv.cn/movie/29952/"
+						class="pic" title="天才捕手" "><img
+							src="%E9%99%A2%E7%BA%BF%E9%80%9A-%E9%87%91%E5%88%9A%E7%8B%BC3%EF%BC%9A%E6%AE%8A%E6%AD%BB%E4%B8%80%E6%88%98_files/63e220b8fe15058141765cff09630c57_HB1_41991.jpg"
+							height="170" width="137"></a>
+						<div class="con">
+							<h3>
+								<a href="http://www.189mv.cn/movie/29952/" class="blue"
+									title="天才捕手" ">天才捕手</a>
+							</h3>
+							<div class="s">
+								<span class="star"> <span class="star_now"
+									style="width: 80%"></span>
+								</span> <em class="score">8.0</em>
+							</div>
+						</div></li>
+
 				</ul>
 			</div>
 
@@ -484,11 +560,11 @@
 
 	<div id="footer" class="fix">
 		<p class="frlink">
-			友情链接:<a href="http://webmail23.189.cn/webmail/"">189邮箱</a> | <a
-				href="http://itv.huiyong123.com/"">ITV</a> | <a
-				href="http://gd.189.cn/"">网上营业厅</a> | <a
-				href="http://gd.chinavnet.com/"">互联星空</a> | <a
-				href="http://www.189mv.cn/contactUs/"">联系我们</a>
+			友情链接:<a href="http://webmail23.189.cn/webmail/" ">189邮箱</a>
+			| <a href="http://itv.huiyong123.com/" ">ITV</a> | <a
+				href="http://gd.189.cn/" ">网上营业厅</a> | <a
+				href="http://gd.chinavnet.com/" ">互联星空</a> | <a
+				href="http://www.189mv.cn/contactUs/" ">联系我们</a>
 		</p>
 		<ul>
 			<li>客服电话：4008610001<br>电信及增值业务经营许可证：粤ICP备14020429号<br>Copyright©
@@ -680,6 +756,12 @@
 			if (tab == "tab3") {
 				//showCritic(1,flagCritic);
 			}
+		}
+		//评论 
+		function submitCritics(){
+			//评论 
+			var comment = $("#button_43700").val();
+			
 		}
 	</script>
 </body>

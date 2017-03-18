@@ -37,4 +37,11 @@ public interface MovieMapper {
      * @return
      */
     Movie selectByMovieName(String movieName);
+
+    /**
+     * 根据电影类型加载电影0即将上映 1 已结上映
+     * @param isShow
+     * @return
+     */
+	List<Movie> loadMovieList(int isShow);
 }

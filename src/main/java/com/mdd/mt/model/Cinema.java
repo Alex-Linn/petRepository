@@ -19,17 +19,11 @@ public class Cinema {
 
 	private String introduction;
 
+	private String picture;
+
 	private Date createTime;
 
 	private String cinemaDesc;
-
-	@Override
-	public String toString() {
-		return "Cinema [id=" + id + ", city=" + city + ", area=" + area + ", address=" + address + ", cinemaName="
-				+ cinemaName + ", tel=" + tel + ", mapInfo=" + mapInfo + ", introduction=" + introduction
-				+ ", createTime=" + createTime + ", cinemaDesc=" + cinemaDesc + ", getClass()=" + getClass()
-				+ ", hashCode()=" + hashCode() + ", toString()=" + super.toString() + "]";
-	}
 
 	public Integer getId() {
 		return id;
@@ -95,6 +89,14 @@ public class Cinema {
 		this.introduction = introduction;
 	}
 
+	public String getPicture() {
+		return picture;
+	}
+
+	public void setPicture(String picture) {
+		this.picture = picture;
+	}
+
 	public Date getCreateTime() {
 		return createTime;
 	}
@@ -111,6 +113,11 @@ public class Cinema {
 		this.cinemaDesc = cinemaDesc;
 	}
 
-	
+	@Override
+	public String toString() {
+		return "Cinema [id=" + id + ", city=" + city + ", area=" + area + ", address=" + address + ", cinemaName="
+				+ cinemaName + ", tel=" + tel + ", mapInfo=" + mapInfo + ", introduction=" + introduction + ", picture="
+				+ picture + ", createTime=" + createTime + ", cinemaDesc=" + cinemaDesc + "]";
+	}
 
 }

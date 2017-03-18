@@ -35,4 +35,20 @@ public interface CinemaMapper {
      * @param cinemaList
      */
     void saveCinemaList(List<Cinema> cinemaList);
+    
+    /**
+     * 根据城市名加载影院
+     * @param cityName
+     * @return
+     */
+    List<String>loadAreaByCity(String cityName);
+
+
+    /**
+     * 加载影院信息
+     * @param city
+     * @param area
+     * @return
+     */
+	List<Cinema> loadCinemaList(@Param("city")String city, @Param("area")String area);
 }

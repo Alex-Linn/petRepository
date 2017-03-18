@@ -80,6 +80,7 @@ public class JDCrawler {
 				String movieUrlId = movieUrl.substring(movieUrl.indexOf("_") + 1);
 				String date = CommonUtils.date2String(new Date());
 				String cinemaIdUrl = getCinemaIdUrl + "&movieId=" + movieUrlId + "&day=" + date + "&regionId=0";
+				
 				Element cinemaJsonStr = null;
 				try {
 					cinemaJsonStr = Jsoup.connect(cinemaIdUrl).ignoreContentType(true).timeout(60*30).get().body();
@@ -112,6 +113,8 @@ public class JDCrawler {
 						cinema.setCinemaName((String) cinemaDetailJson.get("cinemaName"));
 						// 地址
 						cinema.setAddress((String) cinemaDetailJson.get("address"));
+						//图片
+						cinema.setPicture((String) cinemaDetailJson.get("cinemaPic"));
 						// 电话
 						cinema.setTel((String) cinemaDetailJson.get("conactTel"));
 						// 区域

@@ -73,4 +73,8 @@ public class MovieServiceImpl {
     	return movie;
     }
     
+    
+    public List<Movie>loadMovieList(int isShow){
+    	return movieMapper.loadMovieList(isShow);
+    }
 }
