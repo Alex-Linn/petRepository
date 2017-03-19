@@ -85,6 +85,21 @@
 		</where>
 	</select>
 	
+	<!--根据影院的电话号码查询 -->
+	<select id="loadCinemaList1" resultMap="BaseResultMap">
+		select
+		c.id, c.city, c.area, c.address, c.cinema_name, c.tel, c.map_info,
+		c.introduction,c.picture,
+		c.create_time ,c.cinema_desc
+		from t_cinema as c ,t_movie_cinema as mc
+		where
+		c.city = #{city,jdbcType=VARCHAR}
+		and  c.area = #{area,jdbcType=VARCHAR}
+		and mc.movie_id = #{movieId,jdbcType=INTEGER}
+		and mc.cinema_id = c.id
+	</select>
+	
+	
 	<!--根据影院的id查询 -->
 	<select id="loadCinemaById" resultMap="BaseResultMap">
 		select

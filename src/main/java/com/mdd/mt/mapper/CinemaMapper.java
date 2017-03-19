@@ -71,4 +71,13 @@ public interface CinemaMapper {
 	 * @return
 	 */
 	List<Movie> loadMovieByCinemaId(int cinemaId);
+
+	/**
+	 * 
+	 * @param city
+	 * @param area
+	 * @param movieId
+	 * @return
+	 */
+	List<Cinema> loadCinemaList1(@Param("city") String city, @Param("area") String area,@Param("movieId")int movieId);
 }

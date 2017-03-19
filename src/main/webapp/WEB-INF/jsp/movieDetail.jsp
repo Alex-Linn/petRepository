@@ -115,64 +115,33 @@
 							style="background: rgb(255, 255, 255) none repeat scroll 0% 0%; display: block;">
 							<div class="hx_cin">
 								<div class="hs_com" id="show_div">
-									<div class="hs_mtxt fix" id="cinemaShow">
+									<div class="hs_mtxt fix" >
+										<table   id="cinemaShow">
+										</table>
 									</div>
-									<div class="mdcont fix">
-										<div class="mdcont_l fix" style="width: 688px;">
-											<div class="md_times" id="cshow_sp01936011101_2D_0"
-												onclick="qrySeats('sp01936011101','01027548556','');"
-												style="margin-right: 10px;">
-												<div class="md_mtime">10:45</div>
-												<div class="md_mt md_mt_715" title="四号厅">四号厅</div>
-												<div class="md_com md_com_1">
-													<span class="cdcare">钻/金卡价</span><span class="price">30元</span>
-												</div>
-												<div class="md_com md_com_2">
-													<span class="cdcare">银卡价</span><span class="price">30元</span>
-												</div>
-												<div class="md_com md_com_3">
-													<span class="cdcare">影院价</span><span class="price price_1">--</span>
-												</div>
-											</div>
-
-											<div class="md_times" id="cshow_sp01936011101_2D_6"
-												onclick="qrySeats('sp01936011101','01027548584','');"
-												style="margin-right: 10px;">
-												<div class="md_mtime">21:50</div>
-												<div class="md_mt md_mt_715" title="五号厅">五号厅</div>
-												<div class="md_com md_com_1">
-													<span class="cdcare">钻/金卡价</span><span class="price">30元</span>
-												</div>
-												<div class="md_com md_com_2">
-													<span class="cdcare">银卡价</span><span class="price">30元</span>
-												</div>
-												<div class="md_com md_com_3">
-													<span class="cdcare">影院价</span><span class="price price_1">--</span>
-												</div>
-											</div>
-											<div class="clea"></div>
-										</div>
-									</div>
+									
 								</div>
 							</div>
 						</div>
+						<div class="area_s  border1 mart10" id="mart_div"
+							style="background: rgb(255, 255, 255) none repeat scroll 0% 0%; display: block;">
+						<div class="mdcont fix">
+							<div class="mdcont_l fix" id="cshow" style="width: 700px;">
+								
+							<div class="clea"></div>
+						    </div>
+						</div>
 					</div>
-					<p id="nodata" class="nodata border3 mar_pad"
-						style="display: none;">无符合条件的影院</p>
-					<p id="qryshowloading" class="nodata border3 mar_pad"
-						style="display: none;">
-						
-						<img src="<%=request.getContextPath()%>/images/loading.gif">
-					</p>
-					<script type="text/javascript"
-						src="<%=request.getContextPath()%>/js/jquery.js"></script>
-					<script type="text/javascript"
-						src="<%=request.getContextPath()%>/js/common.js"></script>
-					<script type="text/javascript">
-
+				</div>
+		<script type="text/javascript"
+				src="<%=request.getContextPath()%>/js/jquery.js"></script>
+		<script type="text/javascript"
+			    src="<%=request.getContextPath()%>/js/common.js"></script>
+		<script type="text/javascript">
 					$(document).ready(function() {
 						$("a.cinemaArea").click(function() {
 							var area = $(this).text();
+							var movieId = ${movie.id};
 							var url = "<%=request.getContextPath()%>/mt/ajaxLoadCinemaList";
 							$.ajax({
 								url : url,
@@ -181,15 +150,22 @@
 								type : "POST",
 								data : {
 									"city" : '深圳',
-									"area" : area
+									"area" : area,
+									"movieId":movieId
 								},
 								success : function(json) {
 									$("#cinemaShow").empty();
 									var cinemaListJson=eval(json);
 									if(cinemaListJson!=null&&cinemaListJson.length>0){
+										var $tr = null;
 										for(var i=0;i<cinemaListJson.length;i++){
-											var $cinemaSpan=$("<a class='cinemaId' id='"+cinemaListJson[i].id+"' href='javascript:void(0)'>"+cinemaListJson[i].cinemaName+"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>");  
-											$("#cinemaShow").append($cinemaSpan);
+											if(i%3==0){
+											   $tr = $("<tr></tr>");
+											   $("#cinemaShow").append($tr);
+											}
+											var $td = $("<td style='width: 33%;'><a class='cinemaId' id='"+cinemaListJson[i].id+"' href='javascript:void(0)'>"+cinemaListJson[i].cinemaName+"</a></td>");
+											$tr.append($td);
+											
 										}
 									}
 									
@@ -198,10 +174,10 @@
 						});
 						
 						$("#cinemaShow").on("click","a", function() {
-							alert("----");
 							var cinemaId = $(this).attr("id");
 							alert(cinemaId);
 							var movieId = ${movie.id};
+							alert(movieId);
 							var url = "<%=request.getContextPath()%>/mt/movieScheduleList";
 							$.ajax({
 								url : url,
@@ -213,25 +189,32 @@
 									"cinemaId" : cinemaId
 								},
 								success : function(json) {
-									$("#scheduleDiv").empty();
-									var s=eval(json);
-									if(s!=null&&s.length>0){
-										for(var i=0;i<s.length;i++){
-											var startTime = "<ul><li>"+s[i].startTime+"</li>";
-											var movieLanguage = "<li>"+s[i].movieLanguage+"</li>";
-											var videoHall ="<li>s[i].videoHall</li>";
-											var price = "<li>票价</li><li>供应商</li>";
-											var buyUrl = "<li>s[i].buyUrl</li></ul>";
-											var $ul=$(startTime+movieLanguage+videoHall+price+buyUrl);  
-											$("#scheduleDiv").append($ul);
+									$("#cshow").empty();
+									var sList=eval(json);
+									alert(sList);
+									if(sList!=null&&sList.length>0){
+										for(var j=0;j<sList.length;j++){
+											$scheduleDiv = $("<div class='md_times' style='margin-right: 10px;'>")
+											$table = $("<table style='width: 688px;'></table>");
+											var s = sList[j];
+											for(var i=0;i<s.length;i++){
+												var startTime = "<tr><td style='width: 15%;'>"+s[i].startTime+"</td>";
+												var movieLanguage = "<td style='width: 15%;'>"+s[i].movieLanguage+"</td>";
+												var videoHall ="<td style='width: 20%;'>"+s[i].videoHall+"</td>";
+												var price = "<td style='width: 15%;'>"+s[i].price+"</td>";
+												var websiteType = "<td style='width: 15%;'>"+s[i].websiteType+"</td>";
+												var buyUrl = "<td style='width: 15%;'><a href="+s[i].buyUrl+">选座购票</a></td></tr>";
+												var $tr=$(startTime+movieLanguage+videoHall+price+websiteType+buyUrl);
+												$table.append($tr);
+											}
+											$scheduleDiv.append($table);
+											$("#cshow").append($scheduleDiv);
 										}
 									}
 									
 								}
 							});
 						});
-						
-						
 					});
 					</script>
 				</div>

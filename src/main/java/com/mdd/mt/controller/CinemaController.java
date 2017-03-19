@@ -61,8 +61,8 @@ public class CinemaController {
 	 */
 	@RequestMapping(value="ajaxLoadCinemaList",method=RequestMethod.POST)
 	@ResponseBody
-	public List<Cinema>ajaxLoadCinemaList(String city,String area){
-		List<Cinema> cinemaList = cinemaServiceImpl.loadCinemaList(city, area);
+	public List<Cinema>ajaxLoadCinemaList(String city,String area,int movieId){
+		List<Cinema> cinemaList = cinemaServiceImpl.loadCinemaList1(city, area,movieId);
 		return cinemaList;
 	}
 	

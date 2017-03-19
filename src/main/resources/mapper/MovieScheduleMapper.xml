@@ -18,7 +18,7 @@
 		<result column="create_time" property="createTime" jdbcType="DATE" />
 	</resultMap>
 	<sql id="Base_Column_List">
-		id, movie_id, cinema_id, start_time, end_time, movie_anguage,
+		id, movie_id, cinema_id, start_time, end_time, movie_language,
 		video_hall,
 		seat_condition,
 		price, buy_url,website_type, create_time
@@ -39,6 +39,7 @@
 		where movie_id = #{movieId,jdbcType=INTEGER}
 		and
 		cinema_id = #{cinemaId,jdbcType=INTEGER}
+		order by start_time
 	</select>
 
 	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">

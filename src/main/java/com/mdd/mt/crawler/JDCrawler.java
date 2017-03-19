@@ -62,17 +62,15 @@ public class JDCrawler {
 			// 解析电影
 			Movie movie = analyzeMovie(movieBody);
 			System.out.println(movie);
-			if(movie==null){
-				continue;
-			}
-			System.out.println(movie.getMovieName());
+			
 			//数据库存在则不入库
 			Movie dbMovie = movieService.getMovieByName(movie.getMovieName());
 			int movieId;
-			if(dbMovie!=null){
+			if(dbMovie!=null&&StringUtils.isNotBlank(dbMovie.getMovieName())){
 				movieId = dbMovie.getId();
 			}else{
-				movieId = movieService.insertMovie(dbMovie);
+				movieService.insertMovie(movie);
+				movieId = movie.getId();
 			}
 			
 			// 拼接影院url
@@ -111,6 +109,8 @@ public class JDCrawler {
 						Cinema cinema = new Cinema();
 						// 影院名称
 						cinema.setCinemaName((String) cinemaDetailJson.get("cinemaName"));
+						//城市
+						cinema.setCity("深圳");
 						// 地址
 						cinema.setAddress((String) cinemaDetailJson.get("address"));
 						//图片
@@ -130,7 +130,8 @@ public class JDCrawler {
 						if(dbCinema!=null){
 							cinemaId = dbCinema.getId();
 						}else{
-							cinemaId = cinemaService.saveCinema(cinema);
+							cinemaService.saveCinema(cinema);
+							cinemaId = cinema.getId();
 						}
 						
 						//保存电影和电影院关联关系
@@ -231,7 +232,7 @@ public class JDCrawler {
 		}
 		// 海报
 		Element infoElement = movieBody.select("body > div.movie-top > div > div.mt-infor").get(0);
-		String posterUrl = infoElement.select("div.img").attr("src");
+		String posterUrl = infoElement.select("div.img >img").attr("src");
 		movie.setPosterUrl(posterUrl);
 		// 导演
 		String director = infoElement.select("dl > dd.movie-director > div > p").text();

@@ -64,6 +64,16 @@ public class CinemaServiceImpl {
 	public List<Cinema> loadCinemaList(String city, String area) {
 		return cinemaMapper.loadCinemaList(city, area);
 	}
+	
+	/**
+	 * 加载影院信息
+	 * @param city
+	 * @param area
+	 * @return
+	 */
+	public List<Cinema> loadCinemaList1(String city, String area,int movieId) {
+		return cinemaMapper.loadCinemaList1(city, area,movieId);
+	}
 
 	/**
 	 * 加载影院信息
