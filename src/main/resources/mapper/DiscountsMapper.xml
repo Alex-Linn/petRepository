@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.mdd.mt.mapper.DiscountsMapper">
+	<resultMap id="BaseResultMap" type="com.mdd.mt.model.Discounts">
+		<id column="id" property="id" jdbcType="INTEGER" />
+		<result column="dis_title" property="disTitle" jdbcType="VARCHAR" />
+		<result column="dis_date_range" property="disDateRange"
+			jdbcType="VARCHAR" />
+		<result column="dis_img" property="disImg" jdbcType="VARCHAR" />
+		<result column="dis_websit" property="disWebsit" jdbcType="VARCHAR" />
+		<result column="dis_url" property="disUrl" jdbcType="VARCHAR" />
+		<result column="create_time" property="createTime" jdbcType="DATE" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		id, dis_title, dis_date_range, dis_img, dis_websit,
+		dis_url, create_time
+	</sql>
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
+		parameterType="java.lang.Integer">
+		select
+		<include refid="Base_Column_List" />
+		from t_discounts
+		where id = #{id,jdbcType=INTEGER}
+	</select>
+	
+	<select id="getDiscountByTitle" resultMap="BaseResultMap"
+		parameterType="java.lang.String">
+		select
+		<include refid="Base_Column_List" />
+		from t_discounts
+		where dis_title = #{title,jdbcType=VARCHAR}
+	</select>
+	
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+		delete from
+		t_discounts
+		where id = #{id,jdbcType=INTEGER}
+	</delete>
+	<insert id="insert" parameterType="com.mdd.mt.model.Discounts">
+		insert into t_discounts (id,
+		dis_title, dis_date_range,
+		dis_img, dis_websit, dis_url,
+		create_time)
+		values (#{id,jdbcType=INTEGER}, #{disTitle,jdbcType=VARCHAR},
+		#{disDateRange,jdbcType=VARCHAR},
+		#{disImg,jdbcType=VARCHAR},
+		#{disWebsit,jdbcType=VARCHAR}, #{disUrl,jdbcType=VARCHAR},
+		now()
+	</insert>
+	<insert id="insertSelective" parameterType="com.mdd.mt.model.Discounts">
+		insert into t_discounts
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				id,
+			</if>
+			<if test="disTitle != null">
+				dis_title,
+			</if>
+			<if test="disDateRange != null">
+				dis_date_range,
+			</if>
+			<if test="disImg != null">
+				dis_img,
+			</if>
+			<if test="disWebsit != null">
+				dis_websit,
+			</if>
+			<if test="disUrl != null">
+				dis_url,
+			</if>
+			<if test="createTime != null">
+				create_time,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id,jdbcType=INTEGER},
+			</if>
+			<if test="disTitle != null">
+				#{disTitle,jdbcType=VARCHAR},
+			</if>
+			<if test="disDateRange != null">
+				#{disDateRange,jdbcType=VARCHAR},
+			</if>
+			<if test="disImg != null">
+				#{disImg,jdbcType=VARCHAR},
+			</if>
+			<if test="disWebsit != null">
+				#{disWebsit,jdbcType=VARCHAR},
+			</if>
+			<if test="disUrl != null">
+				#{disUrl,jdbcType=VARCHAR},
+			</if>
+			<if test="createTime != null">
+				now()
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="com.mdd.mt.model.Discounts">
+		update t_discounts
+		<set>
+			<if test="disTitle != null">
+				dis_title = #{disTitle,jdbcType=VARCHAR},
+			</if>
+			<if test="disDateRange != null">
+				dis_date_range = #{disDateRange,jdbcType=VARCHAR},
+			</if>
+			<if test="disImg != null">
+				dis_img = #{disImg,jdbcType=VARCHAR},
+			</if>
+			<if test="disWebsit != null">
+				dis_websit = #{disWebsit,jdbcType=VARCHAR},
+			</if>
+			<if test="disUrl != null">
+				dis_url = #{disUrl,jdbcType=VARCHAR},
+			</if>
+			<if test="createTime != null">
+				create_time = #{createTime,jdbcType=DATE},
+			</if>
+		</set>
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.mdd.mt.model.Discounts">
+		update t_discounts
+		set dis_title = #{disTitle,jdbcType=VARCHAR},
+		dis_date_range =
+		#{disDateRange,jdbcType=VARCHAR},
+		dis_img = #{disImg,jdbcType=VARCHAR},
+		dis_websit = #{disWebsit,jdbcType=VARCHAR},
+		dis_url =
+		#{disUrl,jdbcType=VARCHAR},
+		create_time = #{createTime,jdbcType=DATE}
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+</mapper>

@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.mdd.mt.mapper.NewsMapper" >
+  <resultMap id="BaseResultMap" type="com.mdd.mt.model.News" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="new_title" property="newTitle" jdbcType="VARCHAR" />
+    <result column="new_picture" property="newPicture" jdbcType="VARCHAR" />
+    <result column="new_website" property="newWebsite" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="DATE" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.mdd.mt.model.News" extends="BaseResultMap" >
+    <result column="new_context" property="newContext" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, new_title, new_picture, new_website, create_time
+  </sql>
+  <sql id="Blob_Column_List" >
+    new_context
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from t_news
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from t_news
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.mdd.mt.model.News" >
+    insert into t_news (id, new_title, new_picture, 
+      new_website, create_time, new_context
+      )
+    values (#{id,jdbcType=INTEGER}, #{newTitle,jdbcType=VARCHAR}, #{newPicture,jdbcType=VARCHAR}, 
+      #{newWebsite,jdbcType=VARCHAR}, #{createTime,jdbcType=DATE}, #{newContext,jdbcType=LONGVARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.mdd.mt.model.News" >
+    insert into t_news
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="newTitle != null" >
+        new_title,
+      </if>
+      <if test="newPicture != null" >
+        new_picture,
+      </if>
+      <if test="newWebsite != null" >
+        new_website,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="newContext != null" >
+        new_context,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="newTitle != null" >
+        #{newTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="newPicture != null" >
+        #{newPicture,jdbcType=VARCHAR},
+      </if>
+      <if test="newWebsite != null" >
+        #{newWebsite,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=DATE},
+      </if>
+      <if test="newContext != null" >
+        #{newContext,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.mdd.mt.model.News" >
+    update t_news
+    <set >
+      <if test="newTitle != null" >
+        new_title = #{newTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="newPicture != null" >
+        new_picture = #{newPicture,jdbcType=VARCHAR},
+      </if>
+      <if test="newWebsite != null" >
+        new_website = #{newWebsite,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=DATE},
+      </if>
+      <if test="newContext != null" >
+        new_context = #{newContext,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.mdd.mt.model.News" >
+    update t_news
+    set new_title = #{newTitle,jdbcType=VARCHAR},
+      new_picture = #{newPicture,jdbcType=VARCHAR},
+      new_website = #{newWebsite,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=DATE},
+      new_context = #{newContext,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.mdd.mt.model.News" >
+    update t_news
+    set new_title = #{newTitle,jdbcType=VARCHAR},
+      new_picture = #{newPicture,jdbcType=VARCHAR},
+      new_website = #{newWebsite,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=DATE}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

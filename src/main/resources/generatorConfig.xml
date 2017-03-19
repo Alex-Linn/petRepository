@@ -35,14 +35,14 @@
             <property name="enableSubPackages" value="true"/>
         </javaClientGenerator>
 
-
-		 <table tableName="t_user" domainObjectName="User"
+<!-- 
+		 <table tableName="t_news" domainObjectName="News"
                enableCountByExample="false" enableUpdateByExample="false"
                enableDeleteByExample="false" enableSelectByExample="false"
                selectByExampleQueryId="false">
-        </table>
+        </table> -->
         
-         <table tableName="t_comment" domainObjectName="Comment"
+         <table tableName="t_discounts" domainObjectName="Discounts"
                enableCountByExample="false" enableUpdateByExample="false"
                enableDeleteByExample="false" enableSelectByExample="false"
                selectByExampleQueryId="false">
