@@ -13,7 +13,13 @@ public class News {
 
     private Date createTime;
 
-    private String newContext;
+    @Override
+	public String toString() {
+		return "News [id=" + id + ", newTitle=" + newTitle + ", newPicture=" + newPicture + ", newWebsite=" + newWebsite
+				+ ", createTime=" + createTime + ", newContext=" + newContext + "]";
+	}
+
+	private String newContext;
 
     public Integer getId() {
         return id;

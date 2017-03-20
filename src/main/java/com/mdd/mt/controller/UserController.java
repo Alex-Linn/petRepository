@@ -10,7 +10,9 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.mdd.mt.crawler.DiscountsCrawler;
 import com.mdd.mt.crawler.JDCrawler;
+import com.mdd.mt.crawler.NewsCrawler;
 import com.mdd.mt.crawler.TaoPiaoPiaoCrawler;
 import com.mdd.mt.model.User;
 import com.mdd.mt.service.UserService;
@@ -30,7 +32,12 @@ public class UserController {
 
 	@Autowired
 	private JDCrawler jd;
+	
+	@Autowired
+	private NewsCrawler newsCrawler;
 
+	@Autowired
+	private DiscountsCrawler discountsCrawler;
 	/**
 	 * 注册
 	 * 
@@ -106,7 +113,9 @@ public class UserController {
 
 	@RequestMapping("/jd")
 	public String jd() throws IOException {
-		jd.crawler("http://movie.jd.com/m_channel");
+//		jd.crawler("http://movie.jd.com/m_channel");
+		newsCrawler.crawler("http://news.mtime.com/");
+		discountsCrawler.crawler("http://www.quanmama.com/quan_maoyan");
 		return "demo";
 	}
 

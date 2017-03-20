@@ -8,6 +8,7 @@ import org.jsoup.Jsoup;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.mdd.mt.model.Discounts;
 import com.mdd.mt.service.DiscountsServiceImpl;
@@ -18,6 +19,7 @@ import com.mdd.mt.service.DiscountsServiceImpl;
  * @author Administrator
  *
  */
+@Service
 public class DiscountsCrawler {
 	public static final String INDEX_URL = "http://www.quanmama.com/quan_maoyan";
 
@@ -39,8 +41,9 @@ public class DiscountsCrawler {
 				for (Element ele : liElments) {
 					Discounts discount = analyzeDiscount(ele);
 					Discounts dbDiscount = discountsServiceImpl.getDiscountByTitle(discount.getDisTitle());
+					System.out.println(dbDiscount);
 					if (dbDiscount == null) {
-						discountsServiceImpl.insertDiscount(dbDiscount);
+						discountsServiceImpl.insertDiscount(discount);
 					}
 					System.out.println(discount);
 				}

@@ -90,6 +90,17 @@ public class CommonUtils {
 		}
 		return null;
 	}
+	
+	public static Date string4Date2(String dateStr) {
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+		Date date = null;
+		try {
+			date = sdf.parse(dateStr);
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
 
 	public static String date2String(Date date) {
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");

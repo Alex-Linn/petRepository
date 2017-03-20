@@ -1,5 +1,7 @@
 package com.mdd.mt.mapper;
 
+import java.util.List;
+
 import com.mdd.mt.model.News;
 
 public interface NewsMapper {
@@ -16,4 +18,12 @@ public interface NewsMapper {
     int updateByPrimaryKeyWithBLOBs(News record);
 
     int updateByPrimaryKey(News record);
+    
+    News selectNews(String title);
+    /**
+     * 最近三天的新闻
+     * @return
+     */
+    List<News>getLastNews();
+    
 }

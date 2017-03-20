@@ -35,7 +35,7 @@
 				<li><a href="<%=request.getContextPath() %>/mt/loadMovieList?isShow=1" >正在热映电影</a></li>
 				<li><a href="<%=request.getContextPath() %>/mt/loadMovieList?isShow=0" >即将上映电影</a></li>
 				<li><a href="<%=request.getContextPath() %>/mt/loadAreaByCity?city=深圳" >影院</a></li>
-				<li><a href="<%=request.getContextPath() %>/mt/loadNews" >电影资讯</a></li>
+				<li><a href="<%=request.getContextPath() %>/mt/loadLastThreeNews" >电影资讯</a></li>
 				<li><a href="<%=request.getContextPath() %>/mt/loadDiscount" >优惠信息</a></li>
 				<li><a href="<%=request.getContextPath() %>/mt/help"
 					style="padding: 0px 20px;">帮助</a></li>
