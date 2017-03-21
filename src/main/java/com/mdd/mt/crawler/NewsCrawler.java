@@ -11,7 +11,6 @@ import org.springframework.stereotype.Service;
 
 import com.mdd.mt.model.News;
 import com.mdd.mt.service.NewsServiceImpl;
-import com.mdd.mt.utils.CommonUtils;
 
 /**
  * 电影新闻爬虫
@@ -55,10 +54,6 @@ public class NewsCrawler {
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
-			//发布时间
-			String dateStr = detailEle.select("body > div.newshead > div > p").text();
-			Date date = CommonUtils.string4Date2(dateStr);
-			news.setCreateTime(date);
 			//发布网站
 			String newWebsite = detailEle.select("body > div.newshead > div > p > span.ml15 > a").text();
 			news.setNewWebsite(newWebsite);

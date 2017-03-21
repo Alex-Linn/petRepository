@@ -100,11 +100,12 @@
 									</div>
 								</div>
 								<div class="cin_com_b"></div>
-
+								<center>
 								<div class="cin_s_btn" style="display: none;" id="showAllCinema">
 									<a href="javascript:void(0)" onclick="showAllCinema()"
 										id="showAll">全部展开</a>
 								</div>
+								</center>
 							</div>
 						</div>
 
@@ -116,8 +117,10 @@
 							<div class="hx_cin">
 								<div class="hs_com" id="show_div">
 									<div class="hs_mtxt fix" >
+										<center>
 										<table   id="cinemaShow">
 										</table>
+										</center>
 									</div>
 									
 								</div>

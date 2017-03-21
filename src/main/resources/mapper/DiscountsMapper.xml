@@ -31,6 +31,13 @@
 		where dis_title = #{title,jdbcType=VARCHAR}
 	</select>
 	
+	<select id="loadLastWeekDisCount" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from t_discounts
+		where create_time > DATE_SUB(NOW(),INTERVAL 7 DAY) 
+	</select>
+	
 	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
 		delete from
 		t_discounts
@@ -45,7 +52,7 @@
 		#{disDateRange,jdbcType=VARCHAR},
 		#{disImg,jdbcType=VARCHAR},
 		#{disWebsit,jdbcType=VARCHAR}, #{disUrl,jdbcType=VARCHAR},
-		now()
+		now())
 	</insert>
 	<insert id="insertSelective" parameterType="com.mdd.mt.model.Discounts">
 		insert into t_discounts

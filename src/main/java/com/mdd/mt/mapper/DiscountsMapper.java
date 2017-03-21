@@ -1,5 +1,7 @@
 package com.mdd.mt.mapper;
 
+import java.util.List;
+
 import com.mdd.mt.model.Discounts;
 
 public interface DiscountsMapper {
@@ -16,4 +18,6 @@ public interface DiscountsMapper {
     int updateByPrimaryKey(Discounts record);
     
     Discounts getDiscountByTitle(String title);
+
+	List<Discounts> loadLastWeekDisCount();
 }

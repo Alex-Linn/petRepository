@@ -13,6 +13,7 @@ import com.mdd.mt.model.Cinema;
 import com.mdd.mt.model.Movie;
 import com.mdd.mt.model.News;
 import com.mdd.mt.service.CinemaServiceImpl;
+import com.mdd.mt.service.DiscountServiceImpl;
 import com.mdd.mt.service.NewsServiceImpl;
 
 /**
@@ -22,31 +23,19 @@ import com.mdd.mt.service.NewsServiceImpl;
  */
 @Controller
 @RequestMapping("/mt/")
-public class NewsController {
+public class DiscountController {
 	@Autowired
-	private NewsServiceImpl newsServiceImpl;
+	private DiscountServiceImpl discountServiceImpl;
 	
 	/**
-	 * 加载三天新闻
+	 * 加载最近的优惠
 	 * @param modelMap
 	 * @return
 	 */
-	@RequestMapping("loadLastThreeNews")
-	public String loadLastThreeNews(ModelMap modelMap) {
-		List<News> newsList = newsServiceImpl.getLastNews();
-		modelMap.addAttribute("newsList", newsList);
-		System.out.println(newsList);
-		return "news";
+	@RequestMapping("loadLastWeekDisCount")
+	public String loadLastWeekDisCount(ModelMap modelMap) {
+		modelMap.addAttribute("discounts",discountServiceImpl.loadLastWeekDisCount());
+		return "discount";
 	}
-	
-	@RequestMapping("loadNews")
-	public String loadNews(ModelMap modelMap,int id){
-		News news = newsServiceImpl.loadNews(id);
-		modelMap.addAttribute("news", news);
-		List<News> newsList = newsServiceImpl.getLastNews();
-		modelMap.addAttribute("newsList", newsList);
-		return "newsDetail";
-	}
-	
 	
 }
