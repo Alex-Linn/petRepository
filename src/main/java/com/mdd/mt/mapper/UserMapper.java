@@ -1,5 +1,7 @@
 package com.mdd.mt.mapper;
 
+import org.apache.ibatis.annotations.Param;
+
 import com.mdd.mt.model.User;
 
 public interface UserMapper {
@@ -16,4 +18,6 @@ public interface UserMapper {
     int updateByPrimaryKeySelective(User record);
 
     int updateByPrimaryKey(User record);
+    
+    User selectAdmin(@Param("userName")String userName,@Param("userPwd")String userPwd);
 }

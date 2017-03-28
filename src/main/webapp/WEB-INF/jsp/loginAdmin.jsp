@@ -13,19 +13,18 @@
 	rel="stylesheet">
 </head>
 <body>
-	<jsp:include page="head.jsp" />
 	<!--end 导航-->
 	<div class="wrapper">
 		<div class="crumbs mart10">
-			您的位置：<a href="http://www.189mv.cn/">电影比价平台</a> &gt; <span>登录</span>
+			您的位置：<a href="http://www.189mv.cn/">电影比价平台</a> &gt; <span>后台管理系统登录</span>
 		</div>
 	</div>
 	<div class="wrapper">
 		<div class="com_b mart10 padd_28 fix">
 			<div class="register-con">
-				<h2>用户登录</h2>
+				<h2>后台管理系统登录</h2>
 				<h3>${message}</h3>
-				<form action="<%=request.getContextPath()%>/mt/login" method="post"
+				<form action="<%=request.getContextPath()%>/mt/loginAdmin" method="post"
 					id="myform">
 					<div class="login_cont">
 						<div class="k_item_2">
@@ -39,16 +38,8 @@
 								<span id="pwdMsg"></span>
 						</div>
 
-						<div class="k_item_3">
-							<span class="rem"> <label><input type="checkbox"
-									id="remember" style="margin-right: 5px;">记住账号</label>
-							</span> <a href="http://www.189mv.cn/forget/" class="blue"
-								style="margin-left: 130px;">找回密码</a>
-						</div>
 						<div class="k_login" style="padding-bottom: 40px;">
 							<a href="javascript:void(0);" id="loginButton" class="btn">登录</a>
-						    <a href="<%=request.getContextPath()%>/mt/toRegister" class="blue"
-								style="margin-left: 5px; font-size: 12px;">我要注册</a>
 						</div>
 
 					</div>

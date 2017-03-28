@@ -175,6 +175,11 @@
 			<version>1.9</version>
 		</dependency>
 
+		<dependency>
+			<groupId>org.quartz-scheduler</groupId>
+			<artifactId>quartz</artifactId>
+			<version>2.1.7</version>
+		</dependency>
 		<!--webMagic -->
 		<dependency>
 			<groupId>us.codecraft</groupId>
@@ -214,6 +219,12 @@
 			<groupId>org.jboss.logmanager</groupId>
 			<artifactId>commons-logging-jboss-logmanager</artifactId>
 			<version>1.0.0.Final</version>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/commons-logging/commons-logging -->
+		<dependency>
+			<groupId>commons-logging</groupId>
+			<artifactId>commons-logging</artifactId>
+			<version>1.1</version>
 		</dependency>
 
 

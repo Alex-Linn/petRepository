@@ -21,4 +21,7 @@ public interface CommentMapper {
     int updateByPrimaryKey(Comment record);
     
     List<Comment>getCommentByMovieId(int movieId);
+
+	List<Comment> commentList();
+
 }

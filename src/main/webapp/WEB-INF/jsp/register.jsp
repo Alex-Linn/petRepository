@@ -49,6 +49,28 @@
 								id="repassword" type="password" class="ip_txt"> <span
 								id="repwdMsg"></span>
 						</div>
+						<div class="k_item_2" style="width: 500px">
+							<span class="t">喜欢影片类型:</span> 
+								<select id="userHobby" name= "userHobby">
+									<option value="动作">动作</option>
+									<option value="喜剧">喜剧</option>
+									<option value="爱情">爱情</option>
+									<option value="科幻">科幻 </option>
+									<option value="奇幻">奇幻 </option>
+									<option value="灾难">灾难</option>
+									<option value="恐怖">恐怖 </option>
+									<option value="纪录">纪录</option>
+									<option value="犯罪">犯罪</option>
+									<option value="战争">战争 </option>
+									<option value="冒险">冒险</option>
+									<option value="动画">动画 </option>
+									<option value="剧情">剧情 </option>
+									<option value="其他">其他 </option>
+									 
+								</select>
+						    <span
+								id="nameMsg"></span>
+						</div>
 						<div class="k_regist">
 							<a href="javascript:void(0);" id="registbtn" class="btn">提交注册</a>
 							<span style="font-size: 12px; margin-left: 5px;">已有账号</span><a
@@ -61,16 +83,9 @@
 		</div>
 	</div>
 	<div id="footer" class="fix">
-		<p class="frlink">
-			友情链接:<a href="http://webmail23.189.cn/webmail/" ">189邮箱</a>
-			| <a href="http://itv.huiyong123.com/" ">ITV</a> | <a
-				href="http://gd.189.cn/" ">网上营业厅</a> | <a
-				href="http://gd.chinavnet.com/" ">互联星空</a> | <a
-				href="http://www.189mv.cn/contactUs/" ">联系我们</a>
-		</p>
 		<ul>
-			<li>客服电话：4008610001<br>电影比价平台业务经营许可证：粤ICP备14020429号<br>Copyright©
-				2007—2017 电影比价平台 版权所有
+			<li>客服电话：1877091266<br>电影比价平台<br>Copyright©
+				2017电影比价平台 版权所有
 			</li>
 		</ul>
 	</div>

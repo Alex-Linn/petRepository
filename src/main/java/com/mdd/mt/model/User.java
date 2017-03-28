@@ -1,69 +1,91 @@
 package com.mdd.mt.model;
 
 public class User {
-    private Integer id;
+	private Integer id;
 
-    private String userName;
+	private String userName;
 
-    private String userPwd;
+	private String userPwd;
 
-    private String userTel;
-
-    @Override
-	public String toString() {
-		return "User [id=" + id + ", userName=" + userName + ", userPwd=" + userPwd + ", userTel=" + userTel
-				+ ", userPicture=" + userPicture + ", userEmail=" + userEmail + "]";
-	}
+	private String userTel;
 
 	private String userPicture;
 
-    private String userEmail;
+	private String userEmail;
 
-    public Integer getId() {
-        return id;
-    }
+	private String userHobby;
 
-    public void setId(Integer id) {
-        this.id = id;
-    }
+	private int userType;
 
-    public String getUserName() {
-        return userName;
-    }
+	public Integer getId() {
+		return id;
+	}
 
-    public void setUserName(String userName) {
-        this.userName = userName == null ? null : userName.trim();
-    }
+	public void setId(Integer id) {
+		this.id = id;
+	}
 
-    public String getUserPwd() {
-        return userPwd;
-    }
+	public String getUserName() {
+		return userName;
+	}
 
-    public void setUserPwd(String userPwd) {
-        this.userPwd = userPwd == null ? null : userPwd.trim();
-    }
+	public void setUserName(String userName) {
+		this.userName = userName;
+	}
 
-    public String getUserTel() {
-        return userTel;
-    }
+	public String getUserPwd() {
+		return userPwd;
+	}
 
-    public void setUserTel(String userTel) {
-        this.userTel = userTel == null ? null : userTel.trim();
-    }
+	public void setUserPwd(String userPwd) {
+		this.userPwd = userPwd;
+	}
 
-    public String getUserPicture() {
-        return userPicture;
-    }
+	public String getUserTel() {
+		return userTel;
+	}
 
-    public void setUserPicture(String userPicture) {
-        this.userPicture = userPicture == null ? null : userPicture.trim();
-    }
+	public void setUserTel(String userTel) {
+		this.userTel = userTel;
+	}
 
-    public String getUserEmail() {
-        return userEmail;
-    }
+	public String getUserPicture() {
+		return userPicture;
+	}
 
-    public void setUserEmail(String userEmail) {
-        this.userEmail = userEmail == null ? null : userEmail.trim();
-    }
+	public void setUserPicture(String userPicture) {
+		this.userPicture = userPicture;
+	}
+
+	public String getUserEmail() {
+		return userEmail;
+	}
+
+	public void setUserEmail(String userEmail) {
+		this.userEmail = userEmail;
+	}
+
+	public String getUserHobby() {
+		return userHobby;
+	}
+
+	public void setUserHobby(String userHobby) {
+		this.userHobby = userHobby;
+	}
+
+	public int getUserType() {
+		return userType;
+	}
+
+	public void setUserType(int userType) {
+		this.userType = userType;
+	}
+
+	@Override
+	public String toString() {
+		return "User [id=" + id + ", userName=" + userName + ", userPwd=" + userPwd + ", userTel=" + userTel
+				+ ", userPicture=" + userPicture + ", userEmail=" + userEmail + ", userHobby=" + userHobby
+				+ ", userType=" + userType + "]";
+	}
+
 }

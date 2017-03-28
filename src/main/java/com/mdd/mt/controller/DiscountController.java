@@ -1,21 +1,13 @@
 package com.mdd.mt.controller;
-
-import java.util.List;
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.mdd.mt.model.Cinema;
-import com.mdd.mt.model.Movie;
-import com.mdd.mt.model.News;
-import com.mdd.mt.service.CinemaServiceImpl;
+import com.mdd.mt.model.User;
 import com.mdd.mt.service.DiscountServiceImpl;
-import com.mdd.mt.service.NewsServiceImpl;
-
 /**
  * 
  * @author xwl
@@ -33,7 +25,12 @@ public class DiscountController {
 	 * @return
 	 */
 	@RequestMapping("loadLastWeekDisCount")
-	public String loadLastWeekDisCount(ModelMap modelMap) {
+	public String loadLastWeekDisCount(ModelMap modelMap,HttpServletRequest request) {
+		User user = (User) request.getSession().getAttribute("u");
+		if(user==null){
+			request.setAttribute("message", "你还没有登陆，请先登陆！");
+			return "login";
+		}
 		modelMap.addAttribute("discounts",discountServiceImpl.loadLastWeekDisCount());
 		return "discount";
 	}

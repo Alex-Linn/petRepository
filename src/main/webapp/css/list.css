@@ -3645,7 +3645,7 @@ h2.tuan_t {
 .tx_film  .playOuter .playBtn {
 	width: 352px;
 	height: 216px;
-	background-color: rgb(0, 0, 0);
+	background-color: rgba(243, 243, 243, 0);
 	filter: alpha(opacity = 60);
 	opacity: 0.6;
 	position: absolute;

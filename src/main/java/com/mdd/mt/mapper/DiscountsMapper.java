@@ -20,4 +20,6 @@ public interface DiscountsMapper {
     Discounts getDiscountByTitle(String title);
 
 	List<Discounts> loadLastWeekDisCount();
+	
+	int getDiscountCrawler();
 }

@@ -59,6 +59,19 @@
 		where
 		is_show = #{isShow,jdbcType=INTEGER}
 	</select>
+	
+	<!--根据电影类型查询 -->
+	<select id="getTopSpecialMovie" resultMap="BaseResultMap">
+		select
+		*
+		from t_movie
+		where
+		movie_type like "%"#{isShow,jdbcType=INTEGER}"%" limit 0,10
+	</select>
+
+	<select id="getMovieCrawler" resultType="java.lang.Integer">
+		select count(id) from t_movie where create_time > DATE_SUB(NOW(),INTERVAL 30 DAY) 
+	</select>
 
 	<!--根据id删除 -->
 	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">

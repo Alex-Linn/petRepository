@@ -35,4 +35,8 @@ public class MovieScheduleServiceImpl {
 	public List<MovieSchedule> loadScheduleList(int movieId, int cinemaId) {
 		return movieScheduleMapper.loadScheduleList(movieId,cinemaId);
 	}
+	
+	public int getScheduleCrawler(){
+		return movieScheduleMapper.getScheduleCrawler();
+}
 }

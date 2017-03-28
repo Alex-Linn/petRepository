@@ -29,6 +29,10 @@
 		where id = #{id,jdbcType=INTEGER}
 	</select>
 	
+	<select id="commentList" resultMap="ResultMapWithBLOBs">
+		select * from t_comment where create_time > DATE_SUB(NOW(),INTERVAL 7 DAY) 
+	</select>
+
 	<select id="getCommentByMovieId" resultMap="ResultMapWithBLOBs"
 		parameterType="java.lang.Integer">
 		select
@@ -36,20 +40,25 @@
 		,
 		<include refid="Blob_Column_List" />
 		from t_comment
-		where movie_id = #{movieId,jdbcType=INTEGER} order by create_time desc
+		where movie_id = #{movieId,jdbcType=INTEGER} order by
+		create_time desc
 	</select>
-	
+
 	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
-		delete from t_comment
+		delete from
+		t_comment
 		where id = #{id,jdbcType=INTEGER}
 	</delete>
 	<insert id="insert" parameterType="com.mdd.mt.model.Comment">
-		insert into t_comment (id, movie_id, user_id,
+		insert into t_comment (id,
+		movie_id, user_id,
 		score, dianzan, create_time,
 		comment)
-		values (#{id,jdbcType=INTEGER}, #{movieId,jdbcType=INTEGER},
+		values
+		(#{id,jdbcType=INTEGER}, #{movieId,jdbcType=INTEGER},
 		#{userId,jdbcType=INTEGER},
-		#{score,jdbcType=INTEGER}, #{dianzan,jdbcType=INTEGER}, now(),
+		#{score,jdbcType=INTEGER},
+		#{dianzan,jdbcType=INTEGER}, now(),
 		#{comment,jdbcType=LONGVARCHAR})
 	</insert>
 	<insert id="insertSelective" parameterType="com.mdd.mt.model.Comment">
@@ -126,21 +135,27 @@
 		where id = #{id,jdbcType=INTEGER}
 	</update>
 	<update id="updateByPrimaryKeyWithBLOBs" parameterType="com.mdd.mt.model.Comment">
-		update t_comment
+		update
+		t_comment
 		set movie_id = #{movieId,jdbcType=INTEGER},
-		user_id = #{userId,jdbcType=INTEGER},
+		user_id =
+		#{userId,jdbcType=INTEGER},
 		score = #{score,jdbcType=INTEGER},
-		dianzan = #{dianzan,jdbcType=INTEGER},
+		dianzan =
+		#{dianzan,jdbcType=INTEGER},
 		create_time = #{createTime,jdbcType=DATE},
 		comment = #{comment,jdbcType=LONGVARCHAR}
-		where id = #{id,jdbcType=INTEGER}
+		where id =
+		#{id,jdbcType=INTEGER}
 	</update>
 	<update id="updateByPrimaryKey" parameterType="com.mdd.mt.model.Comment">
 		update t_comment
 		set movie_id = #{movieId,jdbcType=INTEGER},
-		user_id = #{userId,jdbcType=INTEGER},
+		user_id =
+		#{userId,jdbcType=INTEGER},
 		score = #{score,jdbcType=INTEGER},
-		dianzan = #{dianzan,jdbcType=INTEGER},
+		dianzan =
+		#{dianzan,jdbcType=INTEGER},
 		create_time = #{createTime,jdbcType=DATE}
 		where id = #{id,jdbcType=INTEGER}
 	</update>

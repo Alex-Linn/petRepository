@@ -2,6 +2,10 @@ package com.mdd.mt.service;
 
 import com.mdd.mt.mapper.UserMapper;
 import com.mdd.mt.model.User;
+
+import java.util.List;
+
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -44,8 +48,32 @@ public class UserService {
         }
 		return null;
 	}
+	
+	/**
+     * 登入
+     * @param user
+     * @return
+     */
+	public User adminLogin(User user) {
+		if(user!=null){
+        	User dbuser = userMapper.selectAdmin(user.getUserName(),user.getUserPwd());
+        	if(dbuser!=null&&dbuser.getUserPwd().equals(user.getUserPwd())){
+        		return dbuser;
+        	}
+        }
+		return null;
+	}
 
 	public User getUserById(int userId){
 		return userMapper.selectByPrimaryKey(userId);
 	}
+
+	public User loadUserInfo(int id) {
+		return userMapper.selectByPrimaryKey(id);
+	}
+
+	public void updateInfo(User user) {
+		userMapper.updateByPrimaryKeySelective(user);
+	}
+
 }

@@ -307,7 +307,8 @@
 
 /*我的院线通-我的资料(默认银卡会员)*/
 .myITVcontent10{width:1002px;margin:15px auto 0;}
-.myITVcontent10 .side{float:left;background-color:#fff;border: 1px solid #CDCDCD; width: 226px;text-align: left;height: 608px;}
+.myITVcontent10 .side {
+	float:left;background-color:#fff;border: 1px solid #CDCDCD; width: 226px;text-align: left;height: 274px;}
 .myITVcontent10 .ContentR{float:right;width:758px;text-align: left;}
 
 .myITVcontent10 .side .listContent h3{font-size: 24px;margin-left: 28px;height: 40px;line-height: 40px;}

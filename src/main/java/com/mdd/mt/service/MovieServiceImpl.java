@@ -77,4 +77,12 @@ public class MovieServiceImpl {
     public List<Movie>loadMovieList(int isShow){
     	return movieMapper.loadMovieList(isShow);
     }
+
+	public List<Movie> getTopSpecialMovie(String userHobby) {
+		return movieMapper.getTopSpecialMovie(userHobby);
+	}
+	
+	public int getMovieCrawler(){
+		return movieMapper.getMovieCrawler();
+	}
 }

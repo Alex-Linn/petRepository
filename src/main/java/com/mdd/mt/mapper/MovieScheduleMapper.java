@@ -33,4 +33,6 @@ public interface MovieScheduleMapper {
      * @return
      */
 	List<MovieSchedule> loadScheduleList(@Param("movieId")int movieId, @Param("cinemaId")int cinemaId);
+
+	int getScheduleCrawler();
 }

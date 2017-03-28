@@ -120,6 +120,9 @@
 		m.id = mc.movie_id	
 	</select>
 	
+	<select id="getCinemaCrawler" resultType="java.lang.Integer">
+		select count(id) from t_cinema where create_time > DATE_SUB(NOW(),INTERVAL 30 DAY) 
+	</select>
 	
 	<!--删除影院信息 -->
 	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">

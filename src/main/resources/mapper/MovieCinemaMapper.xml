@@ -33,6 +33,8 @@
 		#{cinemaId,jdbcType=INTEGER},
 		#{createTime,jdbcType=DATE})
 	</insert>
+	
+	
 
 	<!--批量插入 -->
 	<insert id="insertMovieCinemaList" parameterType="java.util.List">

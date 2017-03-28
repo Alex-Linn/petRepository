@@ -32,6 +32,10 @@
 		where id = #{id,jdbcType=INTEGER}
 	</select>
 	
+	<select id="getScheduleCrawler" resultType="java.lang.Integer">
+		select count(id) from t_movie_schedule where create_time > DATE_SUB(NOW(),INTERVAL 30 DAY) 
+	</select>
+	
 	<select id="loadScheduleList" resultMap="BaseResultMap">
 		select
 		<include refid="Base_Column_List" />

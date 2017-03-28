@@ -86,18 +86,10 @@
 		</div>
 	</div>
 	<div id="footer" class="fix">
-		<p class="frlink">
-			友情链接:<a href="http://webmail23.189.cn/webmail/" target="_blank">189邮箱</a>
-			| <a href="http://itv.huiyong123.com/" target="_blank">ITV</a> | <a
-				href="http://gd.189.cn/" target="_blank">网上营业厅</a> | <a
-				href="http://gd.chinavnet.com/" target="_blank">互联星空</a> | <a
-				href="http://www.189mv.cn/contactUs/" target="_blank">联系我们</a>
-		</p>
 		<ul>
-			<li>客服电话：4008610001<br>电信及增值业务经营许可证：粤ICP备14020429号<br>Copyright©
-				2007—2013 中国电信 版权所有
+			<li>客服电话：1877091266<br>电影比价平台<br>Copyright©
+				2017 许望禄 版权所有
 			</li>
-
 		</ul>
 	</div>
 </body>

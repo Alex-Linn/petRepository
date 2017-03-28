@@ -44,4 +44,13 @@ public interface MovieMapper {
      * @return
      */
 	List<Movie> loadMovieList(int isShow);
+
+	/**
+	 * 个性化推荐
+	 * @param userHobby
+	 * @return
+	 */
+	List<Movie> getTopSpecialMovie(String userHobby);
+	
+	int getMovieCrawler();
 }

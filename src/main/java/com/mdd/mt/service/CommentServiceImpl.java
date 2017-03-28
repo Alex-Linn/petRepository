@@ -35,4 +35,12 @@ public class CommentServiceImpl {
 			commentMapper.insert(comment);
 		}
 	}
+
+	public List<Comment> commentList() {
+		return commentMapper.commentList();
+	}
+
+	public int delComment(int id) {
+		return commentMapper.deleteByPrimaryKey(id);
+	}
 }

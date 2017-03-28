@@ -19,9 +19,24 @@ public class ToViewController {
 		return "login";
 	}
 	
-	@RequestMapping("toIndex")
-	public String toIndexView(){
-		return "index";
+	@RequestMapping("toUpdateInfo")
+	public String toUpdateInfo(){
+		return "updateInfo";
+	}
+	
+	@RequestMapping("toLoginAdmin")
+	public String toLoginAdmin(){
+		return "loginAdmin";
+	}
+	
+	@RequestMapping("toAdminNotice")
+	public String toAdminNotice(){
+		return "adminNotice";
+	}
+	
+	@RequestMapping("comment")
+	public String comment(){
+		return "comment";
 	}
 	
 	/**

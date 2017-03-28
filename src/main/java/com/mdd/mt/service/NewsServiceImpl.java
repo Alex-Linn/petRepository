@@ -34,4 +34,8 @@ public class NewsServiceImpl {
 	public News loadNews(int id) {
 		return newsMapper.selectByPrimaryKey(id);
 	}
+	
+	public int getNewsCrawler(){
+		return newsMapper.getNewsCrawler();
+	}
 }

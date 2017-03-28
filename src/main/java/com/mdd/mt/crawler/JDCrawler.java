@@ -244,15 +244,25 @@ public class JDCrawler {
 			performer = performer + ele.text();
 		}
 		movie.setPerformer(performer);
-		// 类型
-		String movieType = infoElement.select("dl > dd.movie-type > div > p > span:nth-child(2)").text();
-		movie.setMovieType(movieType);
-		// 时间
-		String movieTime = infoElement.select("dl > dd.movie-type > div > p > span:nth-child(3)").text();
-		movie.setMovieTime(movieTime);
-		// 上映时间
-		String rescheduledTime = infoElement.select("dl > dd.movie-type > div > p > span:nth-child(4)").text();
-		movie.setRescheduledTime(rescheduledTime);
+		
+		Elements spanElements = infoElement.select("dl > dd.movie-type > div > p > span");
+		if(spanElements!=null&&spanElements.size()>0){
+			String movieType = "";//类型有可能很多个
+			for(Element ele :spanElements){
+				String str = ele.text();
+				if(str.endsWith("分钟")){
+					// 时间
+					movie.setMovieTime(str);
+				}else if(str.endsWith("上映")){
+					// 上映时间
+					movie.setRescheduledTime(str);
+				}else{
+					movieType += str+"、"; 
+				}
+			}
+			// 类型
+			movie.setMovieType(movieType);
+		}
 		// 剧情
 		String movieStory = infoElement.select("dl > dd.movie-intro.js-plot-short-infor > div > div > div > p").text();
 		movie.setMovieStory(movieStory);

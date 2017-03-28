@@ -71,6 +71,8 @@ public interface CinemaMapper {
 	 * @return
 	 */
 	List<Movie> loadMovieByCinemaId(int cinemaId);
+	
+	int getCinemaCrawler();
 
 	/**
 	 * 

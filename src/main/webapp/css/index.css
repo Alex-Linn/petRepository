@@ -717,6 +717,7 @@ h4.s_b_pos_tit {
 .rw_news {
 	float: right;
 	width: 280px;
+	height:377px;
 	padding: 12px 7px;
 }
 

@@ -35,4 +35,8 @@ public class DiscountsServiceImpl {
 			discountsMapper.insert(discount);
 		}
 	}
+	
+	public int getDiscountCrawler(){
+		return discountsMapper.getDiscountCrawler();
+	}
 }

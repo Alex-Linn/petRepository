@@ -25,8 +25,6 @@
 </head>
 <body>
 	<jsp:include page="head.jsp" />
-	<!--end 导航-->
-
 	<div class="banner_bg">
 		<div id="i-hot" class="i-hot">
 			<div class="JQ-slide">
@@ -291,143 +289,20 @@
 				<h2>人物专访</h2>
 			</div>
 			<div class="rw_cont">
-
+				<c:forEach items="${noticeList }" var="notice">
 				<dl class="fix">
-					<dt class="pic">
-						<a title="专访《锦绣缘》黄晓明：我喜欢演霸道总裁"
-							href="http://www.189mv.cn/news/13500/"><img
-							src="<%=request.getContextPath()%>/images/news_37425.jpg"
-							height="90" width="90"></a>
-					</dt>
-					<dd>
-						<h4>
-							<a href="http://www.189mv.cn/news/13500/" 
-								title="专访《锦绣缘》黄晓明：我喜欢演霸道总裁" class="blue">专访《锦绣缘》黄晓明...</a>
-						</h4>
-						<p>
-							这是他首次担任电视剧出品人，发布会上，黄晓明表现的很卖力，他配合着记...<span class="more">[<a
-								href="http://www.189mv.cn/news/13500/">阅读全文</a>]
-							</span>
-						</p>
-					</dd>
+					<center>${notice.context}</center>
 				</dl>
-
-				<dl class="fix">
-					<dt class="pic">
-						<a title="独家专访迪士尼《超能陆战队》主创团队" 
-							href="http://www.189mv.cn/news/13439/"><img
-							src="<%=request.getContextPath()%>/images/news_37361.jpg"
-							height="90" width="90"></a>
-					</dt>
-					<dd>
-						<h4>
-							<a href="http://www.189mv.cn/news/13439/" 
-								title="独家专访迪士尼《超能陆战队》主创团队" class="blue">独家专访迪士尼《超能...</a>
-						</h4>
-						<p>
-							美国特派记者专赴《超能陆战队》诞生之地——迪士尼动画工作室，与影片中...<span class="more">[<a
-								" href="http://www.189mv.cn/news/13439/">阅读全文</a>]
-							</span>
-						</p>
-					</dd>
-				</dl>
-
-				<dl class="fix">
-					<dt class="pic">
-						<a title="专访动画电影《花木兰》导演巴里·库克" "
-							href="http://www.189mv.cn/news/13140/"><img
-							src="<%=request.getContextPath()%>/images/news_37003.jpg"
-							height="90" width="90"></a>
-					</dt>
-					<dd>
-						<h4>
-							<a href="http://www.189mv.cn/news/13140/" "
-								title="专访动画电影《花木兰》导演巴里·库克" class="blue">专访动画电影《花木兰...</a>
-						</h4>
-						<p>
-							在《花木兰》导演巴里·库克看来，要想让“孙悟空”走向世界，不仅需要大...<span class="more">[<a
-								" href="http://www.189mv.cn/news/13140/">阅读全文</a>]
-							</span>
-						</p>
-					</dd>
-				</dl>
-
+				</c:forEach>
 			</div>
 		</div>
-	</div>
-
-	<div class="wrapper">
-		<div class="com_b mart padd_28 fix">
-			<div class="c_txt">
-				<h2 class="black">关注我们，不止是网站</h2>
-			</div>
-			<div class="gz_list gz_list_reset">
-				<ul class="fix">
-
-					<li><a href="http://weibo.com/yuanxiantong" class="k_4"
-						">
-							<h3 class="blue">新浪微博</h3>
-							<p>@院线通</p>
-							<p>更好的影讯，更多的优惠，</p>
-							<p>更新鲜的电影资讯。</p>
-					</a></li>
-				</ul>
-			</div>
-		</div>
-		<a href="http://www.189mv.cn/phone/?tab=3" ">
-			<div class="weixin_index weixin_index1">
-				<div class="img-cen">
-					<img src="<%=request.getContextPath()%>/images/weixin1.jpg"
-						width="140">
-				</div>
-				<div class="shuoming">
-					<p class="weixin_title fl">微信服务号</p>
-					<p class="fl">
-						移动客服<br>尽在身边
-					</p>
-					<div class="clear"></div>
-				</div>
-			</div>
-		</a> <a href="http://www.189mv.cn/phone/?tab=3" ">
-			<div class="weixin_index">
-				<div class="img-cen">
-					<img src="<%=request.getContextPath()%>/images/weixin.jpg">
-				</div>
-				<div class="shuoming">
-					<p class="weixin_title fl">微信订阅号</p>
-					<p class="fl">
-						随时了解<br>更多影讯
-					</p>
-					<div class="clear"></div>
-				</div>
-			</div>
-		</a> <a href="http://www.189mv.cn/phone/" ">
-			<div class="kehuduan_index">
-				<div class="img-cen">
-					<img src="<%=request.getContextPath()%>/images/kehuduan.png">
-				</div>
-				<div class="shuoming">
-					<p class="weixin_title fl">&nbsp;&nbsp;&nbsp;&nbsp;客户端&nbsp;&nbsp;</p>
-					<p class="fl">
-						快捷订票<br>更多优惠
-					</p>
-					<div class="clear"></div>
-				</div>
-			</div>
-		</a>
 	</div>
 
 	<div id="footer" class="fix">
-		<p class="frlink">
-			友情链接:<a href="http://webmail23.189.cn/webmail/" ">189邮箱</a>
-			| <a href="http://itv.huiyong123.com/" ">ITV</a> | <a
-				href="http://gd.189.cn/" ">网上营业厅</a> | <a
-				href="http://gd.chinavnet.com/" ">互联星空</a> | <a
-				href="http://www.189mv.cn/contactUs/" ">联系我们</a>
-		</p>
 		<ul>
-			<li>客服电话：4008610001<br>电影比价平台经营许可证：粤ICP备14020429号<br>Copyright©
-				2007—2017电影平台版权所有
+
+			<li>客服电话：1877091266<br>电影比价平台<br>Copyright©
+				2017 许望禄 版权所有
 			</li>
 		</ul>
 	</div>

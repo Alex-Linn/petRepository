@@ -45,10 +45,12 @@
 		,
 		<include refid="Blob_Column_List" />
 		from t_news
-		where create_time > DATE_SUB(NOW(),INTERVAL 3 DAY) limit 0,5
+		where create_time > DATE_SUB(NOW(),INTERVAL 30 DAY) limit 0,5
 	</select>
 	
-	
+	<select id="getNewsCrawler" resultType="java.lang.Integer">
+		select count(id) from t_news where create_time > DATE_SUB(NOW(),INTERVAL 30 DAY) 
+	</select>
 	
 	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
 		delete from t_news

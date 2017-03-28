@@ -22,14 +22,14 @@
 	<jsp:include page="head.jsp" />
 	<div class="wrapper">
 		<div class="crumbs mart10">
-			您的位置：<a href="http://www.189mv.cn/">电影比价平台</a> &gt; <span>电影</span>
+			您的位置：<a href="http://www.189mv.cn/">电影比价平台</a> &gt; <span>个性化推荐</span>
 		</div>
 	</div>
 	<div class="wrapper">
 		<div class="hot_film com_b mart10 fix top-film">
 			<div class="film-tab">
 				<ul id="filmTab">
-					<li><a href="javascript:void(0);" class="cur">正在热映</a></li>
+					<li><a href="javascript:void(0);" class="cur">个性化推荐</a></li>
 				</ul>
 			</div>
 
@@ -71,9 +71,11 @@
 		</div>
 	</div>
 	<div id="footer" class="fix">
+		
 		<ul>
+
 			<li>客服电话：1877091266<br>电影比价平台<br>Copyright©
-				2017电影比价平台 版权所有
+				2017 许望禄 版权所有
 			</li>
 		</ul>
 	</div>

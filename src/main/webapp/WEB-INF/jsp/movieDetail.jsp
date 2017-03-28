@@ -178,9 +178,7 @@
 						
 						$("#cinemaShow").on("click","a", function() {
 							var cinemaId = $(this).attr("id");
-							alert(cinemaId);
 							var movieId = ${movie.id};
-							alert(movieId);
 							var url = "<%=request.getContextPath()%>/mt/movieScheduleList";
 							$.ajax({
 								url : url,
@@ -194,7 +192,6 @@
 								success : function(json) {
 									$("#cshow").empty();
 									var sList=eval(json);
-									alert(sList);
 									if(sList!=null&&sList.length>0){
 										for(var j=0;j<sList.length;j++){
 											$scheduleDiv = $("<div class='md_times' style='margin-right: 10px;'>")
@@ -399,25 +396,27 @@
 		<!-- 热门推荐部分 -->
 		<div class="hot_z mart10 com_b">
 			<h2>热门推荐</h2>
-
+			
 			<div class="hot_z_list">
 				<ul class="pic_lsit fix">
 
+			<c:forEach items="${movieList}" var="movieSix" >
 					<li class=""><a href="http://www.189mv.cn/movie/29790/"
-						class="pic" title="一条狗的使命""><img
-							src="%E9%99%A2%E7%BA%BF%E9%80%9A-%E9%87%91%E5%88%9A%E7%8B%BC3%EF%BC%9A%E6%AE%8A%E6%AD%BB%E4%B8%80%E6%88%98_files/f014f945658b3d287a7128021c0d82f1_HB1_41676.jpg"
+						class="pic" title="${movieSix.movieName}"><img
+							src="${movieSix.posterUrl}"
 							height="170" width="137"></a>
 						<div class="con">
 							<h3>
 								<a href="http://www.189mv.cn/movie/29790/" class="blue"
-									title="一条狗的使命"">一条狗的使命</a>
+									title="${movieSix.posterUrl}">${movieSix.movieName}</a>
 							</h3>
 							<div class="s">
 								<span class="star"> <span class="star_now"
 									style="width: 82%"></span>
-								</span> <em class="score">8.2</em>
+								</span> <em class="score">${movieSix.score}</em>
 							</div>
 						</div></li>
+			</c:forEach>
 				</ul>
 			</div>
 
@@ -428,16 +427,9 @@
 	</div>
 
 	<div id="footer" class="fix">
-		<p class="frlink">
-			友情链接:<a href="http://webmail23.189.cn/webmail/"">189邮箱</a> | <a
-				href="http://itv.huiyong123.com/"">ITV</a> | <a
-				href="http://gd.189.cn/"">网上营业厅</a> | <a
-				href="http://gd.chinavnet.com/"">互联星空</a> | <a
-				href="http://www.189mv.cn/contactUs/"">联系我们</a>
-		</p>
 		<ul>
-			<li>客服电话：4008610001<br>电信及增值业务经营许可证：粤ICP备14020429号<br>Copyright©
-				2007—2013 中国电信 版权所有
+			<li>客服电话：1877091266<br>电影比价平台<br>Copyright©
+				2017电影比价平台 版权所有
 			</li>
 		</ul>
 	</div>

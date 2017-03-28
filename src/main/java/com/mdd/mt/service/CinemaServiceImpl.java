@@ -1,6 +1,7 @@
 package com.mdd.mt.service;
 
 import com.mdd.mt.mapper.CinemaMapper;
+import com.mdd.mt.mapper.MovieMapper;
 import com.mdd.mt.model.Cinema;
 import com.mdd.mt.model.Movie;
 
@@ -90,5 +91,9 @@ public class CinemaServiceImpl {
 	 */
 	public List<Movie> loadMovieByCinemaId(int cinemaId) {
 		return cinemaMapper.loadMovieByCinemaId(cinemaId);
+	}
+	
+	public int getCinemaCrawler(){
+			return cinemaMapper.getCinemaCrawler();
 	}
 }

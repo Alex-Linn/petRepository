@@ -38,6 +38,10 @@
 		where create_time > DATE_SUB(NOW(),INTERVAL 7 DAY) 
 	</select>
 	
+	<select id="getDiscountCrawler" resultType="java.lang.Integer">
+		select count(id) from t_discounts where create_time > DATE_SUB(NOW(),INTERVAL 30 DAY) 
+	</select>
+	
 	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
 		delete from
 		t_discounts
