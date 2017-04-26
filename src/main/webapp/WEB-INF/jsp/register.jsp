@@ -1,189 +1,109 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-<%@ page isELIgnored="false" %>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<%@ page language="java" contentType="text/html; charset=utf-8"
+	pageEncoding="utf-8"%>
+<!DOCTYPE html>
+<%
+	String contextPath = request.getContextPath();
+%>
 <html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-
-<meta name="application-name" content="电影比价平台">
-<meta name="title" content="电影资讯">
-<title>电影比价平台-注册</title>
-<link href="<%=request.getContextPath()%>/css/public.css"
-	type="text/css" rel="stylesheet">
-<link href="<%=request.getContextPath()%>/css/list.css" type="text/css"
-	rel="stylesheet">
-</head>
-<body>
-<jsp:include page="head.jsp" />
-	<!--end 导航-->
-	<div class="wrapper">
-		<div class="crumbs mart10">
-			您的位置：<a href="http://www.189mv.cn/">电影比价平台</a> &gt; <span>注册</span>
-		</div>
-	</div>
-	<div class="wrapper">
-		<div class="com_b mart10 padd_28 fix">
-			<div class="register-con">
-				<h2>用户注册</h2>
-				<h3>${message}</h3>
-				<form id="myform" action="<%=request.getContextPath()%>/mt/register"
-					method="post">
-					<div class="regist_cont">
-						<div class="k_item_2" style="width: 500px">
-							<span class="t">用户名:</span> <input name="userName" id="userName"
-								maxlength="11" type="text" class="ip_txt"> <span
-								id="nameMsg"></span>
-						</div>
-						
-						<div class="k_item_2" style="width: 500px">
-							<span class="t">手机号码:</span> <input name="userTel" id="userTel"
-								type="text" class="ip_txt"> <span id="telMsg"></span>
-						</div>
-						<div class="k_item_2" style="width: 500px">
-							<span class="t">设置密码:</span> <input name="userPwd" id="userPwd"
-								type="password" class="ip_txt"> <span id="pwdMsg"></span>
-						</div>
-						<div class="k_item_2" style="width: 500px">
-							<span class="t">确认密码:</span> <input name="reUserPwd"
-								id="repassword" type="password" class="ip_txt"> <span
-								id="repwdMsg"></span>
-						</div>
-						<div class="k_item_2" style="width: 500px">
-							<span class="t">喜欢影片类型:</span> 
-								<select id="userHobby" name= "userHobby">
-									<option value="动作">动作</option>
-									<option value="喜剧">喜剧</option>
-									<option value="爱情">爱情</option>
-									<option value="科幻">科幻 </option>
-									<option value="奇幻">奇幻 </option>
-									<option value="灾难">灾难</option>
-									<option value="恐怖">恐怖 </option>
-									<option value="纪录">纪录</option>
-									<option value="犯罪">犯罪</option>
-									<option value="战争">战争 </option>
-									<option value="冒险">冒险</option>
-									<option value="动画">动画 </option>
-									<option value="剧情">剧情 </option>
-									<option value="其他">其他 </option>
-									 
-								</select>
-						    <span
-								id="nameMsg"></span>
-						</div>
-						<div class="k_regist">
-							<a href="javascript:void(0);" id="registbtn" class="btn">提交注册</a>
-							<span style="font-size: 12px; margin-left: 5px;">已有账号</span><a
-								href="<%=request.getContextPath()%>/mt/toLogin" class="blue"
-								style="font-size: 12px;">立即登录</a>
-						</div>
-					</div>
-				</form>
-			</div>
-		</div>
-	</div>
-	<div id="footer" class="fix">
-		<ul>
-			<li>客服电话：1877091266<br>电影比价平台<br>Copyright©
-				2017电影比价平台 版权所有
-			</li>
-		</ul>
-	</div>
-
-	<script type="text/javascript"
-		src="<%=request.getContextPath()%>/js/jquery.min.js"></script>
-	
+  <head>
+    <title>注册界面</title>
+    
+	<meta http-equiv="pragma" content="no-cache">
+	<meta http-equiv="cache-control" content="no-cache">
+	<meta http-equiv="expires" content="0">    
+	<meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
+	<meta http-equiv="description" content="This is my page">
 	<script type="text/javascript">
-		function register() {
-			//登录
-			window.location.href = root + "regist/";
+    	function validate(){
+    		var r = new RegExp("^[\\u4e00-\\u9fa5]{0,}$");
+    		var user = document.getElementById("username").value;
+    		var pass = document.getElementById("password").value;
+    		var pass1 = document.getElementById("password1").value;
+    		if(user.trim()=="" || pass.trim()==""){
+    			alert("用户名或密码不能为空！");
+    			return false;
+    		} 
+    		if(!r.test(user)){
+	    		alert("用户名必须是中文！");
+	    		return false;
+		    	}
+	    	if(pass.length<6){
+	    		alert("密码长度必须大于6位！");
+	    		return false;
+	    	}
+	    	if(pass!=pass1){
+	    		alert("密码确认错误，请重试！");
+	    		return false;
+	    	}
+	    	document.form1.submit();
+    	}
+    	function login(url) {
+			window.location = url;
 		}
-		function login() {
-			//登录
-			window.location.href = root + "login/";
+    </script>
+    <style>
+	form{
+		display:block;
+		width:70%;
+		height:20vh;
+		padding-left:0vw;
+		margin:10vh 15%;
+		color:white;
+		padding-left:45vw;
+		padding-top:7vw;
+	}
+	form>input[type='text']{
+			width:15vw;
+			height:4vh;
+			border-radius:0.5vw;
+			border:none;
+			text-indent:5px;
 		}
-
-		function refresh() {
-			document.getElementById("imgcodedom").src = "http://www.189mv.cn/randomCode.jpg?now="
-					+ new Date().getTime();
-			$("#imagescode").val("");
-			return false;
+		form>input[type='password']{
+			width:15vw;
+			height:4vh;
+			border-radius:0.5vw;
+			border:none;
+			text-indent:5px;
 		}
-
-		$(document).ready(function() {
-			var userName = $("#userName").val();
-			var userTel = $("#userTel").val();
-			var userPwd= $("#userPwd").val();
-			var repassword= $("#repassword").val();
-			var reg = /^([a-zA-Z]|[0-9]){6,12}$/;
-
-			$("#userName").change(function() {
-				$("#nameMsg").html("");
-				userName = $("#userName").val();
-				if (userName == '') {
-					$("#nameMsg").html("<font color='red'>用户名不能为空</font>");
-					return;
-				}
-			});
-
-			$("#userTel").change(function() {
-				$("#telMsg").html("");
-				userTel = $("#userTel").val();
-				if (userTel == '') {
-					$("#telMsg").html("<font color='red'>手机号不能为空</font>");
-					return;
-				}
-
-				var isIeger = false;
-				//手机号校验
-				if (/^1[3-9]\d{9}$/.test(userTel)) {
-					isIeger = true;
-				}
-
-				if (!isIeger) {
-					$("#telMsg").html("<font color='red'>手机号格式错误</font>");
-					return;
-				}
-			});
-
-			$("#userPwd").change(function() {
-				$("#pwdMsg").html("");
-				userPwd = $("#userPwd").val();
-				if (userPwd == '') {
-					$("#pwdMsg").html("<font color='red'>密码不能为空</font>");
-					return;
-				}
-				
-			});
-
-			$("#repassword").change(function() {
-				repassword = $("#repassword").val();
-				$("#repwdMsg").html("");
-				
-				if (repassword == '') {
-					$("#repwdMsg").html("<font color='red'>密码不能为空</font>");
-					return;
-				}
-
-				
-			});
-			
-			$("#userPwd,#repassword").change(function(){
-				$("#repwdMsg").html("");
-				userPwd = $("#userPwd").val();
-				repassword = $("#repassword").val();
-				if (userPwd != repassword) {
-					$("#repwdMsg").html("<font color='red'>密码 不一致</font>");
-					return;
-				}
-			});
-
-			$("#registbtn").click(function() {
-				if(userName!=''&&userPwd!=''&&userTel!=''&&repassword!=''&&userPwd==repassword){
-					$("#myform").submit();
-				}
-			});
-		});
-	</script>
-</body>
+		form>input[type='button']{
+			display:inline-block;
+			width:6.5vw;
+			height:4.5vh;
+			margin:4vh 2vw;
+			border-radius:0.5vw;
+			border:none;
+			background:#fff;
+			cursor:pointer;
+		}
+		form>input[type='button']:hover{
+			background:#3E8FEB;
+			color:#fff;
+		}
+	</style>
+  </head>
+  
+  <body style="width:100%;height:100%;">
+    <%-- <div style="display:block;position:fixed;float:right;margin-top: 10px;right:250px;">
+    	<h2 style="color:#fff;">${msg}</h2><br>
+    </div> --%>
+    <style>
+      body{
+          background:url('../images/1.jpg') top left;
+          background-size:100%;
+          overflow:hidden;
+      }
+    </style>
+      <form method="post" action="<%=contextPath %>/user/registerCheck" name="form1">
+      			<input type="hidden" name="method" value="registercheck">
+        	注册用户名: <input type="text" name="username" id="username"/><br></br>
+         	注&nbsp;册&nbsp;密&nbsp;码: <input type="password" name="password" id="password"/><br><br>
+         	确&nbsp;认&nbsp;密&nbsp;码: <input type="password" name="password" id="password1"/><br>
+        		<input type="button" value="注册" onClick="validate()"/>
+        		<!-- <input type="button" value="登录" onClick="login('login.jsp')"/> -->
+        		<a href="<%=contextPath%>/pet/toLogin">
+        			<font size="3" color="white">立即登陆</font>
+        		</a>
+      </form>
+  </body>
 </html>

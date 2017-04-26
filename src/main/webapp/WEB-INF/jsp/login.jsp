@@ -1,104 +1,97 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
 	pageEncoding="utf-8"%>
-<%@ page isELIgnored="false"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
+<%
+	String contextPath = request.getContextPath();
+%>
 <html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-
-<title>电影比价平台-登录</title>
-<link href="<%=request.getContextPath()%>/css/public.css"
-	type="text/css" rel="stylesheet">
-<link href="<%=request.getContextPath()%>/css/list.css" type="text/css"
-	rel="stylesheet">
-</head>
-<body>
-	<jsp:include page="head.jsp" />
-	<!--end 导航-->
-	<div class="wrapper">
-		<div class="crumbs mart10">
-			您的位置：<a href="http://www.189mv.cn/">电影比价平台</a> &gt; <span>登录</span>
-		</div>
-	</div>
-	<div class="wrapper">
-		<div class="com_b mart10 padd_28 fix">
-			<div class="register-con">
-				<h2>用户登录</h2>
-				<h3>${message}</h3>
-				<form action="<%=request.getContextPath()%>/mt/login" method="post"
-					id="myform">
-					<div class="login_cont">
-						<div class="k_item_2">
-							<span class="t">登录账号：</span> <input name="userName" id="userName"
-								placeholder="账号" type="text" class="ip_txt">
-								<span id="nameMsg"></span>
-						</div>
-						<div class="k_item_2" style="width: 500px">
-							<span class="t">登录密码：</span> <input name="userPwd" id="userPwd"
-								placeholder="密码" type="password" class="ip_txt">
-								<span id="pwdMsg"></span>
-						</div>
-
-						<div class="k_item_3">
-							<span class="rem"> <label><input type="checkbox"
-									id="remember" style="margin-right: 5px;">记住账号</label>
-							</span> <a href="http://www.189mv.cn/forget/" class="blue"
-								style="margin-left: 130px;">找回密码</a>
-						</div>
-						<div class="k_login" style="padding-bottom: 40px;">
-							<a href="javascript:void(0);" id="loginButton" class="btn">登录</a>
-						    <a href="<%=request.getContextPath()%>/mt/toRegister" class="blue"
-								style="margin-left: 5px; font-size: 12px;">我要注册</a>
-						</div>
-
-					</div>
-				</form>
-			</div>
-
-		</div>
-
-	</div>
-	<div id="footer" class="fix">
-		<ul>
-			<li>客服电话：1877091266<br>电影比价平台<br>Copyright©
-				2017电影比价平台 版权所有
-			</li>
-		</ul>
-	</div>
-	<script type="text/javascript"
-		src="<%=request.getContextPath()%>/js/jquery.min.js"></script>
-	<script type="text/javascript">
-	$(document).ready(function() {
-		var userName='';
-		var userPwd='';
-		userName = $("#userName").val();
-		userPwd = $("#userPwd").val();
-		$("#userName").change(function() {
-			$("#nameMsg").html("");
-			userName = $("#userName").val();
-			if (userName == '') {
-				$("#nameMsg").html("<font color='red'>用户名不能为空</font>");
-				return;
-			}
-		});
-
-		
-		$("#userPwd").change(function() {
-			$("#pwdMsg").html("");
-			userPwd = $("#userPwd").val();
-			if (userPwd == '') {
-				$("#pwdMsg").html("<font color='red'>密码不能为空</font>");
-				return;
-			}
-			
-		});
-		
-		$("#loginButton").click(function(){
-			if(userName!=''&&userPwd!=''){
-				$("#myform").submit();
-			}
-		});
-	});
-	</script>
-</body>
+  <head>
+    <title>My JSP 'login.jsp' starting page</title>
+    <script type="text/javascript">
+    	function validate(){
+    		var r = new RegExp("^[\\u4e00-\\u9fa5]{0,}$");
+    		var user = document.getElementById("username").value;
+    		var pass = document.getElementById("password").value;
+    		if(user.trim()=="" || pass.trim()==""){
+    			alert("用户名或密码不能为空！");
+    			return false;
+    		} 
+    		if(!r.test(user)){
+	    		alert("用户名必须是中文！");
+	    		return false;
+		    	}
+	    	if(pass.length<6){
+	    		alert("密码长度必须大于6位！");
+	    		return false;
+	    	}
+	    	document.form.submit();
+    	}
+    	
+    	function register(url) {
+			window.location = url;
+		}
+    </script>
+    <style>
+	form{
+		display:block;
+		width:70%;
+		height:20vh;
+		padding-left:0vw;
+		margin:10vh 15%;
+		color:white;
+		padding-left:45vw;
+		padding-top:6vw;
+	}
+	form>input[type='text']{
+			width:15vw;
+			height:4vh;
+			border-radius:0.5vw;
+			border:none;
+			text-indent:5px;
+		}
+		form>input[type='password']{
+			width:15vw;
+			height:4vh;
+			border-radius:0.5vw;
+			border:none;
+			text-indent:5px;
+		}
+		form>input[type='button']{
+			display:inline-block;
+			width:6.5vw;
+			height:4.5vh;
+			margin:4vh 2vw;
+			border-radius:0.5vw;
+			border:none;
+			background:#fff;
+			cursor:pointer;
+		}
+		form>input[type='button']:hover{
+			background:#3E8FEB;
+			color:#fff;
+		}
+	</style>
+  </head>
+  <body style="width:100%;height:100%;">
+	<%-- <div style="display:block;position:fixed;float:right;margin-top: 10px;right:160px;">
+		 <h2 style="color:#fff;">${msg}</h2><br>
+ 	</div> --%>
+ 	<style>
+ 	  body{
+ 	      background:url('../images/1.jpg') top left;
+ 	      background-size:100%;
+          overflow:hidden;
+ 	  }
+ 	</style>
+      <form method="post" action="<%=contextPath %>/user/loginCheck" name="form">
+      			<input type="hidden" name="method" value="logincheck">
+        	用 户 名  : <input type="text" name="username" id="username"/><br><br>
+         	密 &nbsp;&nbsp;&nbsp;&nbsp;码 : <input type="password" name="password" id="password"/><br>
+        	<input type="button" value="登录" onClick="validate()"/>
+        	<!-- <input type="button" value="注册" onClick="register('register.jsp')"/> -->
+			<a href="<%=contextPath%>/pet/toRegister">
+        		<font size="3" color="white">立即注册</font>
+        	</a>
+      </form>
+  </body>
 </html>
