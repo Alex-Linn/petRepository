@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wl.dao.PetOwnerMapper">
+	<resultMap id="BaseResultMap" type="com.wl.model.PetOwner">
+		<id column="id" jdbcType="INTEGER" property="id" />
+		<result column="owner_username" jdbcType="VARCHAR" property="ownerUsername" />
+		<result column="owner_password" jdbcType="VARCHAR" property="ownerPassword" />
+		<result column="owner_age" jdbcType="INTEGER" property="ownerAge" />
+		<result column="owner_sex" jdbcType="VARCHAR" property="ownerSex" />
+		<result column="telephone" jdbcType="VARCHAR" property="telephone" />
+		<result column="owner_email" jdbcType="VARCHAR" property="ownerEmail" />
+		<result column="address" jdbcType="VARCHAR" property="address" />
+		<result column="occupation" jdbcType="VARCHAR" property="occupation" />
+		<result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+	</resultMap>
+	
+	<sql id="Base_Column_List">
+		id,owner_username,owner_password,owner_age,owner_sex,telephone,owner_email,address,occupation,create_time
+	</sql>
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
+		parameterType="java.lang.Integer">
+		select
+		<include refid="Base_Column_List" />
+		from t_owner
+		where id = #{id,jdbcType=INTEGER}
+	</select>
+	<!-- 根据用户名查找用户 -->
+	<select id="selectByName" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from t_owner
+		where owner_username = #{ownerUsername,jdbcType=VARCHAR}
+	</select>
+	<!--插入数据  -->
+	<insert id="insert"	parameterType="com.wl.model.PetOwner">
+		insert into t_owner(
+			id,owner_username,owner_password,owner_age,owner_sex,telephone,owner_email,address,occupation,create_time
+		)
+		values(
+			#{id,jdbcType=INTEGER}, 
+			#{ownerUsername,jdbcType=VARCHAR},
+			#{ownerPassword,jdbcType=VARCHAR},
+			#{ownerAge,jdbcType=INTEGER},
+			#{ownerSex,jdbcType=VARCHAR},
+			#{telephone,jdbcType=VARCHAR},
+			#{ownerEmail,jdbcType=VARCHAR},
+			#{address,jdbcType=VARCHAR},
+			#{occupation,jdbcType=VARCHAR},
+			now()
+		)
+	</insert>
+	<!-- 更新数据 -->
+	<update id="updateByUser" parameterType="com.wl.model.PetOwner">
+		update t_owner
+		<set>
+			<if test="ownerUsername != null">
+				owner_username = #{ownerUsername,jdbcType=VARCHAR},
+			</if>
+			<if test="ownerPassword != null">
+				owner_password = #{ownerPassword,jdbcType=VARCHAR},
+			</if>
+			<if test="ownerAge != null">
+				owner_age = #{ownerAge,jdbcType=INTEGER},
+			</if>
+			<if test="ownerSex != null">
+				owner_sex = #{ownerSex,jdbcType=VARCHAR},
+			</if>
+			<if test="telephone != null">
+				telephone = #{telephone,jdbcType=VARCHAR},
+			</if>
+			<if test="ownerEmail != null">
+				owner_email = #{ownerEmail,jdbcType=VARCHAR},
+			</if>
+			<if test="occupation != null">
+				occupation = #{occupation,jdbcType=VARCHAR},
+			</if>
+			<if test="address != null">
+				address = #{address,jdbcType=VARCHAR},
+			</if>
+		</set>
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+</mapper>
